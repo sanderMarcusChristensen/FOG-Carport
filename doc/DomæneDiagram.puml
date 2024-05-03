@@ -11,8 +11,8 @@ object variant
 
 
 Fog --* website
-website --* user
-user --o admin
+website --o user
+user <-- admin
 user --o order
 order --* orderItem
 orderItem --* materials
