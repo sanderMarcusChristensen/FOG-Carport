@@ -1,0 +1,167 @@
+@startuml
+
+class connetionPool
+class databaseException
+class thymeleafConfig
+
+
+class user
+class order
+class orderItem
+class variant
+class material
+
+class materialMapper
+class userMapper
+class variantMapper
+class orderItemMapper
+class orderMapper
+
+class adminController
+class orderController
+class orderItemController
+class materialController
+
+class calculator
+
+connetionPool *-- databaseException
+
+
+userMapper *-- connetionPool
+variantMapper *-- connetionPool
+orderItemMapper *-- connetionPool
+orderMapper *-- connetionPool
+materialMapper *-- connetionPool
+
+user *-- userMapper
+variant *-- variantMapper
+order *-- orderMapper
+orderItem *-- orderItemMapper
+material *-- materialMapper
+
+calculator *-- material
+calculator *-- variant
+calculator *-- order
+calculator *-- orderItem
+
+
+adminController *-- user
+materialController *-- calculator
+orderController *-- calculator
+orderItemController *-- calculator
+
+
+databaseException : - DatabaseException (String userMessage)
+databaseException : - DatabaseException (String userMessage, String systemMessage)
+
+connetionPool : - public static connectionPool instance = null
+connetionPool : - public static HikariDatasource ds = null
+connetionPool : + public static ConnectionPool getInstance(String user, String password, String url, String db)
+connetionPool : + public synchronized Connection getConnection() throws SQLException
+connetionPool : + public synchronized void close()
+connetionPool : + private static HikariDataSource createHikariConnectionPool(String user, String password, String url, String db)
+
+
+userMapper : + static User currentUser
+userMapper : - public static User login(String userName, String password, ConnectionPool connectionPool) throws DatabaseException
+userMapper : - public static void createuser(String userName, String password, ConnectionPool connectionPool) throws DatabaseException
+userMapper : - public static List<User> getAllUsers(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+userMapper : - public static User getSpecificUser(int u_id, ConnectionPool connectionPool) throws DatabaseException
+userMapper : - public static void editUserBalance(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+
+user : - private int user_id
+user : - private String user_name
+user : - private String user_password
+user : - private String user_role
+user : - (private int zipcode)
+
+user : + public int getUser_id()
+user : + void setUser_id
+user : + String getUser_name()
+user : + void setUser_name()
+user : + String getUser_password()
+user : + void setUser_password()
+user : + String getUser_role()
+user : + void setUser_role()
+user : + String toString()
+
+materialMapper : - public static List<material> getAllMaterial(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+materialMapper : - public static List<material> getAllWoodMaterial(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+materialMapper : - public static List<material> getAllScrewsMaterial(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+materialMapper : - public static List<material> getAllRoofMaterial(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+materialMapper : - public static List<material> getAllFittingsMaterial(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+
+material : - private int material_id
+material : - private String type
+material : - private double width
+material : - private double height
+material : - private int amount
+material : - private int precision
+material : - private String description
+material : - private String unit
+
+material : + public getMaterial()
+material : + public setMaterial()
+material : + public getType()
+material : + public setType()
+material : + public getWidth()
+material : + public setWidth()
+material : + public getHeight()
+material : + public setHeight()
+material : + public getAmount()
+material : + public getPrecision()
+material : + public setPrecision()
+material : + public getDescription()
+material : + public setDescription()
+material : + public getUnit()
+material : + public setUnit()
+
+variantMapper : + public static List<Variant> getAllVariants(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+variantMapper : + public static List<Variant> getAllWoodVariants(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+variantMapper : + public static List<Variant> getAllScrewsVariants(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+variantMapper : + public static List<Variant> getAllRoofVariants(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+variantMapper : + public static List<Variant> getAllFittingsVariants(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+
+variant : - private int variant_id
+variant : - private int material_id
+variant : - private int length
+
+variant : + getVariantId()
+variant : + setVariantId()
+variant : + getMaterialId()
+variant : + setMaterialId()
+variant : + getLengthId()
+variant : + setLengthId()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

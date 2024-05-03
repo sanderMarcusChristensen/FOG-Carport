@@ -1,0 +1,23 @@
+@startuml
+
+object Fog
+object website
+object user
+object admin
+object order
+object orderItem
+object materials
+object variant
+
+
+Fog --* website
+website --* user
+user --o admin
+user --o order
+order --* orderItem
+orderItem --* materials
+variant *-- materials
+
+
+
+@enduml
