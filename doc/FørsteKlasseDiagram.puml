@@ -1,9 +1,9 @@
 @startuml
 
-class connetionPool
+class connectionPool
 class databaseException
 class thymeleafConfig
-
+class sessionConfig
 
 class user
 class order
@@ -24,14 +24,15 @@ class materialController
 
 class calculator
 
-connetionPool *-- databaseException
+connectionPool *-- databaseException
+connectionPool *-- thymeleafConfig
+connectionPool *-- sessionConfig
 
-
-userMapper *-- connetionPool
-variantMapper *-- connetionPool
-orderItemMapper *-- connetionPool
-orderMapper *-- connetionPool
-materialMapper *-- connetionPool
+userMapper *-- connectionPool
+variantMapper *-- connectionPool
+orderItemMapper *-- connectionPool
+orderMapper *-- connectionPool
+materialMapper *-- connectionPool
 
 user *-- userMapper
 variant *-- variantMapper
@@ -54,12 +55,12 @@ orderItemController *-- calculator
 databaseException : - DatabaseException (String userMessage)
 databaseException : - DatabaseException (String userMessage, String systemMessage)
 
-connetionPool : - public static connectionPool instance = null
-connetionPool : - public static HikariDatasource ds = null
-connetionPool : + public static ConnectionPool getInstance(String user, String password, String url, String db)
-connetionPool : + public synchronized Connection getConnection() throws SQLException
-connetionPool : + public synchronized void close()
-connetionPool : + private static HikariDataSource createHikariConnectionPool(String user, String password, String url, String db)
+connectionPool : - public static connectionPool instance = null
+connectionPool : - public static HikariDatasource ds = null
+connectionPool : + public static ConnectionPool getInstance(String user, String password, String url, String db)
+connectionPool : + public synchronized Connection getConnection() throws SQLException
+connectionPool : + public synchronized void close()
+connectionPool : + private static HikariDataSource createHikariConnectionPool(String user, String password, String url, String db)
 
 
 userMapper : + static User currentUser
@@ -126,42 +127,61 @@ variant : - private int variant_id
 variant : - private int material_id
 variant : - private int length
 
-variant : + getVariantId()
-variant : + setVariantId()
-variant : + getMaterialId()
-variant : + setMaterialId()
-variant : + getLengthId()
-variant : + setLengthId()
+variant : + public getVariant_id()
+variant : + public setVariant_id()
+variant : + public getMaterial_id()
+variant : + public setMaterial_id()
+variant : + public getLength_id()
+variant : + public setLength_id()
+
+orderItemMapper : + public static List<OrderItem> getAllOrderItems(Context ctx, ConnectionPool connectionPool) throws DatabaseException
+
+orderItem : - private int carport_id
+orderItem : - private int variant_id
+orderItem : - private String description
+orderItem : - private int orderId
+
+orderItem : + public getCarport_id()
+orderItem : + public setCarport_id()
+orderItem : + public getVariant_id()
+orderItem : + public setVariant_id()
+orderItem : + public getDescription()
+orderItem : + public setDescription()
+orderItem : + public getOrder_id()
+orderItem : + public setOrder_id()
+
+orderMapper : + public static List<Orders> getAllOrderItems(Context ctx, ConnectionPool connectionPool, List<orderItem>) throws DatabaseException
+
+order : - public int order_id
+order : - public int total_price
+order : - public Orderitem orderItem
+order : - public boolean status
+order : - public double height
+order : - public double width
+order : - public double length
+order : - public LocalDate date
+order : - public int user_id
+
+order : + getter and setter to all
 
 
+calculator : + public double getTotalCarportPrice()
+calculator : + public double getWoodLengthPrice()
+calculator : + public double calculatWhatLengthINeed()
 
+orderController : + public static void addRoutes(Javalin app, ConnectionPool connectionPool)
+orderController : + private static void pay(Context ctx, ConnectionPool connectionPool)
 
+orderItemController : + public static void addRoutes(Javalin app, ConnectionPool connectionPool)
 
+adminController : + public static void addRoutes(Javalin app, ConnectionPool connectionPool)
+adminController : + private static void viewOrders(Context ctx, ConnectionPool connectionPool)
+adminController : + private static void backToHomepage(Context ctx, ConnectionPool connectionPool)
 
+materialController : public static void addRoutes(Javalin app, ConnectionPool connectionPool)
 
+thymeleafConfig : + public static TemplateEngine templateEngine()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+sessionConfig : + public static SessionHandler sessionConfig()
 
 @enduml
