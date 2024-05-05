@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+
+[*] --> FOG : Googling "FOG Carport"
+
+state FOG {
+  FOG --> Customer: Fog got Customers looking to buy a Carport
+  Customer --> Login:  Customer can login into an account if they have one
+  Customer --> CreateAccount: If they dont have an account, they can make one
+  Customer --> Carport: The Customer can also just buy a Carport without an account
+
+  Login --> RegisteredUser: Your a registered user when you are log in
+  CreateAccount --> Information: CreateAccount your giving some information's: user_name, password
+  Information --> RegisteredUser: After getting FOG your information, you're a registered user
+
+  RegisteredUser --> Admin: A registered user account can be an admin user
+  RegisteredUser --> PreBuildCarport: A registered can look/buy at pre-build-carport
+  RegisteredUser --> BuildYourOwnCarport: A registered can make their own carport
+
+  state PreBuildCarport {
+    Carport --> ViewOfAllPreBuild: The customer can see all the pre-build-carport in the system on the "homepage"
+    ViewOfAllPreBuild --> CarportInfoPage: When clicking on a carport, getting to new page with info about that carport
+    CarportInfoPage --> SeeMockUp: The customer can click on "seeDrawing"
+    SeeMockUp --> Drawing: Takes You to a page with the drawing of the carport on
+    Drawing --> CarportInfoPage: Can jump back and forth between info-page and drawing-page
+    CarportInfoPage --> Buy: Customer can buy the carport they looking at
+    Buy --> EnterUserInfomation:If the customer isn't a "registered" user, they have to give information. Name, Mail,phoneNumber and address
+    EnterUserInfomation --> Pay: Now they can put "credit card" information
+    Pay --> OrderConfirmation: After paying they get a OrderConfirmation
+    OrderConfirmation --> OrderGettingSendtToUser: After receive pay, FOG sens the carport to customers address
+    OrderGettingSendtToUser --> [*]: After sending the carport to the customer the program ends.
+  }
+
+  state BuildYourOwnCarport {
+    Carport --> PickCarportType: If customer wants to build their own carport they can pick between 2 builds
+    PickCarportType --> FlatRoof: A carport with a flat roof
+    PickCarportType --> HighRise: A carport with a "high rise roof"
+
+    FlatRoof --> CarportMeasurement: The customer can enter they measurement they want for the carport
+    HighRise --> EnterRoofInformation: If picked "high rise roof" they need to enter information on how they want it
+    EnterRoofInformation --> CarportMeasurement: Also need  measurement for the carport
+    CarportMeasurement --> SeeDrawingForCarport: Website can generate a drawing with the carport and the measurement they picked
+    SeeDrawingForCarport --> CarportMeasurement: Can jump back and forth between the to page
+
+    SeeDrawingForCarport --> SendRequestToAdmin: When the customer is happy, they send a request to an Admin
+
+  }
+  SendRequestToAdmin --> [*]: Program ends her for a normal customer user
+
+  SendRequestToAdmin --> Admin: Admins need to check customers builds to make sure it's possible
+
+  state Admin {
+    User --> AdminUser: A User account can be an admin user
+    AdminUser --> AdminPage: Admin users can access the adminpage
+
+    AdminPage --> RequestSystem: AdminPage has access to RequestSystem
+    AdminPage --> BuildYourOwnCarport: AdminPage has access to BuildYourOwnCarport (like a normal customer)
+    AdminPage --> PreBuildCarport: AdminPage has access to PreBuildCarport (like a normal customer)
+
+    RequestSystem --> HelpWithBuildsAndCarportMeasurement: Admin looks everything over on the request to make sure everything is good
+    HelpWithBuildsAndCarportMeasurement --> SendOfferToUser: After making small changes or approves the request, they send an offer back to the customer
+    SendOfferToUser --> [*]: After sending offer on price/changes to the carport the program ends
+  }
+}
+
+@enduml
