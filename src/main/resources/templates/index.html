@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<title>Frontpage</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<head>
+    <title>Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
 </head>
 
 <body>
 
-<h1>Welcome to the Javalin / Thymeleaf demo</h1>
+    <header th:replace="~{fragments :: header}"></header>
 
-<p>This is your first web application in this world</p>
+    <main>
+        <h1>Enkelt Carport</h1>
+
+        <section class="card-container">
+            <div class="card">
+                <a target=”_blank” href="https://www.johannesfog.dk/have-fritid/carporte/dobbelt-carporte/dobbelt-carport-6-00x4-80-m-car01du-00821">
+                    <img src="../public/images/carport2.png" th:src="@{/images/carport2.png}">
+                </a>
+                <div>
+                    <h4>giga </h4>
+                    <div>pris: 69.000</div>
+                </div>
+                <button class="btn">Se mere</button>
+            </div>
+        </section>
+    </main>
 
 </body>
 </html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+    <header th:fragment="header" class="header-container">
+        <img alt="Fog Logo" src="../public/images/FogLogo.png" th:src="@{/images/FogLogo.png}">
+
+        <div class="link-section">
+            <a>Homepage</a>
+            <a>Design din egen carport</a>
+        </div>
+
+        <div class="icon-section">
+            <div>
+                <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
+                <div>Kurv</div>
+            </div>
+            <div>
+                <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
+                <div>User</div>
+            </div>
+        </div>
+    </header>
+
+
+</body>
+</html>

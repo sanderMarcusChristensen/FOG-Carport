@@ -1,0 +1,30 @@
+main{
+    width: 600px;
+    margin: auto;
+}
+
+.card-container{
+
+}
+
+.card{
+    height: 250px;
+    width: 200px;
+    padding: 10px;
+    background: #F8F8F8;
+    box-shadow: 4px 4px 4px #00000040;
+}
+
+.card a img{
+    max-width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card div {
+    width: 280px;
+}
+
+.card div h4{
+    font-size: 20px;
+}
