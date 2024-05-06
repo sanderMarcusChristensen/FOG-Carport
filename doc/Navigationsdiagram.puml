@@ -44,7 +44,8 @@ state FOG {
     CarportMeasurement --> SeeDrawingForCarport: Website can generate a drawing with the carport and the measurement they picked
     SeeDrawingForCarport --> CarportMeasurement: Can jump back and forth between the to page
 
-    SeeDrawingForCarport --> SendRequestToAdmin: When the customer is happy, they send a request to an Admin
+    SeeDrawingForCarport --> TypeInfo: When  The customer is happy, they can log into there account from her or just type information like name, mail, address and zipcode
+    TypeInfo --> SendRequestToAdmin: After getting user-info they can send a request to the admins
 
   }
   SendRequestToAdmin --> [*]: Program ends her for a normal customer user
