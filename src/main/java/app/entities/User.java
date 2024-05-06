@@ -5,13 +5,23 @@ public class User {
     private int user_id;
     private String user_name;
     private String user_password;
+    private String user_zipcode;
     private String user_role;
 
-    public User(int user_id, String user_name, String user_password, String user_role) {
+    public User(int user_id, String user_name, String user_password, String user_zipcode, String user_role) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_password = user_password;
+        this.user_zipcode = user_zipcode;
         this.user_role = user_role;
+    }
+
+    public String getZipcode() {
+        return user_zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.user_zipcode = zipcode;
     }
 
     public int getUser_id() {
