@@ -12,23 +12,44 @@
     <header th:fragment="header" class="header-container">
         <img alt="Fog Logo" src="../public/images/FogLogo.png" th:src="@{/images/FogLogo.png}">
 
-        <div class="link-section">
-            <a>Homepage</a>
-            <a>Design din egen carport</a>
-        </div>
+        <nav>
+            <input type="checkbox" id="sidebar-active">
+            <label for="sidebar-active" class="open-menu">
+                <img src="../public/icons/menu-tap.svg" id="menu-tap" th:src="@{/icons/menu-tap.svg}">
+            </label>
 
-        <div class="icon-section">
-            <div>
-                <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
-                <div>Kurv</div>
+
+            <div class="link-section">
+                <label for="sidebar-active" class="closed-menu">
+                    <img src="../public/icons/x-mark.svg" id="hide-menu" th:src="@{/icons/x-mark.svg}">
+                </label>
+
+                <a>Homepage</a>
+                <a>Design din egen carport</a>
+
             </div>
-            <div>
-                <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
-                <div>User</div>
-            </div>
-        </div>
+                <div class="icon-section">
+                    <div>
+                        <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
+                        <div>Kurv</div>
+                    </div>
+                    <div>
+                        <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
+                        <div>User</div>
+                    </div>
+                </div>
+
+        </nav>
+
+
     </header>
 
+
+    <footer th:fragment="footer" class="header-footer">
+        <div>
+
+        </div>
+    </footer>
 
 </body>
 </html>

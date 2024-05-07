@@ -4,9 +4,9 @@
     font-family: "Roboto", sans-serif
 }
 h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 3rem;
+    font-weight: normal;
+    margin: 2rem 0 2rem;
 }
 
 .header-container{
@@ -21,9 +21,7 @@ h1 {
     color: #FFFFFF;
 }
 
-.link-section a{
-    margin: 0 1.5rem 0 1.5rem;
-}
+
 
 .icon-section{
     display: flex;
@@ -44,4 +42,47 @@ h1 {
     border: 0;
     color: #FFFFFF
 }
+
+.link-section{
+    display: flex;
+    flex-direction: row;
+}
+
+.link-section a{
+    margin: 0 1.5rem 0 1.5rem;
+    text-decoration: none;
+}
+
+
+#sidebar-active{
+    display: none;
+}
+
+.open-menu, .closed-menu{
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .link-section{
+        display: none;
+        flex-direction: column;
+        height: 100%;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        width: 300px;
+        background: #013D7A;
+    }
+
+    .open-menu, .closed-menu{
+        display: block;
+    }
+
+    #sidebar-active:checked ~ .link-section{
+        display: flex;
+    }
+}
+
 
