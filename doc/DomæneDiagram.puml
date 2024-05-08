@@ -11,7 +11,7 @@ object materials
 object variant
 
 
-Fog --* website
+Fog *-- website
 website --o user
 user <-- admin
 user --o order
