@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Order {
-
     private int order_id;
     private int total_price;
     private boolean status;

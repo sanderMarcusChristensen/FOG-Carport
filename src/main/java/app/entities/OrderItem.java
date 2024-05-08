@@ -2,24 +2,24 @@ package app.entities;
 
 public class OrderItem {
 
-    private int order_item;
+    private int order_item_id;
     private int variant_id;
-    private String description;
+    private String request_description;
     private int order_id;
 
-    public OrderItem(int order_item, int variant_id, String description, int order_id) {
-        this.order_item = order_item;
+    public OrderItem(int order_item_id, int variant_id, String request_description, int order_id) {
+        this.order_item_id = order_item_id;
         this.variant_id = variant_id;
-        this.description = description;
+        this.request_description = request_description;
         this.order_id = order_id;
     }
 
     public int getOrder_item() {
-        return order_item;
+        return order_item_id;
     }
 
-    public void setOrder_item(int order_item) {
-        this.order_item = order_item;
+    public void setOrder_item(int order_item_id) {
+        this.order_item_id = order_item_id;
     }
 
     public int getVariant_id() {
@@ -31,11 +31,11 @@ public class OrderItem {
     }
 
     public String getDescription() {
-        return description;
+        return request_description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String request_description) {
+        this.request_description = request_description;
     }
 
     public int getOrder_id() {
@@ -49,9 +49,9 @@ public class OrderItem {
     @Override
     public String toString() {
         return "OrderItem{" +
-                "order_item=" + order_item +
+                "order_item=" + order_item_id +
                 ", variant_id=" + variant_id +
-                ", description='" + description + '\'' +
+                ", description='" + request_description + '\'' +
                 ", order_id=" + order_id +
                 '}';
     }
