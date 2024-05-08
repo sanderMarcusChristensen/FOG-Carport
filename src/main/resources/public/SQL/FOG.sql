@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS public.order_item
 
 CREATE TABLE IF NOT EXISTS public.variant
 (
-    variant_di serial NOT NULL,
+    variant_id serial NOT NULL,
     material_id integer NOT NULL,
     length integer NOT NULL,
     PRIMARY KEY (variant_di)
