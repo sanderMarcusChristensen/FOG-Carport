@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS public.variant
     variant_id serial NOT NULL,
     material_id integer NOT NULL,
     length integer NOT NULL,
-    PRIMARY KEY (variant_di)
+    PRIMARY KEY (variant_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.material
@@ -74,7 +74,7 @@ ALTER TABLE IF EXISTS public.order_item
 
 ALTER TABLE IF EXISTS public.order_item
     ADD CONSTRAINT f_key FOREIGN KEY (variant_id)
-    REFERENCES public.variant (variant_di) MATCH SIMPLE
+    REFERENCES public.variant (variant_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
