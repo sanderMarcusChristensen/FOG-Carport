@@ -3,9 +3,9 @@
     padding: 2rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    max-width: 90%; /* Adjusted for responsiveness */
+    max-width: 30%;
     background-color: #f9f9f9;
-    margin: auto; /* Center the form horizontally */
+    margin: auto;
 }
 
 .generic-form form {
@@ -17,9 +17,9 @@
 .generic-form input[type="text"],
 .generic-form input[type="password"],
 .generic-form button {
-    width: 100%; /* Occupy full width */
-    padding: 10px; /* Adjusted for padding */
-    margin-bottom: 1rem; /* Add spacing between elements */
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -41,10 +41,10 @@
 }
 
 .signUp_LogOut {
-    margin-top: 1rem; /* Add margin-top to create space */
+    margin-top: 1rem;
 }
 
 h1 {
-    text-align: center; /* Centers the text horizontally */
-    margin-bottom: 2rem; /* Adds some space below the heading */
+    text-align: center;
+    margin-bottom: 2rem;
 }
