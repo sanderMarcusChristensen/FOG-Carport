@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-<title>Frontpage</title>
+<head>
+    <title>Frontpage</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-
 </head>
 
 <body>
     <header th:fragment="header" class="header-container">
         <img alt="Fog Logo" src="../public/images/FogLogo.png" th:src="@{/images/FogLogo.png}">
 
-        <nav>
+        <nav class="navbar">
             <input type="checkbox" id="sidebar-active">
             <label for="sidebar-active" class="open-menu">
-                <img src="../public/icons/menu-tap.svg" id="menu-tap" th:src="@{/icons/menu-tap.svg}">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.75 6.75H20.25M3.75 12H20.25M3.75 17.25H20.25" stroke="white" stroke-width="1.5"  stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Menu</span>
             </label>
-
 
             <div class="link-section">
                 <label for="sidebar-active" class="closed-menu">
-                    <img src="../public/icons/x-mark.svg" id="hide-menu" th:src="@{/icons/x-mark.svg}">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Luk</span>
                 </label>
 
-                <a>Homepage</a>
-                <a>Design din egen carport</a>
+                <a href="#">
+                    <div>Homepage</div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#">
+                    <div>Design din egen carport</div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
 
             </div>
-                <div class="icon-section">
-                    <div>
-                        <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
-                        <div>Kurv</div>
-                    </div>
-                    <div>
-                        <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
-                        <div>User</div>
-                    </div>
+            <div class="icon-section">
+                <div>
+                    <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
+                    <div>Kurv</div>
                 </div>
+                <div>
+                    <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
+                    <div>User</div>
+                </div>
+            </div>
+
 
         </nav>
 
