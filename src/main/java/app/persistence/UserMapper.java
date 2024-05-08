@@ -29,10 +29,12 @@ public class UserMapper {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                int id = rs.getInt("user_id");
-                String role = rs.getString("user_role");
-                int wallet = rs.getInt("user_wallet");
-                return new User(id, userName, password, role);
+                int user_id = rs.getInt("user_id");
+                String user_name = rs.getString("user_name");
+                String user_password= rs.getString("user_password");
+                String user_zipcode = rs.getString("user_zipcode");
+                String user_role = rs.getString("user_role");
+                return new User(user_id,user_name,user_password,user_zipcode,user_role);
             } else {
                 throw new DatabaseException("Fejl i login. Prøv igen");
             }
