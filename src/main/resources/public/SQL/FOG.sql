@@ -5,20 +5,20 @@ BEGIN;
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-    user_id serial NOT NULL,
+    users_id serial NOT NULL,
     user_name character varying NOT NULL,
     user_password character varying NOT NULL,
-    user_zipcode character varying NOT NULL,
+    user_zidcode character varying NOT NULL,
     user_role character varying NOT NULL,
-    PRIMARY KEY (user_id)
+    PRIMARY KEY (users_id)
     );
 
 CREATE TABLE IF NOT EXISTS public."order"
 (
     order_id serial NOT NULL,
     total_price integer NOT NULL,
-    status boolean NOT NULL,
-    height double precision,
+    "status " boolean NOT NULL,
+    heigth double precision,
     width double precision,
     length double precision,
     date date NOT NULL,
@@ -30,17 +30,17 @@ CREATE TABLE IF NOT EXISTS public.order_item
 (
     order_item_id serial NOT NULL,
     variant_id integer NOT NULL,
-    request_description character varying,
+    request_description character varying NOT NULL,
     order_id integer NOT NULL,
     PRIMARY KEY (order_item_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.variant
 (
-    variant_id serial NOT NULL,
+    variant_di serial NOT NULL,
     material_id integer NOT NULL,
     length integer NOT NULL,
-    PRIMARY KEY (variant_id)
+    PRIMARY KEY (variant_di)
     );
 
 CREATE TABLE IF NOT EXISTS public.material
@@ -51,14 +51,14 @@ CREATE TABLE IF NOT EXISTS public.material
     heigth double precision,
     amount integer NOT NULL,
     price double precision NOT NULL,
-    description character varying NOT NULL,
-    unit character varying NOT NULL,
+    descripton character varying NOT NULL,
+    "unit " character varying NOT NULL,
     PRIMARY KEY (material_id)
     );
 
 ALTER TABLE IF EXISTS public."order"
     ADD FOREIGN KEY (user_id)
-    REFERENCES public.users (user_id) MATCH SIMPLE
+    REFERENCES public.users (users_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
@@ -72,17 +72,17 @@ ALTER TABLE IF EXISTS public.order_item
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.variant
-    ADD FOREIGN KEY (variant_id)
-    REFERENCES public.order_item (variant_id) MATCH SIMPLE
+ALTER TABLE IF EXISTS public.order_item
+    ADD CONSTRAINT f_key FOREIGN KEY (variant_id)
+    REFERENCES public.variant (variant_di) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.material
+ALTER TABLE IF EXISTS public.variant
     ADD FOREIGN KEY (material_id)
-    REFERENCES public.variant (material_id) MATCH SIMPLE
+    REFERENCES public.material (material_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
