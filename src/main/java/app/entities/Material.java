@@ -9,9 +9,9 @@ public class Material {
     private int amount;
     private double price;
     private String description;
-    private int unit;
+    private String unit;
 
-    public Material(int material_id, String type, double width, double height, int amount, double price, String description, int unit) {
+    public Material(int material_id, String type, double width, double height, int amount, double price, String description, String unit) {
         this.material_id = material_id;
         this.type = type;
         this.width = width;
@@ -78,11 +78,11 @@ public class Material {
         this.description = description;
     }
 
-    public int getUnit() {
+    public String getUnit() {
         return unit;
     }
 
-    public void setUnit(int unit) {
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 

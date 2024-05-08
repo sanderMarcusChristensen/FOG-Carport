@@ -34,7 +34,7 @@ public class MaterialMapper {
                 int amount = rs.getInt("amount");
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
-                int unit = rs.getInt("unit");
+                String unit = rs.getString("unit");
                 materialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
@@ -65,7 +65,7 @@ public class MaterialMapper {
                 int amount = rs.getInt("amount");
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
-                int unit = rs.getInt("unit");
+                String unit = rs.getString("unit");
                 woodMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
@@ -96,7 +96,7 @@ public class MaterialMapper {
                 int amount = rs.getInt("amount");
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
-                int unit = rs.getInt("unit");
+                String unit = rs.getString("unit");
                 roofMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
@@ -126,7 +126,7 @@ public class MaterialMapper {
                 int amount = rs.getInt("amount");
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
-                int unit = rs.getInt("unit");
+                String unit = rs.getString("unit");
                 screwsMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
@@ -156,7 +156,7 @@ public class MaterialMapper {
                 int amount = rs.getInt("amount");
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
-                int unit = rs.getInt("unit");
+                String unit = rs.getString("unit");
                 fittingsMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
