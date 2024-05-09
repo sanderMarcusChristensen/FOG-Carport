@@ -3,7 +3,7 @@
     padding: 2rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    max-width: 30%;
+    max-width: 500px;
     background-color: #f9f9f9;
     margin: auto;
 }
@@ -15,8 +15,7 @@
 }
 
 .generic-form input[type="text"],
-.generic-form input[type="password"],
-.generic-form button {
+.generic-form input[type="password"] {
     width: 100%;
     padding: 6px;
     margin-bottom: 0.5rem;
@@ -25,12 +24,7 @@
     box-sizing: border-box;
 }
 
-.generic-form button {
-    background-color: #013D7A;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+
 
 .generic-form button:hover {
     background-color: #012b58;

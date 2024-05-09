@@ -18,18 +18,18 @@
 
     <header th:replace="~{fragments :: header}"></header>
 
-    <h1>Velkommen til FOG</h1>
+    <h1>Velkommen til FOG  </h1>
 
     <div class="generic-form">
         <form method="post">
             <input type="text" name="username" placeholder="Brugernavn"/>
-            <input type="password" name="password" placeholder="kodeord"/>
+            <input type="password" name="password" placeholder="Kodeord"/>
             <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
 
             <button class="btn" type="submit" formaction="/login">Login</button>
         </form>
-        <div>
-            <button class="btn" onclick="window.location.href='createAccountPage.html';">Sign up</button>
+        <div class="link">
+            <a class="btn" th:href="@{createAccountPage}">Sign up</a>
         </div>
     </div>
 
