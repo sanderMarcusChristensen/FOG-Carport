@@ -99,10 +99,10 @@ ALTER TABLE IF EXISTS public.variant
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
 
-    INSERT INTO public.users(user_name, user_password, user_zipcode, user_role)
+    INSERT INTO public.users(user_name, user_password, user_email, user_zipcode, user_role, user_address)
     VALUES
-        ('chad', '1234', '2500', 'admin'),
-        ('hulk', '1234', '2630', 'user'),
-        ('jeff', 'jeff123', '8000', 'user');
+        ('chad', '1234', 'chad@outlook.com' '2500', 'admin', 'Allégade 22'),
+        ('hulk', '1234', 'hulk@smash.now' '2630', 'user', 'Avengers HQ'),
+        ('jeff', 'jeff123', 'jeff@mynameis.com' '8000', 'user', '22 Jump Street');
 
     END;
