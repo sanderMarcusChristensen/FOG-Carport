@@ -10,12 +10,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
     <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-    <link href="../public/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+    <link href="../public/css/customcarport.css" th:href="@{/css/customcarport.css}" rel="stylesheet">
 </head>
 
 <body>
 
     <header th:replace="~{fragments :: header}"></header>
+
+    <div class="main-container">
+
+        <div class="main-container-text">
+            <h1>Bestil Quick-Byg tilbud - carport med fladt tag</h1>
+            <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram.<br/>
+                Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br/>
+                Ved bestilling medfølger standardbyggevejledning.<br/><br/>
+
+                Udfyld formularen omhyggeligt og klik på "Bestil tilbud".<br/>
+                Felter markeret med * SKAL udfyldes!</p>
+        </div>
+
+        <form method="post" action="continueToPageTwo">
+            <div class="form-container">
+                    <div class="dropdown-menu">
+                        <label for="width"></label>
+                        <select name="width_id" id="width" required>
+                            <option value="" disabled selected>Vælg carport bredde</option>
+                            <option value="2">2 meter</option>
+                            <option value="3">3 meter</option>
+                            <option value="4">4 meter</option>
+                        </select>
+                    </div>
+
+                    <div class="dropdown-menu">
+                        <label for="length"></label>
+                        <select name="length_id" id="length" required>
+                            <option value="" disabled selected>Vælg carport længde</option>
+                            <option value="2">2 meter</option>
+                            <option value="3">3 meter</option>
+                            <option value="4">4 meter</option>
+                        </select>
+                    </div>
+
+
+                <div class="dropdown-menu">
+                    <label for="roof"></label>
+                    <select name="roof_id" id="roof" required>
+                        <option value="" disabled selected>Vælg carport tag</option>
+                        <option value="trapeztag">Trapeztag</option>
+                        <option value="plastik tag">Plastik-tag</option>
+                    </select>
+                </div>
+            <button class="submit-btn" type="submit">Fortsæt</button>
+            </div>
+        </form>
+
+        <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
+
+
+</div>
 
 
 </body>

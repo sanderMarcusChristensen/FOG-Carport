@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="EN">
+
+<head>
+    <title>Custom carport</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/customcarport.css" th:href="@{/css/customcarport.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+<div class="main-container">
+
+
+    <div class="main-container-text-page-three">
+
+        <h2>Allerede eksisterende kunde?</h2>
+        <a class="submit-btn" th:href="@{createAccount}">Log Ind</a>
+    </div>
+
+    <form method="post" action="createRequest">
+        <div class="form-container">
+            <div class="dropdown-menu">
+                <label for="name"><b>Navn*</b><br/></label>
+                <input type="text" placeholder="Fornavn og efternavn" name="name" id="name" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="email"><b>Email*</b><br/></label>
+                <input type="email" placeholder="E-mail" name="email" id="email" required>
+            </div>
+
+
+            <div class="dropdown-menu">
+                <label for="password"><b>Kodeord*</b><br/></label>
+                <input type="password" placeholder="Kodeord" name="password" id="password" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="passwordrepeat"><b>Kodeord*</b><br/></label>
+                <input type="password" placeholder="Gentag kodeord" name="passwordrepeat" id="passwordrepeat" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="adress"><b>Adresse*</b><br/></label>
+                <input type="text" placeholder="Vejnavn og by (Evt. hus-/etage-/dørnummer)" name="adress" id="adress" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="postnumber"><b>Postnummer*</b><br/></label>
+                <input type="text" placeholder="Postnummer" name="postnumber" id="postnumber" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="comment"><b>Evt. bemærkning / særlige ønsker</b><br/></label>
+                <input type="text" name="comment" id="comment">
+            </div>
+            <button class="submit-btn" type="submit">Send forespørgsel</button>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
