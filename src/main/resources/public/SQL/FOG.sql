@@ -3,36 +3,50 @@
 BEGIN;
 
 
-CREATE TABLE IF NOT EXISTS public.users
+CREATE TABLE IF NOT EXISTS public.material
 (
-    users_id serial NOT NULL,
-    user_name character varying NOT NULL,
-    user_password character varying NOT NULL,
-    user_zidcode character varying NOT NULL,
-    user_role character varying NOT NULL,
-    PRIMARY KEY (users_id)
+    material_id serial NOT NULL,
+    type character varying COLLATE pg_catalog."default" NOT NULL,
+    width double precision,
+    height double precision,
+    amount integer NOT NULL,
+    price double precision NOT NULL,
+    description character varying COLLATE pg_catalog."default" NOT NULL,
+    unit character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT material_pkey PRIMARY KEY (material_id)
     );
 
 CREATE TABLE IF NOT EXISTS public."order"
 (
     order_id serial NOT NULL,
-    total_price integer NOT NULL,
-    "status " boolean NOT NULL,
-    heigth double precision,
+    total_price double precision NOT NULL,
+    status boolean NOT NULL,
+    height double precision,
     width double precision,
     length double precision,
     date date NOT NULL,
     user_id integer NOT NULL,
-    PRIMARY KEY (order_id)
+    CONSTRAINT order_pkey PRIMARY KEY (order_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.order_item
 (
     order_item_id serial NOT NULL,
     variant_id integer NOT NULL,
-    request_description character varying NOT NULL,
-    order_id integer NOT NULL,
-    PRIMARY KEY (order_item_id)
+    request_description character varying COLLATE pg_catalog."default" NOT NULL,
+    order_id integer,
+    CONSTRAINT order_item_pkey PRIMARY KEY (order_item_id)
+    );
+
+CREATE TABLE IF NOT EXISTS public.users
+(
+    users_id serial NOT NULL,
+    user_name character varying COLLATE pg_catalog."default" NOT NULL,
+    user_password character varying COLLATE pg_catalog."default" NOT NULL,
+    user_email character varying COLLATE pg_catalog."default" NOT NULL,
+    user_zipcode bigint NOT NULL,
+    user_role character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (users_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.variant
@@ -40,51 +54,49 @@ CREATE TABLE IF NOT EXISTS public.variant
     variant_id serial NOT NULL,
     material_id integer NOT NULL,
     length integer NOT NULL,
-    PRIMARY KEY (variant_id)
+    CONSTRAINT variant_pkey PRIMARY KEY (variant_id)
     );
 
-CREATE TABLE IF NOT EXISTS public.material
+CREATE TABLE IF NOT EXISTS public.zip_code
 (
-    material_id serial NOT NULL,
-    type character varying NOT NULL,
-    width double precision,
-    heigth double precision,
-    amount integer NOT NULL,
-    price double precision NOT NULL,
-    descripton character varying NOT NULL,
-    "unit " character varying NOT NULL,
-    PRIMARY KEY (material_id)
+    zip_code bigint NOT NULL,
+    city character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT zip_code_pkey PRIMARY KEY (zip_code)
     );
 
 ALTER TABLE IF EXISTS public."order"
-    ADD FOREIGN KEY (user_id)
+    ADD CONSTRAINT order_user_id_fkey FOREIGN KEY (user_id)
     REFERENCES public.users (users_id) MATCH SIMPLE
     ON UPDATE NO ACTION
-       ON DELETE NO ACTION
-    NOT VALID;
+       ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS public.order_item
-    ADD FOREIGN KEY (order_id)
+    ADD CONSTRAINT order_item_order_id_fkey FOREIGN KEY (order_id)
     REFERENCES public."order" (order_id) MATCH SIMPLE
     ON UPDATE NO ACTION
-       ON DELETE NO ACTION
-    NOT VALID;
+       ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS public.order_item
-    ADD CONSTRAINT f_key FOREIGN KEY (variant_id)
+    ADD CONSTRAINT order_item_variant_id_fkey FOREIGN KEY (variant_id)
     REFERENCES public.variant (variant_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+       ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.users
+    ADD FOREIGN KEY (user_zipcode)
+    REFERENCES public.zip_code (zip_code) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
 
 
 ALTER TABLE IF EXISTS public.variant
-    ADD FOREIGN KEY (material_id)
+    ADD CONSTRAINT variant_material_id_fkey FOREIGN KEY (material_id)
     REFERENCES public.material (material_id) MATCH SIMPLE
     ON UPDATE NO ACTION
-       ON DELETE NO ACTION
-    NOT VALID;
+       ON DELETE NO ACTION;
 
 END;
