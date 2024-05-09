@@ -18,7 +18,4 @@ user --o order
 order --* orderItem
 orderItem --* materials
 variant *-- materials
-
-
-
 @enduml

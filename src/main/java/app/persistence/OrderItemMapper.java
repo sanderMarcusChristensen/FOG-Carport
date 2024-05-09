@@ -31,7 +31,7 @@ public class OrderItemMapper  {
                 int variant_id = rs.getInt("variant_id");
                 String description = rs.getString("description");
                 int order_id = rs.getInt("order_id");
-                orderItemsList.add(new OrderItem(order_id, variant_id, description,order_id));
+                orderItemsList.add(new OrderItem(order_item, variant_id, description,order_id));
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
