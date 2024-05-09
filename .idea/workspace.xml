@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b39fb67-1b91-4f44-aba9-c8e848c158a2" name="Changes" comment="html og css for homepage + header fragment">
+    <list default="true" id="6b39fb67-1b91-4f44-aba9-c8e848c158a2" name="Changes" comment="hotfix op orderitemMapper">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/css/createAccountPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/createAccountPage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,13 +21,31 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sanderMarcusChristensen&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sanderMarcusChristensen/FOG-Carport&quot;,
+    &quot;accountId&quot;: &quot;d0d2c308-297b-4504-ba7c-b538366d8ab6&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -33,22 +56,24 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Bruger/Documents/FOG-Carport&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "createUserPage",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Bruger/Documents/FOG-Carport",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
@@ -66,13 +91,18 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -86,6 +116,11 @@
       <updated>1714648144447</updated>
       <workItem from="1714648145470" duration="6000" />
       <workItem from="1714895787773" duration="1489000" />
+      <workItem from="1715097553990" duration="313000" />
+      <workItem from="1715098208642" duration="3451000" />
+      <workItem from="1715157188824" duration="13095000" />
+      <workItem from="1715240468292" duration="1641000" />
+      <workItem from="1715242468666" duration="2063000" />
     </task>
     <task id="LOCAL-00001" summary="Added Svg icons">
       <option name="closed" value="true" />
@@ -103,7 +138,119 @@
       <option name="project" value="LOCAL" />
       <updated>1714995928516</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add zipcode to user and userMapper">
+      <option name="closed" value="true" />
+      <created>1715009781221</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715009781221</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change to Navigation-diagram">
+      <option name="closed" value="true" />
+      <created>1715010216172</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715010216172</updated>
+    </task>
+    <task id="LOCAL-00005" summary="change to Navigation-diagram">
+      <option name="closed" value="true" />
+      <created>1715157205192</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715157205192</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Mapper matoder">
+      <option name="closed" value="true" />
+      <created>1715157233807</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715157233807</updated>
+    </task>
+    <task id="LOCAL-00007" summary="typo - fix">
+      <option name="closed" value="true" />
+      <created>1715157953684</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715157953684</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Data type fix">
+      <option name="closed" value="true" />
+      <created>1715157977408</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715157977408</updated>
+    </task>
+    <task id="LOCAL-00009" summary="typo-fix">
+      <option name="closed" value="true" />
+      <created>1715157991279</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715157991279</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add zipdecode to user and mapper">
+      <option name="closed" value="true" />
+      <created>1715158013863</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715158013863</updated>
+    </task>
+    <task id="LOCAL-00011" summary="mellemrum fix">
+      <option name="closed" value="true" />
+      <created>1715160695687</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715160695687</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Login css and login.html">
+      <option name="closed" value="true" />
+      <created>1715165541109</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715165541109</updated>
+    </task>
+    <task id="LOCAL-00013" summary="small change to login html">
+      <option name="closed" value="true" />
+      <created>1715171198634</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715171198634</updated>
+    </task>
+    <task id="LOCAL-00014" summary="small change to login html">
+      <option name="closed" value="true" />
+      <created>1715171363473</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715171363473</updated>
+    </task>
+    <task id="LOCAL-00015" summary="git">
+      <option name="closed" value="true" />
+      <created>1715244315997</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715244315997</updated>
+    </task>
+    <task id="LOCAL-00016" summary="hotfix op orderitemMapper">
+      <option name="closed" value="true" />
+      <created>1715244624978</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715244624978</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +259,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Svg icons" />
     <MESSAGE value="html og css for homepage + header fragment" />
-    <option name="LAST_COMMIT_MESSAGE" value="html og css for homepage + header fragment" />
+    <MESSAGE value="add zipcode to user and userMapper" />
+    <MESSAGE value="change to Navigation-diagram" />
+    <MESSAGE value="Mapper matoder" />
+    <MESSAGE value="typo - fix" />
+    <MESSAGE value="Data type fix" />
+    <MESSAGE value="typo-fix" />
+    <MESSAGE value="add zipdecode to user and mapper" />
+    <MESSAGE value="mellemrum fix" />
+    <MESSAGE value="Login css and login.html" />
+    <MESSAGE value="small change to login html" />
+    <MESSAGE value="git" />
+    <MESSAGE value="hotfix op orderitemMapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="hotfix op orderitemMapper" />
   </component>
 </project>
