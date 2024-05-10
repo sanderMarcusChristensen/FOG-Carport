@@ -24,9 +24,9 @@
         <form method="post">
             <input type="text" name="username" placeholder="Brugernavn"/>
             <input type="password" name="password" placeholder="Kodeord"/>
-            <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
 
             <button class="btn" type="submit" formaction="/login">Login</button>
+            <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
         </form>
         <div class="link">
             <a class="btn" th:href="@{createAccountPage}">Sign up</a>
