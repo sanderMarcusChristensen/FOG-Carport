@@ -9,7 +9,9 @@
 
 <body>
     <header th:fragment="header" class="header-container">
+        <a href="index.html" th:href="@{homepage}">
         <img alt="Fog Logo" src="../public/images/FogLogo.png" th:src="@{/images/FogLogo.png}">
+        </a>
 
         <nav class="navbar">
             <input type="checkbox" id="sidebar-active">
