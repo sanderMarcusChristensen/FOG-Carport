@@ -43,6 +43,9 @@
         <a class="submit-btn" th:href="@{backToPageOne}">Tilbage</a>
 
     </div>
+
+    <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
+
 </div>
 
 
