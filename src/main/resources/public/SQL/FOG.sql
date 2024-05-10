@@ -99,10 +99,52 @@ ALTER TABLE IF EXISTS public.variant
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
 
+INSERT INTO public.zip_code (zip_code, city)
+VALUES
+    ('2630', 'Taastrup'),
+    ('1000', 'Copenhagen'),
+    ('4000', 'Roskilde'),
+    ('3400', 'Hillerød'),
+    ('4600', 'Køge'),
+    ('4700', 'Næstved'),
+    ('4200', 'Slagelse'),
+    ('4300', 'Holbæk'),
+    ('4100', 'Ringsted'),
+    ('4760', 'Vordingborg'),
+    ('2670', 'Greve'),
+    ('4330', 'Hvalsø'),
+    ('2680', 'Solrød Strand'),
+    ('5800', 'Nyborg'),
+    ('4500', 'Nykøbing Sjælland'),
+    ('2100', 'København'),
+    ('3000', 'Helsingør'),
+    ('4690', 'Haslev'),
+    ('4400', 'Kalundborg'),
+    ('4771', 'Kalvehave'),
+    ('4173', 'Fjenneslev'),
+    ('4684', 'Holme-Olstrup'),
+    ('4180', 'Sorø'),
+    ('4230', 'Skælskør'),
+    ('4571', 'Grevinge'),
+    ('4660', 'Store Heddinge'),
+    ('4652', 'Hårlev'),
+    ('4720', 'Præstø'),
+    ('4632', 'Bjæverskov'),
+    ('4750', 'Lundby'),
+    ('4640', 'Faxe'),
+    ('4653', 'Karise'),
+    ('4220', 'Korsør'),
+    ('4736', 'Karrebæksminde'),
+    ('4671', 'Strøby'),
+    ('4673', 'Rødvig Stevns');
+
     INSERT INTO public.users(user_name, user_password, user_email, user_zipcode, user_role, user_address)
     VALUES
         ('chad', '1234', 'chad@outlook.com' '2500', 'admin', 'Allégade 22'),
         ('hulk', '1234', 'hulk@smash.now' '2630', 'user', 'Avengers HQ'),
         ('jeff', 'jeff123', 'jeff@mynameis.com' '8000', 'user', '22 Jump Street');
+
+
+
 
     END;
