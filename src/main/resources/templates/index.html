@@ -18,6 +18,8 @@
     <header th:replace="~{fragments :: header}"></header>
 
     <main>
+        <div><br/><p  class="error" th:unless="${#strings.isEmpty(usermessage)}" th:text="${usermessage}"></p></div>
+
         <h1>Enkelt Carport</h1>
 
         <section class="card-container">
@@ -78,6 +80,8 @@
 
         </section>
     </main>
+
+    <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
 
 </body>
 </html>
