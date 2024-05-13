@@ -3,38 +3,43 @@
 BEGIN;
 
 
-CREATE TABLE IF NOT EXISTS public.material
+CREATE TABLE IF NOT EXISTS public.product
 (
-    material_id serial NOT NULL,
-    type character varying COLLATE pg_catalog."default" NOT NULL,
-    width double precision,
-    height double precision,
-    amount integer NOT NULL,
-    price double precision NOT NULL,
-    description character varying COLLATE pg_catalog."default" NOT NULL,
+    product_id serial NOT NULL,
+    name character varying COLLATE pg_catalog."default" NOT NULL,
     unit character varying COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT material_pkey PRIMARY KEY (material_id)
+    price double precision NOT NULL,
+    CONSTRAINT product_pkey PRIMARY KEY (product_id)
     );
 
-CREATE TABLE IF NOT EXISTS public."order"
+CREATE TABLE IF NOT EXISTS public.product_variant
+(
+    product_variant_id serial NOT NULL,
+    length integer NOT NULL,
+    product_id integer NOT NULL,
+    CONSTRAINT product_variant_pkey PRIMARY KEY (product_variant_id)
+    );
+
+CREATE TABLE IF NOT EXISTS public."orders"
 (
     order_id serial NOT NULL,
-    total_price double precision NOT NULL,
-    status boolean NOT NULL,
-    height double precision,
-    width double precision,
-    length double precision,
+    carport_width double precision,
+    carport_length double precision,
     date date NOT NULL,
+    status boolean NOT NULL,
     user_id integer NOT NULL,
+    total_price double precision NOT NULL,
     CONSTRAINT order_pkey PRIMARY KEY (order_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.order_item
 (
     order_item_id serial NOT NULL,
-    variant_id integer NOT NULL,
-    request_description character varying COLLATE pg_catalog."default" NOT NULL,
     order_id integer,
+    product_variant_id integer NOT NULL,
+    quantity integer,
+    description character varying COLLATE pg_catalog."default" NOT NULL,
+
     CONSTRAINT order_item_pkey PRIMARY KEY (order_item_id)
     );
 
@@ -46,15 +51,8 @@ CREATE TABLE IF NOT EXISTS public.users
     user_email character varying COLLATE pg_catalog."default" NOT NULL,
     user_zipcode bigint NOT NULL,
     user_role character varying COLLATE pg_catalog."default" NOT NULL,
+    user_address character varying COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT users_pkey PRIMARY KEY (users_id)
-    );
-
-CREATE TABLE IF NOT EXISTS public.variant
-(
-    variant_id serial NOT NULL,
-    material_id integer NOT NULL,
-    length integer NOT NULL,
-    CONSTRAINT variant_pkey PRIMARY KEY (variant_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.zip_code
@@ -64,8 +62,8 @@ CREATE TABLE IF NOT EXISTS public.zip_code
     CONSTRAINT zip_code_pkey PRIMARY KEY (zip_code)
     );
 
-ALTER TABLE IF EXISTS public."order"
-    ADD CONSTRAINT order_user_id_fkey FOREIGN KEY (user_id)
+ALTER TABLE IF EXISTS public."orders"
+    ADD CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id)
     REFERENCES public.users (users_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
@@ -73,14 +71,14 @@ ALTER TABLE IF EXISTS public."order"
 
 ALTER TABLE IF EXISTS public.order_item
     ADD CONSTRAINT order_item_order_id_fkey FOREIGN KEY (order_id)
-    REFERENCES public."order" (order_id) MATCH SIMPLE
+    REFERENCES public."orders" (order_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS public.order_item
-    ADD CONSTRAINT order_item_variant_id_fkey FOREIGN KEY (variant_id)
-    REFERENCES public.variant (variant_id) MATCH SIMPLE
+    ADD CONSTRAINT order_item_product_variant_id_fkey FOREIGN KEY (product_variant_id)
+    REFERENCES public.product_variant (product_variant_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
 
@@ -93,9 +91,9 @@ ALTER TABLE IF EXISTS public.users
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.variant
-    ADD CONSTRAINT variant_material_id_fkey FOREIGN KEY (material_id)
-    REFERENCES public.material (material_id) MATCH SIMPLE
+ALTER TABLE IF EXISTS public.product_variant
+    ADD CONSTRAINT product_variant_product_id_fkey FOREIGN KEY (product_id)
+    REFERENCES public.product (product_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
 
@@ -136,15 +134,34 @@ VALUES
     ('4220', 'Korsør'),
     ('4736', 'Karrebæksminde'),
     ('4671', 'Strøby'),
-    ('4673', 'Rødvig Stevns');
+    ('4673', 'Rødvig Stevns'),
+    ('8000', 'Silkeborg');
 
     INSERT INTO public.users(user_name, user_password, user_email, user_zipcode, user_role, user_address)
     VALUES
-        ('chad', '1234', 'chad@outlook.com' '2500', 'admin', 'Allégade 22'),
-        ('hulk', '1234', 'hulk@smash.now' '2630', 'user', 'Avengers HQ'),
-        ('jeff', 'jeff123', 'jeff@mynameis.com' '8000', 'user', '22 Jump Street');
+        ('chad', '1234', 'chad@outlook.com', '4000', 'admin', 'Allégade 22'),
+        ('Mateen Rafiq', '1234', 'm@live.dk', '2630', 'user', 'Taastrup Hovedgade 52');
 
+CREATE OR REPLACE VIEW bill_of_materials_view AS
+SELECT product_variant.product_id,
+       io.product_variant_id,
+       orders.order_id,
+       orders.carport_width,
+       orders.carport_length,
+       orders.status,
+       orders.date,
+       orders.user_id,
+       orders.total_price,
+       io.order_item_id,
+       io.quantity,
+       io.description,
+       product_variant.length,
+       product.name,
+       product.unit,
+       product.price
+FROM orders
+         JOIN order_item io USING (order_id)
+         JOIN product_variant USING (product_variant_id)
+         JOIN product USING (product_id);
 
-
-
-    END;
+END;
