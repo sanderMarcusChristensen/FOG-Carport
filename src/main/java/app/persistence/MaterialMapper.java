@@ -1,7 +1,6 @@
 package app.persistence;
 
-import app.entities.Material;
-import app.entities.Order;
+import app.entities.Product;
 import app.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -9,14 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MaterialMapper {
 
-    public static List<Material> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Product> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
 
-        List<Material> materialList = new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
 
         String sql = "select * FORM material";
 
@@ -35,18 +33,18 @@ public class MaterialMapper {
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
-                materialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
+                productList.add(new Product(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
         }
 
-        return materialList;
+        return productList;
     }
 
-    public static List<Material> getAllWoodMaterial(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Product> getAllWoodMaterial(ConnectionPool connectionPool) throws DatabaseException {
 
-        List<Material> woodMaterialList = new ArrayList<>();
+        List<Product> woodProductList = new ArrayList<>();
 
         String sql = "select * FORM material WHERE type = wood";
 
@@ -66,18 +64,18 @@ public class MaterialMapper {
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
-                woodMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
+                woodProductList.add(new Product(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
         }
 
-        return woodMaterialList;
+        return woodProductList;
     }
 
-    public static List<Material> getAllRoofMaterial(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Product> getAllRoofMaterial(ConnectionPool connectionPool) throws DatabaseException {
 
-        List<Material> roofMaterialList = new ArrayList<>();
+        List<Product> roofProductList = new ArrayList<>();
 
         String sql = "select * FORM material WHERE type = roof";
 
@@ -97,17 +95,17 @@ public class MaterialMapper {
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
-                roofMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
+                roofProductList.add(new Product(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
         }
 
-        return roofMaterialList;
+        return roofProductList;
     }
-    public static List<Material> getAllScrewsMaterial(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Product> getAllScrewsMaterial(ConnectionPool connectionPool) throws DatabaseException {
 
-        List<Material> screwsMaterialList = new ArrayList<>();
+        List<Product> screwsProductList = new ArrayList<>();
 
         String sql = "select * FORM material WHERE type = screws";
 
@@ -127,17 +125,17 @@ public class MaterialMapper {
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
-                screwsMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
+                screwsProductList.add(new Product(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
         }
 
-        return screwsMaterialList;
+        return screwsProductList;
     }
-    public static List<Material> getAllFittingsMaterial(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Product> getAllFittingsMaterial(ConnectionPool connectionPool) throws DatabaseException {
 
-        List<Material> fittingsMaterialList = new ArrayList<>();
+        List<Product> fittingsProductList = new ArrayList<>();
 
         String sql = "select * FORM material WHERE type = fittings";
 
@@ -157,13 +155,13 @@ public class MaterialMapper {
                 int price = rs.getInt("price");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
-                fittingsMaterialList.add(new Material(material_id, type, width, height, amount, price, description, unit));
+                fittingsProductList.add(new Product(material_id, type, width, height, amount, price, description, unit));
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
         }
 
-        return fittingsMaterialList;
+        return fittingsProductList;
     }
 
 
