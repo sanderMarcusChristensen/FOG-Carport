@@ -2,22 +2,22 @@ package app.entities;
 
 public class User {
 
-    private int user_id;
-    private String user_name;
-    private String user_email;
-    private String user_password;
+    private int userId;
+    private String userName;
+    private String userPassword;
+    private String userEmail;
     private String zipcode;
-    private String user_role;
-    private String user_address;
+    private String userRole;
+    private String userAddress;
 
-    public User(int user_id, String user_name, String user_password, String user_email, String zipcode, String user_role, String user_address) {
-        this.user_id = user_id;
-        this.user_name = user_name;
-        this.user_email = user_email;
-        this.user_password = user_password;
+    public User(int userId, String userName, String userPassword, String userEmail, String zipcode, String userRole, String userAddress) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
         this.zipcode = zipcode;
-        this.user_role = user_role;
-        this.user_address = user_address;
+        this.userRole = userRole;
+        this.userAddress = userAddress;
     }
 
     public String getZipcode() {
@@ -26,53 +26,53 @@ public class User {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-    public String getUser_password() {
-        return user_password;
+    public String getUserPassword() {
+        return userPassword;
     }
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
-    public String getUser_role() {
-        return user_role;
+    public String getUserRole() {
+        return userRole;
     }
-    public void setUser_role(String user_role) {
-        this.user_role = user_role;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
     }
-    public String getUser_email() {
-        return user_email;
+    public String getUserEmail() {
+        return userEmail;
     }
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
-    public String getUser_address() {
-        return user_address;
+    public String getUserAddress() {
+        return userAddress;
     }
-    public void setUser_address(String user_address) {
-        this.user_address = user_address;
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + user_id +
-                ", user_name='" + user_name + '\'' +
-                ", user_email='" + user_email + '\'' +
-                ", user_password='" + user_password + '\'' +
+                "user_id=" + userId +
+                ", user_name='" + userName + '\'' +
+                ", user_email='" + userEmail + '\'' +
+                ", user_password='" + userPassword + '\'' +
                 ", zipcode='" + zipcode + '\'' +
-                ", user_role='" + user_role + '\'' +
-                ", user_address='" + user_address + '\'' +
+                ", user_role='" + userRole + '\'' +
+                ", user_address='" + userAddress + '\'' +
                 '}';
     }
 }
