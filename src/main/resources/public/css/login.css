@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.generic-form input[type="text"],
+.generic-form input[type="email"],
 .generic-form input[type="password"] {
     width: 100%;
     padding: 6px;
