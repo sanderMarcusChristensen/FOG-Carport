@@ -17,15 +17,15 @@ public class UserMapper {
     private static final List<User> userList = new ArrayList<>();
     static User currentUser;
 
-    public static User login(String userEmail, String password, ConnectionPool connectionPool) throws DatabaseException {
+    public static User login(String user_email, String user_password, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "select * from public.\"users\" where user_email=? and user_password=?";
 
         try (
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)
         ) {
-            ps.setString(1, userEmail);
-            ps.setString(2, password);
+            ps.setString(1, user_email);
+            ps.setString(2, user_password);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -34,9 +34,9 @@ public class UserMapper {
                 String user_zipcode = rs.getString("user_zipcode");
                 String user_role = rs.getString("user_role");
                 String user_address = rs.getString("user_address");
-                return new User(user_id, user_name, userEmail, password, user_zipcode, user_role, user_address);
+                return new User(user_id, user_name, user_password, user_email, user_zipcode, user_role, user_address);
             } else {
-                throw new DatabaseException("Fejl i login. Prøv igen");
+                throw new DatabaseException("Fejl i login. Prøv igen eller opret en bruger");
             }
         } catch (SQLException e) {
             throw new DatabaseException("DB fejl", e.getMessage());
