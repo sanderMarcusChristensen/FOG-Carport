@@ -18,32 +18,62 @@
 
 <header th:replace="~{fragments :: header}"></header>
 
-<br>
-
 
 <div class="container">
     <h3> Allerede kunde hos FOG ?</h3>
     <a class="btn" href="login.html" th:href="@{loginPage}"> Login </a>
 </div>
 
+<div class="main-container">
 
 
-<div class="generic-form">
-    <form method="post">
-        <label>Navn*</label>
-        <input type="text" name="Navn" placeholder="Fornavn og efternavn"/>
-        <label>E-mail*</label>
-        <input type="email" name="mail" placeholder="E-mail"/>
-        <label>Kodeord*</label>
-        <input type="password" name="kodeOrd" placeholder="Kodeord"/>
-        <label>Adresse*</label>
-        <input type="password" name="Adresse" placeholder="Adresse"/>
-        <label>Postnummer*</label>
-        <input type="number" name="Postnummer" placeholder="Postnummer"/>
+    <form method="post" action="createAccount">
 
-        <button class="btn" type="submit" formaction="/login">Lav forspørgsel</button>
+        <div><br/>
+            <p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}"
+               th:text="${errormessage}"></p></div>
+        <div><br/>
+            <p style="font-size: 20px; color: #4169E1; max-width: 900px" th:unless="${#strings.isEmpty(usermessage)}"
+               th:text="${usermessage}"></p></div>
+
+
+        <div class="form-container">
+            <div class="dropdown-menu">
+                <label for="name"><b>Navn*</b><br/></label>
+                <input type="text" placeholder="Fornavn og efternavn" name="name" id="name" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="email"><b>Email*</b><br/></label>
+                <input type="email" placeholder="E-mail" name="email" id="email" required>
+            </div>
+
+
+            <div class="dropdown-menu">
+                <label for="password"><b>Kodeord*</b><br/></label>
+                <input type="password" placeholder="Kodeord" name="password" id="password" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="passwordrepeat"><b>Kodeord*</b><br/></label>
+                <input type="password" placeholder="Gentag kodeord" name="passwordrepeat" id="passwordrepeat" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="address"><b>Adresse*</b><br/></label>
+                <input type="text" placeholder="Vejnavn og by (Evt. hus-/etage-/dørnummer)" name="address" id="address"
+                       required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="zipcode"><b>Postnummer*</b><br/></label>
+                <input type="number" placeholder="Postnummer" name="zipcode" id="zipcode" required>
+            </div>
+
+            <button class="submit-btn" type="submit">Opret bruger</button>
+        </div>
     </form>
-    <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
+
 </div>
 
 
