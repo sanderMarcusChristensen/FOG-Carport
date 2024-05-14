@@ -1,10 +1,15 @@
 package app.controllers;
 
+import app.services.CarportSvg;
+import app.services.Svg;
+import io.javalin.http.Context;
+
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
-import io.javalin.http.Context;
+
+import java.util.Locale;
 
 public class OrderController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
@@ -12,6 +17,9 @@ public class OrderController {
         app.get("continueToPageThree", ctx -> ctx.render("customCarport_3.html"));
         app.get("backToPageOne", ctx -> customCarport_pageone(ctx));
         app.post("createRequest", ctx -> createRequestAndUser(ctx, connectionPool));
+
+        app.post("getCarportSize", ctx -> showPreView(ctx));
+        app.get("/customCarportPreView", ctx -> OrderController.showPreView(ctx));
     }
 
     public static void customCarport_pageone(Context ctx) {
@@ -62,9 +70,19 @@ public class OrderController {
         }
     }
 
+    public static void showPreView(Context ctx){
+        int width = Integer.parseInt(ctx.formParam("width"));
+        int length = Integer.parseInt(ctx.formParam("length"));
+        String type = ctx.sessionAttribute("type");
+
+        Locale.setDefault(new Locale("US"));
+        CarportSvg svg = new CarportSvg(width, length);
+
+        Svg carportSvg = new Svg(0, 0, "0 0 855 690", "100%" );
+        carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
+
+        ctx.attribute("svg", svg.toString());
+        ctx.render("customCarportPreView.html");
+
+    }
 }
-
-
-
-
-
