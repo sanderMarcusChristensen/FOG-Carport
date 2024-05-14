@@ -45,14 +45,14 @@ CREATE TABLE IF NOT EXISTS public.order_item
 
 CREATE TABLE IF NOT EXISTS public.users
 (
-    users_id serial NOT NULL,
+    user_id serial NOT NULL,
     user_name character varying COLLATE pg_catalog."default" NOT NULL,
     user_password character varying COLLATE pg_catalog."default" NOT NULL,
     user_email character varying COLLATE pg_catalog."default" NOT NULL,
     user_zipcode bigint NOT NULL,
     user_role character varying COLLATE pg_catalog."default" NOT NULL,
     user_address character varying COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT users_pkey PRIMARY KEY (users_id)
+    CONSTRAINT users_pkey PRIMARY KEY (user_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.zip_code
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS public.zip_code
 
 ALTER TABLE IF EXISTS public."orders"
     ADD CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id)
-    REFERENCES public.users (users_id) MATCH SIMPLE
+    REFERENCES public.users (user_id) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION;
 
