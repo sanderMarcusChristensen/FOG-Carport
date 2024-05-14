@@ -6,7 +6,7 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS public.product
 (
     product_id serial NOT NULL,
-    name character varying COLLATE pg_catalog."default" NOT NULL,
+    product_name character varying COLLATE pg_catalog."default" NOT NULL,
     unit character varying COLLATE pg_catalog."default" NOT NULL,
     price double precision NOT NULL,
     CONSTRAINT product_pkey PRIMARY KEY (product_id)
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS public.product
 CREATE TABLE IF NOT EXISTS public.product_variant
 (
     product_variant_id serial NOT NULL,
-    length integer NOT NULL,
+    product_variant_length integer NOT NULL,
     product_id integer NOT NULL,
     CONSTRAINT product_variant_pkey PRIMARY KEY (product_variant_id)
     );
@@ -137,37 +137,39 @@ VALUES
     ('4673', 'Rødvig Stevns'),
     ('8000', 'Silkeborg');
 
-    INSERT INTO public.users(user_name, user_password, user_email, user_zipcode, user_role, user_address)
-    VALUES
-        ('chad', '1234', 'chad@outlook.com', '4000', 'admin', 'Allégade 22'),
-        ('Mateen Rafiq', '1234', 'm@live.dk', '2630', 'user', 'Taastrup Hovedgade 52');
+INSERT INTO public.users(user_name, user_password, user_email, user_zipcode, user_role, user_address)
+VALUES
+    ('chad', '1234', 'chad@outlook.com', '4000', 'admin', 'Allégade 22'),
+    ('Mateen Rafiq', '1234', 'm@live.dk', '2630', 'user', 'Taastrup Hovedgade 52');
 
-    INSERT INTO public.orders(carport_width, carport_length, date, status, user_id, total_price)
-    VALUES
-        ('600', '780', '2024-05-14', '1', '2', '14890'),
-        ('480', '520', '2024-05-14', '1', '2', '19999'),
-        ('480', '520', '2024-05-14', '1', '2', '19999'),
-        ('600', '720', '2024-05-14', '1', '2', '19999'),
-        ('600', '720', '2024-05-14', '1', '2', '19999'),
-        ('600', '720', '2024-05-14', '1', '2', '19999'),
-        ('600', '720', '2024-05-14', '1', '2', '19999'),
-        ('480', '520', '2024-05-14', '1', '2', '19999'),
-        ('480', '520', '2024-05-14', '1', '2', '19999');
+INSERT INTO public.orders(carport_width, carport_length, date, status, user_id, total_price)
+VALUES
+    ('600', '780', '2024-05-14', '1', '2', '14890'),
+    ('480', '520', '2024-05-14', '1', '2', '19999'),
+    ('480', '520', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('480', '520', '2024-05-14', '1', '2', '19999'),
+    ('480', '520', '2024-05-14', '1', '2', '19999');
 
-    INSERT INTO public.product_variant(length, product_id)
-    VALUES
-        ('300', '1'),
-        ('300', '2'),
-        ('360', '2'),
-        ('420', '2'),
-        ('480', '2'),
-        ('540', '2'),
-        ('600', '2');
+INSERT INTO public.product(product_name, unit, price)
+VALUES
+    ('97x97 mm. trykimp. Stolpe', 'stk', '82'),
+    ('45x195 mm. spærtræ ubh.', 'stk', '37');
 
-    INSERT INTO public.product(name, unit, price)
-    VALUES
-        ('97x97 mm. trykimp. Stolpe', '82'),
-        ('45x195 mm. spærtræ ubh.', '37');
+INSERT INTO public.product_variant(product_variant_length, product_id)
+VALUES
+    ('300', '1'),
+    ('300', '2'),
+    ('360', '2'),
+    ('420', '2'),
+    ('480', '2'),
+    ('540', '2'),
+    ('600', '2');
+
+
 
 CREATE OR REPLACE VIEW bill_of_materials_view AS
 SELECT product_variant.product_id,
@@ -182,8 +184,8 @@ SELECT product_variant.product_id,
        io.order_item_id,
        io.quantity,
        io.description,
-       product_variant.length,
-       product.name,
+       product_variant.product_variant_length,
+       product.product_name,
        product.unit,
        product.price
 FROM orders
@@ -192,3 +194,4 @@ FROM orders
          JOIN product USING (product_id);
 
 END;
+
