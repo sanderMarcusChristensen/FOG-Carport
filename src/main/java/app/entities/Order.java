@@ -1,6 +1,5 @@
 package app.entities;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Order {
@@ -8,12 +7,12 @@ public class Order {
     private double carportWidth;
     private double carportLength;
     private Date date;
-    private boolean status;
+    private int status;
     private int userId;
     private double totalPrice;
     private User user;
 
-    public Order(int orderId, double carportWidth, double carportLength, Date date, boolean status, int userId, double totalPrice) {
+    public Order(int orderId, double carportWidth, double carportLength, Date date, int status, int userId, double totalPrice) {
         this.orderId = orderId;
         this.carportWidth = carportWidth;
         this.carportLength = carportLength;
@@ -23,7 +22,7 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public Order(int orderId, double carportWidth, double carportLength, Date date, boolean status, double totalPrice, User user) {
+    public Order(int orderId, double carportWidth, double carportLength, Date date, int status, double totalPrice, User user) {
         this.orderId = orderId;
         this.carportWidth = carportWidth;
         this.carportLength = carportLength;
@@ -49,7 +48,7 @@ public class Order {
         return date;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
@@ -81,7 +80,7 @@ public class Order {
         this.date = date;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
