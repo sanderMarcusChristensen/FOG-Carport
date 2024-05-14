@@ -4,9 +4,19 @@ public class OrderItem {
 
     private int orderItemId;
     private Order order;
+    private int orderId;
     private ProductVariant productVariant;
+    private int productVariantId;
     private int quantity;
     private String description;
+
+    public OrderItem(int orderItemId, int orderId, int productVariantId, int quantity, String description) {
+        this.orderItemId = orderItemId;
+        this.orderId = orderId;
+        this.productVariantId = productVariantId;
+        this.quantity = quantity;
+        this.description = description;
+    }
 
     public OrderItem(int orderItemId, Order order, ProductVariant productVariant, int quantity, String description) {
         this.orderItemId = orderItemId;
