@@ -14,11 +14,11 @@ import java.util.List;
 
 public class OrderItemMapper  {
 
-    public static List<OrderItem> getAllOrder(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<OrderItem> getAllOrderItems(ConnectionPool connectionPool) throws DatabaseException {
 
         List<OrderItem> orderItemsList = new ArrayList<>();
 
-        String sql = "select * FORM order_item";
+        String sql = "SELECT * FROM order_item";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -27,11 +27,13 @@ public class OrderItemMapper  {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
-                int order_item = rs.getInt("order_item");
-                int variant_id = rs.getInt("variant_id");
+                int orderItemId = rs.getInt("order_item_id");
+                int orderId = rs.getInt("order_id");
+                int productVariantId = rs.getInt("product_variant_id");
+                int quantity = rs.getInt("quantity");
                 String description = rs.getString("description");
-                int order_id = rs.getInt("order_id");
-                orderItemsList.add(new OrderItem(order_item, variant_id, description,order_id));
+                OrderItem orderItem = new OrderItem(orderItemId, orderId, productVariantId, quantity, description);
+                orderItemsList.add(orderItem);
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());
