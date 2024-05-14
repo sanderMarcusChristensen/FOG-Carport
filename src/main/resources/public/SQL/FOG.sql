@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS public."orders"
     carport_width double precision,
     carport_length double precision,
     date date NOT NULL,
-    status boolean NOT NULL,
+    status integer NOT NULL,
     user_id integer NOT NULL,
     total_price double precision NOT NULL,
     CONSTRAINT order_pkey PRIMARY KEY (order_id)
@@ -141,6 +141,33 @@ VALUES
     VALUES
         ('chad', '1234', 'chad@outlook.com', '4000', 'admin', 'Allégade 22'),
         ('Mateen Rafiq', '1234', 'm@live.dk', '2630', 'user', 'Taastrup Hovedgade 52');
+
+    INSERT INTO public.orders(carport_width, carport_length, date, status, user_id, total_price)
+    VALUES
+        ('600', '780', '2024-05-14', '1', '2', '14890'),
+        ('480', '520', '2024-05-14', '1', '2', '19999'),
+        ('480', '520', '2024-05-14', '1', '2', '19999'),
+        ('600', '720', '2024-05-14', '1', '2', '19999'),
+        ('600', '720', '2024-05-14', '1', '2', '19999'),
+        ('600', '720', '2024-05-14', '1', '2', '19999'),
+        ('600', '720', '2024-05-14', '1', '2', '19999'),
+        ('480', '520', '2024-05-14', '1', '2', '19999'),
+        ('480', '520', '2024-05-14', '1', '2', '19999');
+
+    INSERT INTO public.product_variant(length, product_id)
+    VALUES
+        ('300', '1'),
+        ('300', '2'),
+        ('360', '2'),
+        ('420', '2'),
+        ('480', '2'),
+        ('540', '2'),
+        ('600', '2');
+
+    INSERT INTO public.product(name, unit, price)
+    VALUES
+        ('97x97 mm. trykimp. Stolpe', '82'),
+        ('45x195 mm. spærtræ ubh.', '37');
 
 CREATE OR REPLACE VIEW bill_of_materials_view AS
 SELECT product_variant.product_id,
