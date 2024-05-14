@@ -3,13 +3,13 @@ package app.entities;
 public class Product {
 
     private int productId;
-    private String name;
+    private String product_name;
     private String unit;
     private double price;
 
-    public Product(int productId, String name, String unit, double price) {
+    public Product(int productId, String product_name, String unit, double price) {
         this.productId = productId;
-        this.name = name;
+        this.product_name = product_name;
         this.unit = unit;
         this.price = price;
     }
@@ -18,8 +18,8 @@ public class Product {
         return productId;
     }
 
-    public String getName() {
-        return name;
+    public String getProduct_name() {
+        return product_name;
     }
 
     public String getUnit() {
@@ -34,8 +34,8 @@ public class Product {
         this.productId = productId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
     public void setUnit(String unit) {
@@ -50,7 +50,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "productId=" + productId +
-                ", name='" + name + '\'' +
+                ", name='" + product_name + '\'' +
                 ", unit='" + unit + '\'' +
                 ", price=" + price +
                 '}';
