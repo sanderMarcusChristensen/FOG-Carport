@@ -18,7 +18,7 @@ public class UserMapper {
     static User currentUser;
 
     public static User login(String user_email, String user_password, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "select * from public.\"users\" where user_email=? and user_password=?";
+        String sql = "SELECT * FROM public.\"users\" WHERE user_email=? AND user_password=?";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -44,7 +44,7 @@ public class UserMapper {
     }
 
     public static void createuser(String userName, String userPassword, String userEmail, int userZipcode, String userAddress, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "insert into users (user_name, user_password, user_email, user_zipcode, user_role, user_address) values (?,?,?,?,?,?)";
+        String sql = "INSERT INTO users (user_name, user_password, user_email, user_zipcode, user_role, user_address) VALUES (?,?,?,?,?,?)";
 
         try (
                 Connection connection = connectionPool.getConnection();
