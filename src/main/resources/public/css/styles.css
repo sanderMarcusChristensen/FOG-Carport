@@ -43,7 +43,8 @@ h1 {
     background: #013D7A;
     padding: 10px 20px 10px 20px;
     border: 0;
-    color: #FFFFFF
+    color: #FFFFFF;
+    max-width: 300px;
 }
 
 .navbar {
