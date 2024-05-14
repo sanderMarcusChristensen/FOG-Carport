@@ -4,12 +4,12 @@ public class ProductVariant {
 
     private int productVariantId;
     private Product product;
-    private int length;
+    private int product_variant_length;
 
-    public ProductVariant(int productVariantId, Product product, int length) {
+    public ProductVariant(int productVariantId, Product product, int product_variant_length) {
         this.productVariantId = productVariantId;
         this.product = product;
-        this.length = length;
+        this.product_variant_length = product_variant_length;
     }
 
     public int getProductVariantId() {
@@ -20,8 +20,8 @@ public class ProductVariant {
         return product;
     }
 
-    public int getLength() {
-        return length;
+    public int getProduct_variant_length() {
+        return product_variant_length;
     }
 
     public void setProductVariantId(int productVariantId) {
@@ -32,8 +32,8 @@ public class ProductVariant {
         this.product = product;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setProduct_variant_length(int product_variant_length) {
+        this.product_variant_length = product_variant_length;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ProductVariant {
         return "ProductVariant{" +
                 "productVariantId=" + productVariantId +
                 ", product=" + product +
-                ", length=" + length +
+                ", length=" + product_variant_length +
                 '}';
     }
 }
