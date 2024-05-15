@@ -35,7 +35,7 @@
             <div class="form-container">
                     <div class="dropdown-menu">
                         <label for="width"></label>
-                        <select name="width_id" id="width" required>
+                        <select name="width" id="width" required>
                             <option value="" disabled selected>Vælg carport bredde*</option>
                             <option value="2">2 meter</option>
                             <option value="3">3 meter</option>
@@ -45,9 +45,9 @@
 
                     <div class="dropdown-menu">
                         <label for="length"></label>
-                        <select name="length_id" id="length" required>
+                        <select name="length" id="length" required>
                             <option value="" disabled selected>Vælg carport længde*</option>
-                            <option value="2">2 meter</option>
+                            <option th:value="2">2 meter</option>
                             <option value="3">3 meter</option>
                             <option value="4">4 meter</option>
                         </select>
@@ -56,7 +56,7 @@
 
                 <div class="dropdown-menu">
                     <label for="roof"></label>
-                    <select name="roof_id" id="roof" required>
+                    <select name="roof" id="roof" required>
                         <option value="" disabled selected>Vælg carport tag*</option>
                         <option value="trapeztag">Trapeztag</option>
                         <option value="plastik tag">Plastik-tag</option>
