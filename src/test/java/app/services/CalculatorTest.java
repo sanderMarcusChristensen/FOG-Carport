@@ -19,14 +19,46 @@ class CalculatorTest {
     @BeforeAll
      static void setop(){
 
+        // kig på discord pin, skal være i ordercontrolelr
+
     }
 
     @Test
     void calcPostQuantity() {
 
+        //Arrange
         Calculator calculator = new Calculator(600,780, connectionPool);
 
-        assertEquals(6, calculator.calcPostQuantity()); // kig på discord pin, skal være i ordercontrolelr
+        //Expected
+        int expected = 6;
+
+        //Actual
+        int actual = calculator.calcPostQuantity();
+
+        //Assert
+        assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    void calcRaftersQuantity(){
+
+        //Arrange
+        Calculator calculator = new Calculator(600,750, connectionPool);
+
+        //   50/750 = 15
+        //   15 + 1 = 16
+
+        //Expected
+        int expected = 16;
+
+
+        //Actual
+        int actual = calculator.calcRaftersQuantity();
+
+        //Assert
+        assertEquals(expected, actual);
 
 
     }
