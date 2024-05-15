@@ -17,12 +17,21 @@
 
 <header th:replace="~{fragments :: header}"></header>
 
-    <div>
+    <main>
 
-        <h1>Flag</h1>
+        <h1>Carport med flat tag</h1>
 
         <div class="carport-view">
             <div th:utext="${svg}"></div>
         </div>
-    </div>
+
+        <div class="button-container">
+
+            <a class="btn" th:href="@{backToPageOne}">Tilbage</a>
+            <a class="btn" th:href="@{continueToPageThree}">Fortsæt</a>
+
+        </div>
+
+
+    </main>
 </body>
