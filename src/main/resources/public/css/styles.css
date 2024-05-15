@@ -45,6 +45,7 @@ h1 {
     border: 0;
     color: #FFFFFF;
     max-width: 300px;
+    text-decoration: none;
 }
 
 .navbar {
