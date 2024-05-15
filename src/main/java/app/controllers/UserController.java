@@ -41,15 +41,16 @@ public class UserController {
 
     private static void createUser(Context ctx, ConnectionPool connectionPool) {
         String name = ctx.formParam("name");
-        String email = ctx.formParam("email");
         String password = ctx.formParam("password");
         String passwordrepeat = ctx.formParam("passwordrepeat");
-        String address = ctx.formParam("address");
+        String email = ctx.formParam("email");
         int zipcode = Integer.parseInt(ctx.formParam("zipcode"));
+        String address = ctx.formParam("address");
 
         if (password.equals(passwordrepeat) && name.length() > 3 && password.length() > 3 && passwordrepeat.length() > 3) {
             try {
-                UserMapper.createuser(name, password, email, zipcode, address, connectionPool);
+                User user = new User(0, name, password, email, zipcode, "", address);
+                user = UserMapper.insertUser(user, connectionPool);
                 ctx.attribute("usermessage", "Du er hermed oprettet med e-mail: " + email + " det angivne password. Nu skal du logge ind på din bruger");
                 ctx.render("login.html");
             } catch (DatabaseException e) {
