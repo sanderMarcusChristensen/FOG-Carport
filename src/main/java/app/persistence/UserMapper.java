@@ -18,30 +18,40 @@ public class UserMapper {
     static User currentUser;
 
     public static User login(String user_email, String user_password, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT * FROM public.\"users\" WHERE user_email=? AND user_password=?";
+        String emailCheckSql = "SELECT * FROM public.\"users\" WHERE user_email=?";
+        String loginSql = "SELECT * FROM public.\"users\" WHERE user_email=? AND user_password=?";
 
         try (
                 Connection connection = connectionPool.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)
+                PreparedStatement emailCheckPs = connection.prepareStatement(emailCheckSql);
+                PreparedStatement loginPs = connection.prepareStatement(loginSql)
         ) {
-            ps.setString(1, user_email);
-            ps.setString(2, user_password);
+            emailCheckPs.setString(1, user_email);
+            ResultSet emailCheckRs = emailCheckPs.executeQuery();
+            if (emailCheckRs.next()) {
+                // Email exists, check password
+                loginPs.setString(1, user_email);
+                loginPs.setString(2, user_password);
 
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                int user_id = rs.getInt("user_id");
-                String user_name = rs.getString("user_name");
-                String user_zipcode = rs.getString("user_zipcode");
-                String user_role = rs.getString("user_role");
-                String user_address = rs.getString("user_address");
-                return new User(user_id, user_name, user_password, user_email, user_zipcode, user_role, user_address);
+                ResultSet loginRs = loginPs.executeQuery();
+                if (loginRs.next()) {
+                    int user_id = loginRs.getInt("user_id");
+                    String user_name = loginRs.getString("user_name");
+                    String user_zipcode = loginRs.getString("user_zipcode");
+                    String user_role = loginRs.getString("user_role");
+                    String user_address = loginRs.getString("user_address");
+                    return new User(user_id, user_name, user_password, user_email, user_zipcode, user_role, user_address);
+                } else {
+                    throw new DatabaseException("Wrong password");
+                }
             } else {
-                throw new DatabaseException("Fejl i login. Prøv igen eller opret en bruger");
+                throw new DatabaseException("Email doesn't exist");
             }
         } catch (SQLException e) {
             throw new DatabaseException("DB fejl", e.getMessage());
         }
     }
+
 
     public static void createuser(String userName, String userPassword, String userEmail, int userZipcode, String userAddress, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO users (user_name, user_password, user_email, user_zipcode, user_role, user_address) VALUES (?,?,?,?,?,?)";

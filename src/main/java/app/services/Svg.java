@@ -15,6 +15,10 @@ public class Svg {
             "        </marker>\n" +
             "    </defs>";
     public static final String SVG_RECT_TEMPLATE = "<rect x=\"%.2f\" y=\"%.2f\" height=\"%.2f\" width=\"%.2f\" style=\"%s\" />";
+
+    public static final String SVG_CROSS = "<line x1=\"%.2f\" y1=\"%.2f\" x2=\"%.2f\" y2=\"%.2f\" style=\"%s\" />";
+
+
     private final StringBuilder svg = new StringBuilder();
 
 
@@ -31,11 +35,16 @@ public class Svg {
     public void addLine(int x1, int y1, int x2, int y2, String style){
 
     }
-    public void addArrow(int x1, int y1, int x2, int y2, String style){
+    //public void addArrow(int x1, int y1, int x2, int y2, String style){
+    //    svg.append(String.format(SVG_ARROW_DEFS, x1, y1, x2, y2, style));
+    //}
 
+    public void addCross(int x1, int y1, int x2, int y2, String style){
+        svg.append(String.format(SVG_CROSS, x1, y1, x2, y2, style));
     }
-    public void addText(int x, int y, int rotation, String text){
 
+    public void addText(int x, int y, int rotation, String text){
+        //svg.append(String.format());
     }
     public void addSvg(Svg innerSvg){
 
