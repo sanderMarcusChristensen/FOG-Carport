@@ -18,7 +18,6 @@
 <header th:replace="~{fragments :: header}"></header>
 
     <main>
-
         <h1>Carport med flat tag</h1>
 
         <div class="carport-view">
@@ -26,13 +25,9 @@
         </div>
 
         <div class="button-container">
-
-            <div th:if="${session.currentUser == null}"><a class="submit-btn" th:href="@{continueToPageThree}">Fortsæt</a></div>
-            <div th:if="${session.currentUser != null}"><a class="submit-btn"  th:href="@{sendRequestLoggedIn}">Send forespørgsel</a></div>
-            <a class="submit-btn" th:href="@{backToPageOne}">Tilbage</a>
-
+            <a class="btn" th:href="@{backToPageOne}">Tilbage</a>
+            <a th:if="${session.currentUser == null}" class="btn" th:href="@{continueToPageThree}">Fortsæt</a>
+            <a th:if="${session.currentUser != null}" class="btn"  th:href="@{sendRequestLoggedIn}">Send forespørgsel</a>
         </div>
-
-
     </main>
 </body>
