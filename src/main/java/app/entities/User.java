@@ -6,11 +6,11 @@ public class User {
     private String userName;
     private String userPassword;
     private String userEmail;
-    private String zipcode;
+    private int zipcode;
     private String userRole;
     private String userAddress;
 
-    public User(int userId, String userName, String userPassword, String userEmail, String zipcode, String userRole, String userAddress) {
+    public User(int userId, String userName, String userPassword, String userEmail, int zipcode, String userRole, String userAddress) {
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
@@ -20,10 +20,10 @@ public class User {
         this.userAddress = userAddress;
     }
 
-    public String getZipcode() {
+    public int getZipcode() {
         return zipcode;
     }
-    public void setZipcode(String zipcode) {
+    public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
     public int getUserId() {
