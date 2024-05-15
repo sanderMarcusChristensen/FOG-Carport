@@ -1,5 +1,9 @@
 package app.controllers;
 
+import app.entities.Order;
+import app.entities.User;
+import app.persistence.OrderMapper;
+import app.services.Calculator;
 import app.services.CarportSvg;
 import app.services.Svg;
 import io.javalin.http.Context;
@@ -9,6 +13,7 @@ import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 
+import java.util.Date;
 import java.util.Locale;
 
 public class OrderController {
@@ -83,6 +88,39 @@ public class OrderController {
 
         ctx.attribute("svg", svg.toString());
         ctx.render("customCarportPreView.html");
+
+    }
+
+    private static void sendRequest(Context ctx, ConnectionPool connectionPool){
+
+        //Get order details from front-end
+        int width = ctx.sessionAttribute("width");
+        int length = ctx.sessionAttribute("length");
+        Date date = ctx.sessionAttribute("date");
+        int status = 1;
+        int totalPrice = 19999;
+        User user = new User(1,"gud", "1234", "sanderc69@gmail.com", "2990", "user", "Nivå");   // hard-code for nu (laver en dummy user)
+
+
+        Order order = new Order(0,width,length,date,status,totalPrice,user);
+
+        try{
+            order = OrderMapper.insertOrder(order, connectionPool);
+
+            //calculate order items (stykliste)
+            Calculator calculator = new Calculator(width,length,connectionPool);
+            calculator.calcCarport(order);
+
+            //save order items in database (stykeliste)
+            OrderMapper.insertOrderItems(calculator.getOrderItem(), connectionPool);
+
+            //create messge to customer and render order / request confirmation
+            ctx.render("ItEllerAndetFed/dude");   // Lave om, idk
+
+        } catch (DatabaseException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 }
