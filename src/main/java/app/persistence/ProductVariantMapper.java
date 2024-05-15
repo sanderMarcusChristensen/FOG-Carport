@@ -17,9 +17,9 @@ public class ProductVariantMapper {
 
         List<ProductVariant> productVariants = new ArrayList<>();
 
-        String sql = "SELECT * FORM product_variant " +
+        String sql = "SELECT * FROM product_variant " +
                 "INNER JOIN product p USING(product_id) " +
-                "WHERE product_id = ? AND length >= ?";
+                "WHERE product_id = ? AND product_variant_length >= ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -29,12 +29,12 @@ public class ProductVariantMapper {
             while (rs.next()) {
                 int variantId = rs.getInt("product_variant_id");
                 int product_id = rs.getInt("product_id");
-                int length = rs.getInt("length");
-                String name = rs.getString("name");
+                int variant_length = rs.getInt("product_variant_length");
+                String product_name = rs.getString("product_name");
                 String unit = rs.getString("unit");
                 int price = rs.getInt("price");
-                Product product = new Product(product_id, name, unit, price);
-                ProductVariant productVariant = new ProductVariant(variantId, product, length);
+                Product product = new Product(product_id, product_name, unit, price);
+                ProductVariant productVariant = new ProductVariant(variantId, product, variant_length);
                 productVariants.add(productVariant);
             }
         } catch (SQLException e) {

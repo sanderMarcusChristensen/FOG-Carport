@@ -30,10 +30,10 @@
                 Felter markeret med * SKAL udfyldes!</p>
         </section>
 
-        <form method="post" action="getCarportSize" class="form-container">
+        <form method="post" th:action="@{getCarportSize}" class="form-container">
             <label>
                 <span>Carport bredde*</span>
-                <select name="width" required>
+                <select id="width" name="width" required>
                     <option value=""></option>
                     <option value="480">480cm</option>
                     <option value="540">540cm</option>
@@ -45,7 +45,7 @@
             </label>
             <label>
                 <span>Carport længte*</span>
-                <select name="length" required>
+                <select id="length" name="length" required>
                     <option value=""></option>
                     <option value="480">480cm</option>
                     <option value="540">540cm</option>

@@ -27,8 +27,9 @@
 
         <div class="button-container">
 
-            <a class="btn" th:href="@{backToPageOne}">Tilbage</a>
-            <a class="btn" th:href="@{continueToPageThree}">Fortsæt</a>
+            <div th:if="${session.currentUser == null}"><a class="submit-btn" th:href="@{continueToPageThree}">Fortsæt</a></div>
+            <div th:if="${session.currentUser != null}"><a class="submit-btn"  th:href="@{sendRequestLoggedIn}">Send forespørgsel</a></div>
+            <a class="submit-btn" th:href="@{backToPageOne}">Tilbage</a>
 
         </div>
 

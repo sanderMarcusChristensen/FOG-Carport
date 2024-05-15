@@ -25,7 +25,7 @@ h1{
 
 .button-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-evenly;
     padding: 0 20px 0 20px;
 }

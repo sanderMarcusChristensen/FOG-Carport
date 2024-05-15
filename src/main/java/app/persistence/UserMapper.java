@@ -1,17 +1,12 @@
 package app.persistence;
 
+import app.entities.Order;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import io.javalin.http.Context;
 
 public class UserMapper {
     private static final List<User> userList = new ArrayList<>();
@@ -37,7 +32,7 @@ public class UserMapper {
                 if (loginRs.next()) {
                     int user_id = loginRs.getInt("user_id");
                     String user_name = loginRs.getString("user_name");
-                    String user_zipcode = loginRs.getString("user_zipcode");
+                    int user_zipcode = loginRs.getInt("user_zipcode");
                     String user_role = loginRs.getString("user_role");
                     String user_address = loginRs.getString("user_address");
                     return new User(user_id, user_name, user_password, user_email, user_zipcode, user_role, user_address);
@@ -53,30 +48,31 @@ public class UserMapper {
     }
 
 
-    public static void createuser(String userName, String userPassword, String userEmail, int userZipcode, String userAddress, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "INSERT INTO users (user_name, user_password, user_email, user_zipcode, user_role, user_address) VALUES (?,?,?,?,?,?)";
+    public static User insertUser(User user, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "INSERT INTO users (user_name, user_password, user_email, user_zipcode, user_role, user_address)" +
+                "VALUES (?,?,?,?,?,?)";
 
-        try (
-                Connection connection = connectionPool.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)
-        ) {
-            ps.setString(1, userName);
-            ps.setString(2, userPassword);
-            ps.setString(3, userEmail);
-            ps.setInt(4, userZipcode);
-            ps.setString(5, "user");
-            ps.setString(6, userAddress);
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            int rowsAffected = ps.executeUpdate();
-            if (rowsAffected != 1) {
-                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
+                ps.setString(1, user.getUserName());
+                ps.setString(2, user.getUserPassword());
+                ps.setString(3, user.getUserEmail());
+                ps.setInt(4, user.getZipcode());
+                ps.setString(5, user.getUserRole());
+                ps.setString(6, user.getUserAddress());
+                ps.executeUpdate();
+                ResultSet keySet = ps.getGeneratedKeys();
+                if (keySet.next()) {
+                    User newUser = new User(keySet.getInt(1), user.getUserName(), user.getUserPassword(), user.getUserEmail(), user.getZipcode(),
+                            user.getUserRole(), user.getUserAddress());
+                    return newUser;
+                } else {
+                    return null;
+                }
             }
         } catch (SQLException e) {
-            String msg = "Der er sket en fejl. Prøv igen";
-            if (e.getMessage().startsWith("ERROR: duplicate key value ")) {
-                msg = "Email findes allerede. Vælg et andet eller log ind";
-            }
-            throw new DatabaseException(msg, e.getMessage());
+            throw new DatabaseException("Could not create user", e.getMessage());
         }
     }
 }
