@@ -23,7 +23,7 @@ public class OrderController {
     }
 
     public static void customCarport_pageone(Context ctx) {
-        ctx.render("customCarport.html");
+        ctx.render("customCarportInput.html");
     }
 
     public static void customCarport_pagetwo(Context ctx) {
@@ -79,7 +79,7 @@ public class OrderController {
         CarportSvg svg = new CarportSvg(width, length);
 
         Svg carportSvg = new Svg(0, 0, "0 0 855 690", "100%" );
-        carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
+        carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff; margin: auto;" );
 
         ctx.attribute("svg", svg.toString());
         ctx.render("customCarportPreView.html");
