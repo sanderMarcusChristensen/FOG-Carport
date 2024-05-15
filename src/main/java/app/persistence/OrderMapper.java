@@ -2,12 +2,9 @@ package app.persistence;
 
 import app.entities.*;
 import app.exceptions.DatabaseException;
-import app.persistence.ConnectionPool;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.sql.Date;
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class OrderMapper {
                 String userName = rs.getString("user_name");
                 String userPassword = rs.getString("user_password");
                 String userEmail = rs.getString("user_email");
-                String userZipCode = rs.getString("user_zipcode");
+                int userZipCode = rs.getInt("user_zipcode");
                 String userRole = rs.getString("user_role");
                 String userAddress = rs.getString("user_address");
                 int orderId = rs.getInt("order_id");
@@ -105,12 +102,10 @@ public class OrderMapper {
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                //Setting todays date
-                Date today = Date.valueOf(LocalDate.now());
 
                 ps.setDouble(1, order.getCarportWidth());
                 ps.setDouble(2, order.getCarportLength());
-                ps.setDate(3, today);
+                ps.setDate(3, (Date) order.getDate());
                 ps.setInt(4, 1);
                 ps.setInt(5, order.getUser().getUserId());
                 ps.setDouble(6, order.getTotalPrice());
