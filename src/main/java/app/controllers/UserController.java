@@ -25,7 +25,14 @@ public class UserController {
         app.get("createAccountPage", ctx -> ctx.render("createAccountPage.html"));
         app.post("createAccount", ctx -> createUser(ctx, connectionPool));
 
+        app.get("logout", ctx -> logout(ctx));
+
         app.get("customCarportInput", ctx -> ctx.render("customCarportInput.html"));
+    }
+
+    private static void logout(Context ctx) {
+            ctx.req().getSession().invalidate();
+            ctx.redirect("/");
     }
 
     private static void loginRequest(Context ctx, ConnectionPool connectionPool) {
