@@ -8,73 +8,103 @@
 </head>
 
 <body>
-    <header th:fragment="header" class="header-container">
-        <a href="index.html" th:href="@{homepage}">
+<header th:fragment="header" class="header-container">
+    <a href="index.html" th:href="@{homepage}">
         <img alt="Fog Logo" src="../public/images/FogLogo.png" th:src="@{/images/FogLogo.png}">
-        </a>
+    </a>
 
-        <nav class="navbar">
-            <input type="checkbox" id="sidebar-active">
-            <label for="sidebar-active" class="open-menu">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.75 6.75H20.25M3.75 12H20.25M3.75 17.25H20.25" stroke="white" stroke-width="1.5"  stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Menu</span>
+    <nav class="navbar">
+        <input type="checkbox" id="sidebar-active">
+        <label for="sidebar-active" class="open-menu">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.75 6.75H20.25M3.75 12H20.25M3.75 17.25H20.25" stroke="white" stroke-width="1.5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Menu</span>
+        </label>
+
+        <div class="link-section">
+            <label for="sidebar-active" class="closed-menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <span>Luk</span>
             </label>
 
-            <div class="link-section">
-                <label for="sidebar-active" class="closed-menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 18L18 6M6 6L18 18" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Luk</span>
-                </label>
-
-                <a href="index.html"  th:href="@{homepage}">
-                    <div>Homepage</div>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <!--
-                <a href="customCarport.html" th:href="@{customCarport}">
-                    <div>Design din egen carport</div>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                -->
-                <a href="customCarportInput.html" th:href="@{customCarportInput}">
-                    <div>custom carport</div>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-
-            <div class="icon-section">
-                <a href="#">
-                    <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
-                    <div>Kurv</div>
-                </a>
-                <a href="login.html" th:href="@{loginPage}">
-                    <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
-                    <div>User</div>
-                </a>
-            </div>
-
-
-        </nav>
-
-
-    </header>
-
-
-    <footer th:fragment="footer" class="header-footer">
-        <div>
-
+            <a href="index.html" th:href="@{homepage}">
+                <div>Homepage</div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <!--
+            <a href="customCarport.html" th:href="@{customCarport}">
+                <div>Design din egen carport</div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            -->
+            <a href="customCarportInput.html" th:href="@{customCarportInput}">
+                <div>Design din egen carport</div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+            </a>
         </div>
-    </footer>
+
+        <div class="icon-section">
+            <a href="#">
+                <img src="../public/icons/basket.svg" th:src="@{/icons/basket.svg}">
+                <div>Kurv</div>
+            </a>
+            <a th:if="${session.currentUser == null}" href="login.html" th:href="@{/loginPage}">
+                <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
+                <div>Login</div>
+            </a>
+
+            <a th:if="${session.currentUser != null and session.currentUser.userRole == 'user'}" href="userPage.html"
+               th:href="@{userPage}">
+                <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
+                <div>My page</div>
+            </a>
+
+            <a th:if="${session.currentUser != null and session.currentUser.userRole == 'admin'}" href="adminPage.html"
+               th:href="@{adminPage}">
+                <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
+                <div>Orders</div>
+            </a>
+
+            <a th:if="${session.currentUser != null}" href="index.html" th:href="@{logout}">
+                <button class="Btn_ui">
+
+                    <div class="sign_ui">
+                        <svg viewBox="0 0 512 512">
+                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="text_ui">Logout</div>
+                </button>
+                <div>Logout</div>
+            </a>
+        </div>
+
+
+    </nav>
+
+
+</header>
+
+
+<footer th:fragment="footer" class="header-footer">
+    <div>
+
+    </div>
+</footer>
 
 </body>
 </html>
