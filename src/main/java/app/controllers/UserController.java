@@ -4,19 +4,59 @@ import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
+import app.services.CarportSvg;
+import app.services.Svg;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+
+import java.util.Locale;
 
 public class UserController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
-        app.get("customCarport", ctx -> ctx.render("customCarport.html"));
         app.get("homepage", ctx -> ctx.render("index.html"));
+
         app.get("loginPage", ctx -> ctx.render("login.html"));
-        app.get("customCarportInput", ctx -> ctx.render("customCarportInput.html"));
+        app.post("loginAccount", ctx -> login(ctx, connectionPool));
+
+        app.get("loginPageRequest", ctx -> ctx.render("loginRequest.html"));
+        app.post("loginAccountRequest", ctx -> loginRequest(ctx, connectionPool));
+
         app.get("createAccountPage", ctx -> ctx.render("createAccountPage.html"));
         app.post("createAccount", ctx -> createUser(ctx, connectionPool));
-        app.post("loginAccount", ctx -> login(ctx, connectionPool));
+
+        app.get("customCarportInput", ctx -> ctx.render("customCarportInput.html"));
+    }
+
+    private static void loginRequest(Context ctx, ConnectionPool connectionPool) {
+        String email = ctx.formParam("email");
+        String password = ctx.formParam("password");
+
+        try {
+            User user = UserMapper.login(email, password, connectionPool);
+            ctx.sessionAttribute("currentUser", user);
+            ctx.sessionAttribute("currentUserId", user.getUserId());
+            ctx.sessionAttribute("currentUserName", user.getUserName());
+            ctx.sessionAttribute("currentUserEmail", user.getUserEmail());
+
+            int width = ctx.sessionAttribute("width");
+            int length = ctx.sessionAttribute("length");
+            String type = ctx.sessionAttribute("type");
+
+            Locale.setDefault(new Locale("US"));
+            CarportSvg svg = new CarportSvg(width, length);
+
+            Svg carportSvg = new Svg(0, 0, "0 0 855 690", "100%");
+            carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff; margin: auto;");
+
+            ctx.attribute("svg", svg.toString());
+            ctx.render("customCarportPreView.html");
+
+
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+            ctx.render("login.html");
+        }
     }
 
     private static void login(Context ctx, ConnectionPool connectionPool) {
