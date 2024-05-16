@@ -21,6 +21,7 @@ public class OrderController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
 
         app.get("continueToPageThree", ctx -> ctx.render("customCarport_3.html"));
+        app.get("backToPageOne", ctx -> ctx.render("customCarportInput.html"));
 
         app.post("sendRequest", ctx -> sendRequest(ctx, connectionPool));
         app.get("sendRequestLoggedIn", ctx -> sendRequestLoggedIn(ctx, connectionPool));
