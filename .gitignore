@@ -16,6 +16,8 @@ target/
 *.misc.xml
 *.workspace.xml
 .idea/workspace.xml
+.idea/sqldialects.xml
+
 
 ### Eclipse ###
 .apt_generated
