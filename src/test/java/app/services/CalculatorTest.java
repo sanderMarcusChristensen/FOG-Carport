@@ -27,7 +27,7 @@ class CalculatorTest {
     void calcPostQuantity() {
 
         //Arrange
-        Calculator calculator = new Calculator(600,780, connectionPool);
+        Calculator calculator = new Calculator(600,550, connectionPool);
 
         //Expected
         int expected = 6;
@@ -45,7 +45,7 @@ class CalculatorTest {
     void calcRaftersQuantity(){
 
         //Arrange
-        Calculator calculator = new Calculator(600,750, connectionPool);
+        Calculator calculator = new Calculator(600,780, connectionPool);
 
         //   50/750 = 15
         //   15 + 1 = 16
