@@ -20,7 +20,7 @@ public class ConnectionPool {
      * Empty and private constructor due to single pattern. Use getInstance methods to
      * instantiate and get a connection pool.
      */
-    private ConnectionPool() {
+    public ConnectionPool() {
     }
 
     public static ConnectionPool getInstance(){
