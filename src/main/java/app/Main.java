@@ -2,6 +2,7 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+import app.controllers.AdminController;
 import app.controllers.OrderController;
 import app.controllers.OrderItemController;
 import app.controllers.UserController;
@@ -34,5 +35,6 @@ public class Main {
         app.get("/", ctx ->  ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         OrderController.addRoutes(app, connectionPool);
+        AdminController.addRoutes(app, connectionPool);
     }
 }
