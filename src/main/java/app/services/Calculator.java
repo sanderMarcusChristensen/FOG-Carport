@@ -16,6 +16,8 @@ public class Calculator {
     private static final int POSTS = 1;
     private static final int RAFTERS = 2;
     private static final int BEAMS = 2;
+    private static final int UpperANDLOWERBoards_SIDES = 3;
+    private static final int SCREWS = 4;
 
 
     private List<OrderItem> orderItem = new ArrayList<>();
@@ -35,6 +37,10 @@ public class Calculator {
         calcPost(order);
         calcBeams(order);
         calcRafters(order);
+        calcUpperBoardsToSides(order);
+        calcLowerBoardsToSides(order);
+        addScrewsToOrder(order);
+
     }
 
 
@@ -54,15 +60,11 @@ public class Calculator {
 
     }
 
-    public int calcPostQuantity() {  // Laver metoden sådan her for at kunne unit-test
-
-        return 2 * (2 + (length - 130) / 340); // skal pluses med 2 på grund af 2 sider.
-    }
 
     //Remme
     private void calcBeams(Order order) throws DatabaseException {
 
-        int quantity = calcBeamsQuantity();
+        int quantity = calcBeamsUpperAndLowerBoardsQuantity();
 
         List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, BEAMS, connectionPool);
 
@@ -99,12 +101,6 @@ public class Calculator {
         }
     }
 
-    private int calcBeamsQuantity() {
-
-        return 2;
-    }
-
-
     //Spær
     private void calcRafters(Order order) throws DatabaseException {
 
@@ -118,22 +114,22 @@ public class Calculator {
             OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
             orderItem.add(orderItem1);
 
-        } else if (width > 301 && width < 360) {
+        } else if (width > 301 && width <= 360) {
             ProductVariant productVariant = productVariants.get(1);
             OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
             orderItem.add(orderItem1);
 
-        } else if (width > 361 && width < 420) {
+        } else if (width > 361 && width <= 420) {
             ProductVariant productVariant = productVariants.get(2);
             OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
             orderItem.add(orderItem1);
 
-        } else if (width > 421 && width < 480) {
+        } else if (width > 421 && width <= 480) {
             ProductVariant productVariant = productVariants.get(3);
             OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
             orderItem.add(orderItem1);
 
-        } else if (width > 481 && width < 540) {
+        } else if (width > 481 && width <= 540) {
             ProductVariant productVariant = productVariants.get(4);
             OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
             orderItem.add(orderItem1);
@@ -146,15 +142,83 @@ public class Calculator {
 
     }
 
+    private void calcUpperBoardsToSides(Order order) throws DatabaseException {
+
+        int quantity = calcBeamsUpperAndLowerBoardsQuantity();
+
+        List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, UpperANDLOWERBoards_SIDES, connectionPool);
+
+
+        if (length <= 300) {
+            ProductVariant productVariant = productVariants.get(0);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
+            orderItem.add(orderItem1);
+
+        } else if (length > 301 && width < 360) {
+            ProductVariant productVariant = productVariants.get(1);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
+            orderItem.add(orderItem1);
+
+        } else if (length > 361 && width < 420) {
+            ProductVariant productVariant = productVariants.get(2);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
+            orderItem.add(orderItem1);
+
+        } else if (length > 421 && width < 480) {
+            ProductVariant productVariant = productVariants.get(3);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
+            orderItem.add(orderItem1);
+
+        } else if (length > 481 && width < 540) {
+            ProductVariant productVariant = productVariants.get(4);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
+            orderItem.add(orderItem1);
+
+        } else if (length > 541) {
+            ProductVariant productVariant = productVariants.get(5);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
+            orderItem.add(orderItem1);
+        }
+    }
+
+    private void calcLowerBoardsToSides(Order order) throws DatabaseException {
+
+        calcUpperBoardsToSides(order);
+    }
+
+    private void addScrewsToOrder(Order order) throws DatabaseException {
+
+        List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, SCREWS, connectionPool);
+
+        ProductVariant productVariant = productVariants.get(0);
+
+        OrderItem orderItem1 = new OrderItem(0, order, productVariant, 400, "Til montering og sammensættelse af træ ");
+        orderItem.add(orderItem1);
+
+
+    }
+
+
     public int calcRaftersQuantity() {
 
         return (length / 50) + 1;
 
     }
 
+    //Math to Beams, Upperboards and Lowerboards
+    public int calcBeamsUpperAndLowerBoardsQuantity() {
+
+        return 2;
+    }
+
 
     public List<OrderItem> getOrderItem() {
         return orderItem;
+    }
+
+    public int calcPostQuantity() {  // Laver metoden sådan her for at kunne unit-test
+
+        return 2 * (2 + (length - 130) / 340); // skal pluses med 2 på grund af 2 sider.
     }
 
 
