@@ -39,6 +39,8 @@ public class OrderMapper {
                 int totalPrice = rs.getInt("total_price");
                 User user = new User(userId, userName, userPassword, userEmail, userZipCode, userRole, userAddress);
                 Order order = new Order(orderId, carportWidth, carportLength, date, status, totalPrice, user);
+
+                orderList.add(order);
             }
         } catch (SQLException e) {
             throw new DatabaseException("Error while retrieving orders: " + e.getMessage());

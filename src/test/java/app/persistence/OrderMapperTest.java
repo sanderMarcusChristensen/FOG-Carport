@@ -1,5 +1,7 @@
 package app.persistence;
 
+import app.entities.Order;
+import app.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,7 +72,18 @@ class OrderMapperTest {
 
     @Test
     void getAllOrders() {
-        // Your test implementation here
+
+            try
+            {
+                List<Order> orders = OrderMapper.getAllOrders(connectionPool);
+                assertEquals(3, orders.size());
+            }
+            catch (DatabaseException e)
+            {
+                fail("Database fejl: " + e.getMessage());
+            }
+
+
     }
 
     @Test
