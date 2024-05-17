@@ -15,7 +15,7 @@ public class OrderMapper {
 
         List<Order> orderList = new ArrayList<>();
 
-        String sql = "SELECT * FROM order INNER JOIN users using (user_id)";
+        String sql = "SELECT * FROM orders INNER JOIN users using (user_id)";
 
         try (
                 Connection connection = connectionPool.getConnection();
