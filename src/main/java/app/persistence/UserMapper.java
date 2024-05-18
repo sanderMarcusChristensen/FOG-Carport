@@ -75,4 +75,28 @@ public class UserMapper {
             throw new DatabaseException("Could not create user", e.getMessage());
         }
     }
+
+    public static User getUserById(int userId, ConnectionPool connectionPool) throws SQLException {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        User user = null;
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)
+        ) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String userName = rs.getString("user_name");
+                String userPassword = rs.getString("user_password");
+                String userEmail = rs.getString("user_email");
+                int userZipcode = rs.getInt("user_zipcode");
+                String userRole = rs.getString("user_role");
+                String userAddress = rs.getString("user_address");
+                user = new User(userId, userName, userPassword, userEmail, userZipcode, userRole, userAddress);
+            }
+        }
+        return user;
+    }
+
 }
