@@ -17,9 +17,7 @@ class CalculatorTest {
 
 
     @BeforeAll
-     static void setop(){
-
-        // kig på discord pin, skal være i ordercontrolelr
+     static void setup(){
 
     }
 
