@@ -87,7 +87,7 @@ class OrderMapperTest {
     }
 
     @Test
-    void getOrderItemsByOrderId() {
+    void getOrderById() {
 
         try {
             Date date = new Date();
@@ -104,6 +104,12 @@ class OrderMapperTest {
 
     @Test
     void insertOrder() {
-        // Your test implementation here
+
     }
 }
+
+
+
+
+
+
