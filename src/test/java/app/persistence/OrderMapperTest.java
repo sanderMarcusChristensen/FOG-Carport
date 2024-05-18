@@ -1,6 +1,7 @@
 package app.persistence;
 
 import app.entities.Order;
+import app.entities.User;
 import app.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OrderMapperTest {
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance("","","","");
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance("", "", "", "");
+
 
     @BeforeAll
     static void setupClass() throws SQLException {
@@ -58,7 +61,7 @@ class OrderMapperTest {
                         "(2, 'Sander', '1234', '123GUF@gmail.com', '42000', 'admin', 'supervej')");
 
                 stmt.execute("INSERT INTO test.orders (order_id, carport_width, carport_length, status, total_price, user_id) " +
-                        "VALUES (1, 600, 780, 1, 20000, 1), (2, 540, 700, 2, 15000, 2), (3, 480, 600, 1, 14000, 1)");
+                        "VALUES (1, 600, 780, 1, 20000, 1), (2, 540, 700, 2, 15000, 2), (3, 480, 600, 1, 14000, 2)");
 
                 // Set sequence to continue from the largest member_id
                 stmt.execute("SELECT setval('test.orders_order_id_seq', COALESCE((SELECT MAX(order_id) + 1 FROM test.orders), 1), false)");
@@ -73,23 +76,31 @@ class OrderMapperTest {
     @Test
     void getAllOrders() {
 
-            try
-            {
-                List<Order> orders = OrderMapper.getAllOrders(connectionPool);
-                assertEquals(3, orders.size());
-            }
-            catch (DatabaseException e)
-            {
-                fail("Database fejl: " + e.getMessage());
-            }
-
+        try {
+            int expected = 3;
+            List<Order> orders = OrderMapper.getAllOrders(connectionPool);
+            assertEquals(expected, orders.size());
+        } catch (DatabaseException e) {
+            fail("Database fejl: " + e.getMessage());
+        }
 
     }
 
     @Test
     void getOrderItemsByOrderId() {
-        // Your test implementation here
+
+        try {
+            Date date = new Date();
+            User user = new User(2, "Sander", "1234", "123GUF@gmail.com", 42000, "admin", "supervej");
+            Order expected = new Order(2, 540, 700, null, 2, 15000, user);    //send dato med ned i database, idk
+            Order actualOrderOrder = OrderMapper.getOrderById(2, connectionPool);
+            assertEquals(expected, actualOrderOrder);
+        } catch (DatabaseException e) {
+            fail("Database fejl: " + e.getMessage());
+        }
+
     }
+
 
     @Test
     void insertOrder() {
