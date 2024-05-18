@@ -147,6 +147,115 @@ public class OrderMapper {
         }
     }
 
+    public static void deleteOrderItemsByOrderId(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "DELETE FROM order_item WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not delete order items from the database", e.getMessage());
+        }
+    }
+
+    public static void deleteOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "DELETE FROM orders WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not delete order from the database", e.getMessage());
+        }
+    }
+
+    public static void deleteOrderWithItems(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        deleteOrderItemsByOrderId(orderId, connectionPool);
+        deleteOrderById(orderId, connectionPool);
+    }
+
+    public static void updateCarportOrderTotalPrice(int orderId, double newTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET total_price = ? WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setDouble(1, newTotalPrice);
+            ps.setInt(2, orderId);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DatabaseException("No order found with the provided order ID.");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not update the total price of the order", e.getMessage());
+        }
+    }
+
+    public static void updateCarportOrderWidth(int orderId, int newWidth, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET carport_width = ? WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setDouble(1, newWidth);
+            ps.setInt(2, orderId);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DatabaseException("No order found with the provided order ID.");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not update the width of the order", e.getMessage());
+        }
+    }
+
+    public static void updateCarportOrderLength(int orderId, int newLength, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET carport_length = ? WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setDouble(1, newLength);
+            ps.setInt(2, orderId);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DatabaseException("No order found with the provided order ID.");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not update the length of the order", e.getMessage());
+        }
+    }
+
+    public static void updateOrderStatus(int orderId, int newStatus, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setDouble(1, newStatus);
+            ps.setInt(2, orderId);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DatabaseException("No order found with the provided order ID.");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not update the status of the order", e.getMessage());
+        }
+    }
+
 
     public static Order getOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM orders WHERE order_id = ?";
@@ -179,7 +288,4 @@ public class OrderMapper {
         return order;
     }
 }
-
-
-
 
