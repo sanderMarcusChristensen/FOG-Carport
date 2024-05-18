@@ -90,7 +90,7 @@ class OrderMapperTest {
     void getOrderById() {
 
         try {
-            Date date = new Date();
+
             User user = new User(2, "Sander", "1234", "123GUF@gmail.com", 42000, "admin", "supervej");
             Order expected = new Order(2, 540, 700, null, 2, 15000, user);    //send dato med ned i database, idk
             Order actualOrderOrder = OrderMapper.getOrderById(2, connectionPool);
