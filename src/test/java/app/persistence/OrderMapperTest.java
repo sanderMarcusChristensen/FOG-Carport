@@ -103,7 +103,21 @@ class OrderMapperTest {
 
 
     @Test
-    void insertOrder() {
+    void insertOrder() throws DatabaseException {
+
+        try {
+
+            User user = new User(2, "Sander", "1234", "123GUF@gmail.com", 42000, "admin", "supervej");
+            Order expected = new Order(2, 700, 700, null, 1, 17000, user);
+
+            expected = OrderMapper.insertOrder(expected, connectionPool);
+            Order actualOrderOrder = OrderMapper.getOrderById(expected.getOrderId(), connectionPool);
+            assertEquals(expected, actualOrderOrder);
+        }
+        catch (DatabaseException e)
+        {
+            fail("Database fejl: " + e.getMessage());
+        }
 
     }
 }
