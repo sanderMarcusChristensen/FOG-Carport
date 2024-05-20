@@ -1,67 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="EN">
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
     <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
     <link href="../public/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
-    <link href="../public/css/viewOrders.css" th:href="@{/css/viewOrders.css}" rel="stylesheet">
+    <link href="../public/css/adminPage.css" th:href="@{/css/adminPage.css}" rel="stylesheet">
 </head>
 <body>
 
-
 <header th:replace="~{fragments :: header}"></header>
 
+<section class="leftside-main-container">
 
-<main>
-    <form method="post" action="deleteOrder">
+    <form method="post">
         <table class="task-table">
             <thead>
             <tr>
-                <th>Order ID</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Carport length</th>
-                <th>Carport width</th>
-                <th>Total price</th>
-
-                <th>Customer ID</th>
-                <th>Customer Name</th>
-                <th>Customer E-mail</th>
-                <th>Customer Address</th>
-
+                <th><h2>Forespørgsler</h2></th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="order : ${orderAndUserList}">
-                <td th:text="${order.orderId}"></td>
-                <td th:text="${order.date}"></td>
-                <td th:text="${order.status}"></td>
-                <td th:text="${order.carportLength}"></td>
-                <td th:text="${order.carportWidth}"></td>
-                <td th:text="${order.totalPrice}"></td>
-
-                <td th:text="${order.user.userId}"></td>
-                <td th:text="${order.user.userName}"></td>
-                <td th:text="${order.user.userEmail}"></td>
-                <td th:text="${order.user.zipcode + ' ' + order.user.userAddress}"></td>
+                <td th:text="${order.user.userName + ' #' + order.orderId}"></td>
                 <td>
-
-                        <button type="submit" class="noselect_ui">
-                            <input type="hidden" name="orderId" th:value="${order.orderId}"/>
-                            <span class="text_ui_delete">Delete</span><span class="icon_ui"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
-
+                    <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}" formaction="orderDetails"><span>Rediger</span></button>
                 </td>
             </tr>
             </tbody>
         </table>
     </form>
 
-</main>
-<div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${errormessage}"></p></div>
+    <div th:replace="~{fragments :: messages}"></div>
+
+</section>
+
 
 
 </body>
-
-
 </html>
