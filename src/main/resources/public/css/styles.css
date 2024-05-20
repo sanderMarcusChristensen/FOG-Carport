@@ -46,6 +46,9 @@ h1 {
     color: #FFFFFF;
     max-width: 300px;
     text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
 }
 
 .navbar {
@@ -204,6 +207,40 @@ h1 {
     transform: translate(2px ,2px);
 }
 
+.footer-container{
+    background-color: #ffffff;
+    margin: 2rem 0 2rem 0;
+    padding: 1rem;
+}
 
+.footer-container div{
+    color: #b4b4b4;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 
+.footer-container div a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 2rem 0 2rem;
+}
+
+.footer-container div a svg {
+    height: 24px;
+    width: 24px;
+}
+@media (max-width: 600px){
+    .footer-container div {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-container div a {
+        margin-top: 1rem;
+    }
+}
 
