@@ -118,7 +118,6 @@ public class OrderController {
         try {
 
             User user = ctx.sessionAttribute("currentUser");
-            user = UserMapper.insertUser(user, connectionPool);
 
             Order order = new Order(0, carportWidth, carportLength, date, status, totalPrice, user);
             order = OrderMapper.insertOrder(order, connectionPool);
