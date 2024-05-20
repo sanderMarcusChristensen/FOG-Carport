@@ -143,7 +143,7 @@ h1 {
     width: 45px;
     height: 28px;
     border: none;
-    border-radius: 50%;
+    border-radius: 5px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -183,7 +183,7 @@ h1 {
 /* hover effect on button width */
 .Btn_ui:hover {
     width: 125px;
-    border-radius: 40px;
+    border-radius: 10px;
     transition-duration: .3s;
 }
 
@@ -203,6 +203,7 @@ h1 {
 .Btn_ui:active {
     transform: translate(2px ,2px);
 }
+
 
 
 
