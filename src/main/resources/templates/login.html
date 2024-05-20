@@ -26,7 +26,7 @@
             <input type="password" name="password" placeholder="Kodeord"/>
 
             <button class="btn" type="submit">Login</button>
-            <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
+            <div th:replace="~{fragments :: messages}"></div>
         </form>
         <div class="link">
             <a class="btn" th:href="@{createAccountPage}">Sign up</a>

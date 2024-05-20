@@ -39,8 +39,7 @@
 
     <form method="post" th:action="@{sendRequest}">
 
-        <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
-        <div><br/><p style="font-size: 20px; color: #4169E1; max-width: 900px" th:unless="${#strings.isEmpty(usermessage)}" th:text="${usermessage}"></p></div>
+        <div th:replace="~{fragments :: messages}"></div>
 
 
         <div class="form-container">

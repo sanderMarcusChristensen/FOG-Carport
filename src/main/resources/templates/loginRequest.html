@@ -19,6 +19,7 @@
 <header th:replace="~{fragments :: header}"></header>
 
 <h1>Velkommen til FOG  </h1>
+<div th:replace="~{fragments :: messages}"></div>
 
 <div class="generic-form">
     <form method="post" action="loginAccountRequest">
@@ -26,7 +27,7 @@
         <input type="password" name="password" placeholder="Kodeord"/>
 
         <button class="btn" type="submit">Login</button>
-        <div><br/><p style="font-size: 20px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}" th:text="${errormessage}"></p></div>
+
     </form>
 
 </div>
