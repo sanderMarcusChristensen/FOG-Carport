@@ -47,7 +47,6 @@ public class UserMapper {
         }
     }
 
-
     public static User insertUser(User user, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "INSERT INTO users (user_name, user_password, user_email, user_zipcode, user_role, user_address)" +
                 "VALUES (?,?,?,?,?,?)";
@@ -73,6 +72,34 @@ public class UserMapper {
             }
         } catch (SQLException e) {
             throw new DatabaseException("Could not create user", e.getMessage());
+        }
+    }
+
+    public static User getUserByOrderId(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "SELECT * FROM users INNER JOIN orders using (user_id) WHERE order_id = ?";
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt("user_id");
+                String userName = rs.getString("user_name");
+                String userPassword = rs.getString("user_password");
+                String userEmail = rs.getString("user_email");
+                int userZipCode = rs.getInt("user_zipcode");
+                String userRole = rs.getString("user_role");
+                String userAddress = rs.getString("user_address");
+
+                return new User(userId, userName, userPassword, userEmail, userZipCode, userRole, userAddress);
+
+            } else {
+                throw new DatabaseException("User with orderID " + orderId + " not found.");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error while retrieving user by orderID: " + orderId + "  " + e.getMessage());
         }
     }
 }
