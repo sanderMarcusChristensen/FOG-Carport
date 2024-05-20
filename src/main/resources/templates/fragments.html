@@ -93,7 +93,6 @@
             </a>
         </div>
 
-
     </nav>
 
 
@@ -105,6 +104,16 @@
 
     </div>
 </footer>
+
+<div th:fragment="messages" class="messages-container">
+    <div><br/>
+        <p style="font-size: 13px; color: tomato; max-width: 900px" th:unless="${#strings.isEmpty(errormessage)}"
+           th:text="${errormessage}"></p></div>
+    <div><br/>
+        <p style="font-size: 13px; color: #4169E1; max-width: 900px" th:unless="${#strings.isEmpty(usermessage)}"
+           th:text="${usermessage}"></p></div>
+</div>
+
 
 </body>
 </html>
