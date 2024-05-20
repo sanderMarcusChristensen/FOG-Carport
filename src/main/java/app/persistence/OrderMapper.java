@@ -311,7 +311,7 @@ public class OrderMapper {
     }
 
 
-    public static Order getOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static Order getOrderByIdTest(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT * FROM orders WHERE order_id = ?";
         Order order = null;
 
@@ -331,7 +331,7 @@ public class OrderMapper {
                 double totalPrice = rs.getDouble("total_price");
 
                 // Assuming a method getUserById exists to retrieve a User object by ID
-                User user = getUserById(userId, connectionPool);
+                User user = UserMapper.getUserById(userId, connectionPool);
 
                 order = new Order(orderId, carportWidth, carportLength, date, status, totalPrice, user);
             }
