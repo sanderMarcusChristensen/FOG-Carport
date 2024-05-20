@@ -9,33 +9,33 @@
 </head>
 <body>
 
-<header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header}"></header>
 
-<section class="leftside-main-container">
+    <section class="leftside-main-container">
 
-    <form method="post">
-        <table class="task-table">
-            <thead>
-            <tr>
-                <th><h2>Forespørgsler</h2></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="order : ${orderAndUserList}">
-                <td th:text="${order.user.userName + ' #' + order.orderId}"></td>
-                <td>
-                    <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}" formaction="orderDetails"><span>Rediger</span></button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
+        <form method="post">
+            <table class="task-table">
+                <thead>
+                <tr>
+                    <th><h2>Forespørgsler</h2></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orderAndUserList}">
+                    <td th:text="${order.user.userName + ' #' + order.orderId}"></td>
+                    <td>
+                        <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}" formaction="orderDetails"><span>Rediger</span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
 
-    <div th:replace="~{fragments :: messages}"></div>
+        <div th:replace="~{fragments :: messages}"></div>
 
-</section>
+    </section>
 
-
+    <footer th:replace="~{fragments :: footer}"></footer>
 
 </body>
 </html>
