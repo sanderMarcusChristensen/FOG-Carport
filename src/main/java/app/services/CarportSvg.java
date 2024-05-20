@@ -15,7 +15,7 @@ public class CarportSvg {
     public CarportSvg(int width, int length){
         this.width = width;
         this.length = length;
-        mainCarport = new Svg(0, 0, "0 0 1000 1000", "100%");
+        mainCarport = new Svg(0, 0, "0 0 800 800", "100%");
 
         carportSvg = new Svg(offset, 0, String.format("0 0 %d %d", length, width), "50%");  // Inner carport SVG
         addArrow();
