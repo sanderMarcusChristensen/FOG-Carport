@@ -20,7 +20,11 @@ public class ConnectionPool {
      * Empty and private constructor due to single pattern. Use getInstance methods to
      * instantiate and get a connection pool.
      */
-    private ConnectionPool() {
+    public ConnectionPool() {
+    }
+
+    public static ConnectionPool getInstance(){
+        return getInstance("","","","");
     }
 
     /***
@@ -33,13 +37,15 @@ public class ConnectionPool {
      * @param db database name for connection
      * @return A ConnectionPool object
      */
+
+
     public static ConnectionPool getInstance(String user, String password, String url, String db) {
         if (instance == null) {
             if (System.getenv("DEPLOYED") != null) {
                 ds = createHikariConnectionPool(
                         System.getenv("JDBC_USER"),
                         System.getenv("JDBC_PASSWORD"),
-                        System.getenv("JDBC_CONNECTION_STRING_STARTCODE"),
+                        System.getenv("JDBC_CONNECTION_STRING"),
                         System.getenv("JDBC_DB"));
             } else {
                 ds = createHikariConnectionPool(user, password, url, db);

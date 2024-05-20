@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="EN">
+
+<head>
+    <title>Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/customCarportPreView.css" th:href="@{/css/customCarportPreView.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+    <main>
+        <h1>Carport med fladt tag</h1>
+
+        <div class="carport-view">
+            <div th:utext="${svg}"></div>
+        </div>
+
+        <div class="button-container">
+            <a class="btn" th:href="@{backToPageOne}">Tilbage</a>
+            <a th:if="${session.currentUser == null}" class="btn" th:href="@{continueToPageThree}">Fortsæt</a>
+            <a th:if="${session.currentUser != null}" class="btn"  th:href="@{sendRequestLoggedIn}">Send forespørgsel</a>
+        </div>
+        <div th:replace="~{fragments :: messages}"></div>
+    </main>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+</body>

@@ -3,88 +3,195 @@
 BEGIN;
 
 
-CREATE TABLE IF NOT EXISTS public.users
+CREATE TABLE IF NOT EXISTS public.product
 (
-    user_id serial NOT NULL,
-    user_name character varying NOT NULL,
-    user_password character varying NOT NULL,
-    user_zipcode character varying NOT NULL,
-    user_role character varying NOT NULL,
-    PRIMARY KEY (user_id)
+    product_id serial NOT NULL,
+    product_name character varying COLLATE pg_catalog."default" NOT NULL,
+    unit character varying COLLATE pg_catalog."default" NOT NULL,
+    price double precision NOT NULL,
+    CONSTRAINT product_pkey PRIMARY KEY (product_id)
     );
 
-CREATE TABLE IF NOT EXISTS public."order"
+CREATE TABLE IF NOT EXISTS public.product_variant
+(
+    product_variant_id serial NOT NULL,
+    product_variant_length integer NOT NULL,
+    product_id integer NOT NULL,
+    CONSTRAINT product_variant_pkey PRIMARY KEY (product_variant_id)
+    );
+
+CREATE TABLE IF NOT EXISTS public."orders"
 (
     order_id serial NOT NULL,
-    total_price integer NOT NULL,
-    status boolean NOT NULL,
-    height double precision,
-    width double precision,
-    length double precision,
+    carport_width double precision,
+    carport_length double precision,
     date date NOT NULL,
+    status integer NOT NULL,
     user_id integer NOT NULL,
-    PRIMARY KEY (order_id)
+    total_price double precision NOT NULL,
+    CONSTRAINT order_pkey PRIMARY KEY (order_id)
     );
 
 CREATE TABLE IF NOT EXISTS public.order_item
 (
     order_item_id serial NOT NULL,
-    variant_id integer NOT NULL,
-    request_description character varying,
-    order_id integer NOT NULL,
-    PRIMARY KEY (order_item_id)
+    order_id integer,
+    product_variant_id integer NOT NULL,
+    quantity integer,
+    description character varying COLLATE pg_catalog."default" NOT NULL,
+
+    CONSTRAINT order_item_pkey PRIMARY KEY (order_item_id)
     );
 
-CREATE TABLE IF NOT EXISTS public.variant
+CREATE TABLE IF NOT EXISTS public.users
 (
-    variant_id serial NOT NULL,
-    material_id integer NOT NULL,
-    length integer NOT NULL,
-    PRIMARY KEY (variant_id)
+    user_id serial NOT NULL,
+    user_name character varying COLLATE pg_catalog."default" NOT NULL,
+    user_password character varying COLLATE pg_catalog."default" NOT NULL,
+    user_email character varying COLLATE pg_catalog."default" NOT NULL,
+    user_zipcode bigint NOT NULL,
+    user_role character varying COLLATE pg_catalog."default" NOT NULL,
+    user_address character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT users_pkey PRIMARY KEY (user_id)
     );
 
-CREATE TABLE IF NOT EXISTS public.material
+CREATE TABLE IF NOT EXISTS public.zip_code
 (
-    material_id serial NOT NULL,
-    type character varying NOT NULL,
-    width double precision,
-    heigth double precision,
-    amount integer NOT NULL,
-    price double precision NOT NULL,
-    description character varying NOT NULL,
-    unit character varying NOT NULL,
-    PRIMARY KEY (material_id)
+    zip_code bigint NOT NULL,
+    city character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT zip_code_pkey PRIMARY KEY (zip_code)
     );
 
-ALTER TABLE IF EXISTS public."order"
-    ADD FOREIGN KEY (user_id)
+ALTER TABLE IF EXISTS public."orders"
+    ADD CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id)
     REFERENCES public.users (user_id) MATCH SIMPLE
     ON UPDATE NO ACTION
-       ON DELETE NO ACTION
-    NOT VALID;
+       ON DELETE NO ACTION;
 
 
 ALTER TABLE IF EXISTS public.order_item
-    ADD FOREIGN KEY (order_id)
-    REFERENCES public."order" (order_id) MATCH SIMPLE
+    ADD CONSTRAINT order_item_order_id_fkey FOREIGN KEY (order_id)
+    REFERENCES public."orders" (order_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+       ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.order_item
+    ADD CONSTRAINT order_item_product_variant_id_fkey FOREIGN KEY (product_variant_id)
+    REFERENCES public.product_variant (product_variant_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+       ON DELETE NO ACTION;
+
+
+ALTER TABLE IF EXISTS public.users
+    ADD FOREIGN KEY (user_zipcode)
+    REFERENCES public.zip_code (zip_code) MATCH SIMPLE
     ON UPDATE NO ACTION
        ON DELETE NO ACTION
     NOT VALID;
 
 
-ALTER TABLE IF EXISTS public.variant
-    ADD FOREIGN KEY (variant_id)
-    REFERENCES public.order_item (variant_id) MATCH SIMPLE
+ALTER TABLE IF EXISTS public.product_variant
+    ADD CONSTRAINT product_variant_product_id_fkey FOREIGN KEY (product_id)
+    REFERENCES public.product (product_id) MATCH SIMPLE
     ON UPDATE NO ACTION
-       ON DELETE NO ACTION
-    NOT VALID;
+       ON DELETE NO ACTION;
+
+INSERT INTO public.zip_code (zip_code, city)
+VALUES
+    ('2630', 'Taastrup'),
+    ('1000', 'Copenhagen'),
+    ('4000', 'Roskilde'),
+    ('3400', 'Hillerød'),
+    ('4600', 'Køge'),
+    ('4700', 'Næstved'),
+    ('4200', 'Slagelse'),
+    ('4300', 'Holbæk'),
+    ('4100', 'Ringsted'),
+    ('4760', 'Vordingborg'),
+    ('2670', 'Greve'),
+    ('4330', 'Hvalsø'),
+    ('2680', 'Solrød Strand'),
+    ('5800', 'Nyborg'),
+    ('4500', 'Nykøbing Sjælland'),
+    ('2100', 'København'),
+    ('3000', 'Helsingør'),
+    ('4690', 'Haslev'),
+    ('4400', 'Kalundborg'),
+    ('4771', 'Kalvehave'),
+    ('4173', 'Fjenneslev'),
+    ('4684', 'Holme-Olstrup'),
+    ('4180', 'Sorø'),
+    ('4230', 'Skælskør'),
+    ('4571', 'Grevinge'),
+    ('4660', 'Store Heddinge'),
+    ('4652', 'Hårlev'),
+    ('4720', 'Præstø'),
+    ('4632', 'Bjæverskov'),
+    ('4750', 'Lundby'),
+    ('4640', 'Faxe'),
+    ('4653', 'Karise'),
+    ('4220', 'Korsør'),
+    ('4736', 'Karrebæksminde'),
+    ('4671', 'Strøby'),
+    ('4673', 'Rødvig Stevns'),
+    ('8000', 'Silkeborg');
+
+INSERT INTO public.users(user_name, user_password, user_email, user_zipcode, user_role, user_address)
+VALUES
+    ('chad', '1234', 'chad@outlook.com', '4000', 'admin', 'Allégade 22'),
+    ('Mateen Rafiq', '1234', 'm@live.dk', '2630', 'user', 'Taastrup Hovedgade 52');
+
+INSERT INTO public.orders(carport_width, carport_length, date, status, user_id, total_price)
+VALUES
+    ('600', '780', '2024-05-14', '1', '2', '14890'),
+    ('480', '520', '2024-05-14', '1', '2', '19999'),
+    ('480', '520', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('600', '720', '2024-05-14', '1', '2', '19999'),
+    ('480', '520', '2024-05-14', '1', '2', '19999'),
+    ('480', '520', '2024-05-14', '1', '2', '19999');
+
+INSERT INTO public.product(product_name, unit, price)
+VALUES
+    ('97x97 mm. trykimp. Stolpe', 'stk', '82'),
+    ('45x195 mm. spærtræ ubh.', 'stk', '37');
+
+INSERT INTO public.product_variant(product_variant_length, product_id)
+VALUES
+    ('300', '1'),
+    ('300', '2'),
+    ('360', '2'),
+    ('420', '2'),
+    ('480', '2'),
+    ('540', '2'),
+    ('600', '2');
 
 
-ALTER TABLE IF EXISTS public.material
-    ADD FOREIGN KEY (material_id)
-    REFERENCES public.variant (material_id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-       ON DELETE NO ACTION
-    NOT VALID;
+
+CREATE OR REPLACE VIEW bill_of_materials_view AS
+SELECT product_variant.product_id,
+       io.product_variant_id,
+       orders.order_id,
+       orders.carport_width,
+       orders.carport_length,
+       orders.status,
+       orders.date,
+       orders.user_id,
+       orders.total_price,
+       io.order_item_id,
+       io.quantity,
+       io.description,
+       product_variant.product_variant_length,
+       product.product_name,
+       product.unit,
+       product.price
+FROM orders
+         JOIN order_item io USING (order_id)
+         JOIN product_variant USING (product_variant_id)
+         JOIN product USING (product_id);
 
 END;
+

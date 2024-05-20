@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="EN">
+
+<head>
+    <title>Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/customCarportInput.css" th:href="@{/css/customCarportInput.css}" rel="stylesheet">
+</head>
+
+<body>
+
+    <header th:replace="~{fragments :: header}"></header>
+
+
+    <main>
+        <section>
+            <h1>Bestil Quick-Byg tilbud - carport med fladt tag</h1>
+            <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en
+                carport indenfor vores standardprogram.<br/>
+                Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br/>
+                Ved bestilling medfølger standardbyggevejledning.<br/><br/>
+
+                Udfyld formularen omhyggeligt og klik på "Bestil tilbud".<br/>
+                Felter markeret med * SKAL udfyldes!</p>
+        </section>
+
+        <form method="post" th:action="@{getCarportSize}" class="form-container">
+            <label>
+                <span>Carport bredde*</span>
+                <select id="width" name="width" required>
+                    <option value=""></option>
+                    <option value="360">360cm</option>
+                    <option value="420">420cm</option>
+                    <option value="480">480cm</option>
+                    <option value="540">540cm</option>
+                    <option value="600">600cm</option>
+                    <option value="660">660cm</option>
+                    <option value="720">720cm</option>
+                </select>
+            </label>
+            <label>
+                <span>Carport længde*</span>
+                <select id="length" name="length" required>
+                    <option value=""></option>
+                    <option value="400">400cm</option>
+                    <option value="450">450cm</option>
+                    <option value="500">500cm</option>
+                    <option value="550">550cm</option>
+                    <option value="600">600cm</option>
+                    <option value="650">650cm</option>
+                </select>
+            </label>
+            <label>
+                <span>Carport trapetz*</span>
+                <select name="trapetz">
+                    <option value=""></option>
+                    <option value="trapetz">trapets</option>
+                    <option value="plastik">plastik</option>
+                </select>
+            </label>
+            <button class="btn" type="submit">Fortsæt</button>
+        </form>
+        <div th:replace="~{fragments :: messages}"></div>
+    </main>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+</body>

@@ -1,106 +1,125 @@
 package app.entities;
 
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class Order {
-
-    private int order_id;
-    private int total_price;
-    private boolean status;
-    private double height;
-    private double width;
-    private double length;
+    private int orderId;
+    private double carportWidth;
+    private double carportLength;
     private Date date;
-    private int user_id;
+    private int status;
+    private int userId;
+    private double totalPrice;
+    private User user;
 
-    public Order(int order_id, int total_price, boolean status, double height, double width, double length, Date date, int user_id) {
-        this.order_id = order_id;
-        this.total_price = total_price;
-        this.status = status;
-        this.height = height;
-        this.width = width;
-        this.length = length;
+    public Order(int orderId, double carportWidth, double carportLength, Date date, int status, int userId, double totalPrice) {
+        this.orderId = orderId;
+        this.carportWidth = carportWidth;
+        this.carportLength = carportLength;
         this.date = date;
-        this.user_id = user_id;
-    }
-
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
-    }
-
-    public int getTotal_price() {
-        return total_price;
-    }
-
-    public void setTotal_price(int total_price) {
-        this.total_price = total_price;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
         this.status = status;
+        this.userId = userId;
+        this.totalPrice = totalPrice;
     }
 
-    public double getHeight() {
-        return height;
+    public Order(int orderId, double carportWidth, double carportLength, Date date, int status, double totalPrice, User user) {
+        this.orderId = orderId;
+        this.carportWidth = carportWidth;
+        this.carportLength = carportLength;
+        this.date = date;
+        this.status = status;
+        this.totalPrice = totalPrice;
+        this.user = user;
     }
 
-    public void setHeight(double height) {
-        this.height = height;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public double getWidth() {
-        return width;
+    public double getCarportWidth() {
+        return carportWidth;
     }
 
-    public void setWidth(double width) {
-        this.width = width;
-    }
-
-    public double getLength() {
-        return length;
-    }
-
-    public void setLength(double length) {
-        this.length = length;
+    public double getCarportLength() {
+        return carportLength;
     }
 
     public Date getDate() {
         return date;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setCarportWidth(double carportWidth) {
+        this.carportWidth = carportWidth;
+    }
+
+    public void setCarportLength(double carportLength) {
+        this.carportLength = carportLength;
+    }
+
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "order_id=" + order_id +
-                ", total_price=" + total_price +
-                ", status=" + status +
-                ", height=" + height +
-                ", width=" + width +
-                ", length=" + length +
+                "orderId=" + orderId +
+                ", carportWidth=" + carportWidth +
+                ", carportLength=" + carportLength +
                 ", date=" + date +
-                ", user_id=" + user_id +
+                ", status=" + status +
+                ", userId=" + userId +
+                ", totalPrice=" + totalPrice +
+                ", user=" + user +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {       //test
+        if (this == o) return true;
+        if (!(o instanceof Order order)) return false;
+        return orderId == order.orderId && Double.compare(carportWidth, order.carportWidth) == 0 && Double.compare(carportLength, order.carportLength) == 0 && status == order.status && userId == order.userId && Double.compare(totalPrice, order.totalPrice) == 0 && Objects.equals(date, order.date) && Objects.equals(user, order.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, carportWidth, carportLength, date, status, userId, totalPrice, user);
+    }
 }

@@ -1,4 +1,145 @@
 package app.controllers;
 
+import app.entities.Order;
+import app.entities.OrderItem;
+import app.entities.Product;
+import app.entities.User;
+import app.exceptions.DatabaseException;
+import app.persistence.ConnectionPool;
+import app.persistence.OrderMapper;
+import app.persistence.UserMapper;
+import io.javalin.Javalin;
+import io.javalin.http.Context;
+
+import java.lang.module.Configuration;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 public class AdminController {
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
+        app.get("adminPage", ctx -> loadAdminPage(ctx, connectionPool));
+        //app.post("deleteOrder", ctx -> deleteOrder(ctx, connectionPool));
+        app.post("orderDetails", ctx -> getOrderDetails(ctx, connectionPool));
+        app.post("updateCarportPrice", ctx -> updateOrderPrice(ctx, connectionPool));
+        app.post("updateCarportSize", ctx -> updateOrderSize(ctx, connectionPool));
+    }
+
+    private static void updateOrderSize(Context ctx, ConnectionPool connectionPool) {
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+
+        double newWidth = Double.parseDouble(ctx.formParam("width"));
+        double newLength = Double.parseDouble(ctx.formParam("length"));
+
+        try {
+
+            OrderMapper.updateCarportOrderWidth(orderId, newWidth, connectionPool);
+            OrderMapper.updateCarportOrderLength(orderId, newLength, connectionPool);
+
+            getOrderDetails(orderId, ctx, connectionPool);
+            ctx.attribute("usermessage", "Order with OrderID: " + orderId + " changed width to: " + newWidth + " and length to: " + newLength);
+            ctx.render("adminOrderPage.html");
+
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+        }
+
+
+    }
+
+    private static void updateOrderPrice(Context ctx, ConnectionPool connectionPool) {
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+        double newPrice = Double.parseDouble(ctx.formParam("newPrice"));
+
+        try {
+
+            OrderMapper.updateCarportOrderTotalPrice(orderId, newPrice, connectionPool);
+
+            getOrderDetails(orderId, ctx, connectionPool);
+            ctx.attribute("usermessage", "Order with OrderID: " + orderId + " changed total price to: " + newPrice);
+            ctx.render("adminOrderPage.html");
+
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+        }
+    }
+
+
+//    private static void deleteOrder(Context ctx, ConnectionPool connectionPool) {
+//        try {
+//            int orderId = Integer.parseInt(ctx.formParam("orderId"));
+//            OrderMapper.deleteOrderWithItems(orderId, connectionPool);
+//
+//            List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);
+//            ctx.attribute("orderAndUserList", orderAndUserList);
+//            ctx.render("adminPage.html");
+//
+//        } catch (DatabaseException e) {
+//            ctx.attribute("errormessage", e.getMessage());
+//        }
+//    }
+
+    public static void loadAdminPage(Context ctx, ConnectionPool connectionPool) {
+        try {
+            List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);
+            ctx.attribute("orderAndUserList", orderAndUserList);
+            ctx.render("adminPage.html");
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+            ctx.render("index.html");
+        }
+    }
+
+    public static void getOrderDetails(Context ctx, ConnectionPool connectionPool) {
+        int orderId = Integer.parseInt(ctx.formParam("orderId"));
+
+        try {
+
+            List<OrderItem> orderItemList = OrderMapper.getOrderItemsByOrderId(orderId, connectionPool);
+            ctx.attribute("orderItemList", orderItemList);
+
+            Order order = OrderMapper.getOrderById(orderId, connectionPool);
+            ctx.attribute("order", order);
+
+            double normalPrice = order.getTotalPrice() + 3000;
+            ctx.attribute("normalPrice", normalPrice);
+
+            User user = UserMapper.getUserByOrderId(orderId, connectionPool);
+            ctx.attribute("user", user);
+
+            ctx.render("adminOrderPage.html");
+
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+        }
+    }
+
+    public static void getOrderDetails(int orderId, Context ctx, ConnectionPool connectionPool) {
+
+        try {
+
+            List<OrderItem> orderItemList = OrderMapper.getOrderItemsByOrderId(orderId, connectionPool);
+            ctx.attribute("orderItemList", orderItemList);
+
+            Order order = OrderMapper.getOrderById(orderId, connectionPool);
+            ctx.attribute("order", order);
+
+            double normalPrice = order.getTotalPrice() + 3000;
+            ctx.attribute("normalPrice", normalPrice);
+
+            User user = UserMapper.getUserByOrderId(orderId, connectionPool);
+            ctx.attribute("user", user);
+
+            ctx.render("adminOrderPage.html");
+
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+        }
+    }
+
 }
+
+
+
+
+

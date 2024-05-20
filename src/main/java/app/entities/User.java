@@ -1,69 +1,93 @@
 package app.entities;
 
+import java.util.Objects;
+
 public class User {
 
-    private int user_id;
-    private String user_name;
-    private String user_password;
-    private String user_zipcode;
-    private String user_role;
+    private int userId;
+    private String userName;
+    private String userPassword;
+    private String userEmail;
+    private int zipcode;
+    private String userRole;
+    private String userAddress;
 
-    public User(int user_id, String user_name, String user_password, String user_zipcode, String user_role) {
-        this.user_id = user_id;
-        this.user_name = user_name;
-        this.user_password = user_password;
-        this.user_zipcode = user_zipcode;
-        this.user_role = user_role;
+    public User(int userId, String userName, String userPassword, String userEmail, int zipcode, String userRole, String userAddress) {
+        this.userId = userId;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.zipcode = zipcode;
+        this.userRole = userRole;
+        this.userAddress = userAddress;
     }
 
-    public String getZipcode() {
-        return user_zipcode;
+    public int getZipcode() {
+        return zipcode;
     }
-
-    public void setZipcode(String zipcode) {
-        this.user_zipcode = zipcode;
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
     }
-
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
-
-    public String getUser_password() {
-        return user_password;
+    public String getUserPassword() {
+        return userPassword;
     }
-
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
-
-    public String getUser_role() {
-        return user_role;
+    public String getUserRole() {
+        return userRole;
     }
-
-    public void setUser_role(String user_role) {
-        this.user_role = user_role;
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+    public String getUserEmail() {
+        return userEmail;
+    }
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+    public String getUserAddress() {
+        return userAddress;
+    }
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + user_id +
-                ", user_name='" + user_name + '\'' +
-                ", user_password='" + user_password + '\'' +
-                ", user_role='" + user_role + '\'' +
+                "user_id=" + userId +
+                ", user_name='" + userName + '\'' +
+                ", user_email='" + userEmail + '\'' +
+                ", user_password='" + userPassword + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", user_role='" + userRole + '\'' +
+                ", user_address='" + userAddress + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {       //test
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return userId == user.userId && zipcode == user.zipcode && Objects.equals(userName, user.userName) && Objects.equals(userPassword, user.userPassword) && Objects.equals(userEmail, user.userEmail) && Objects.equals(userRole, user.userRole) && Objects.equals(userAddress, user.userAddress);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, userName, userPassword, userEmail, zipcode, userRole, userAddress);
     }
 }
 

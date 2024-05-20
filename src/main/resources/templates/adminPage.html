@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+    <link href="../public/css/adminPage.css" th:href="@{/css/adminPage.css}" rel="stylesheet">
+</head>
+<body>
+
+    <header th:replace="~{fragments :: header}"></header>
+
+    <section class="leftside-main-container">
+
+        <form method="post">
+            <table class="task-table">
+                <thead>
+                <tr>
+                    <th><h2>Forespørgsler</h2></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orderAndUserList}">
+                    <td th:text="${order.user.userName + ' #' + order.orderId}"></td>
+                    <td>
+                        <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}" formaction="orderDetails"><span>Rediger</span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <div th:replace="~{fragments :: messages}"></div>
+
+    </section>
+
+    <footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+</html>

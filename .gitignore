@@ -8,9 +8,16 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/shelf/Uncommitted_changes_before_Checkout_at_14-05-2024_21_06_[Changes]
+*.shelved.patch
 *.iws
 *.iml
 *.ipr
+*.misc.xml
+*.workspace.xml
+.idea/workspace.xml
+.idea/sqldialects.xml
+
 
 ### Eclipse ###
 .apt_generated

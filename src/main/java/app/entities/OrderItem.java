@@ -2,57 +2,78 @@ package app.entities;
 
 public class OrderItem {
 
-    private int order_item;
-    private int variant_id;
+    private int orderItemId;
+    private Order order;
+    private int orderId;
+    private ProductVariant productVariant;
+    private int productVariantId;
+    private int quantity;
     private String description;
-    private int order_id;
 
-    public OrderItem(int order_item, int variant_id, String description, int order_id) {
-        this.order_item = order_item;
-        this.variant_id = variant_id;
+    public OrderItem(int orderItemId, int orderId, int productVariantId, int quantity, String description) {
+        this.orderItemId = orderItemId;
+        this.orderId = orderId;
+        this.productVariantId = productVariantId;
+        this.quantity = quantity;
         this.description = description;
-        this.order_id = order_id;
     }
 
-    public int getOrder_item() {
-        return order_item;
+    public OrderItem(int orderItemId, Order order, ProductVariant productVariant, int quantity, String description) {
+        this.orderItemId = orderItemId;
+        this.order = order;
+        this.productVariant = productVariant;
+        this.quantity = quantity;
+        this.description = description;
     }
 
-    public void setOrder_item(int order_item) {
-        this.order_item = order_item;
+    public int getOrderItemId() {
+        return orderItemId;
     }
 
-    public int getVariant_id() {
-        return variant_id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setVariant_id(int variant_id) {
-        this.variant_id = variant_id;
+    public ProductVariant getProductVariant() {
+        return productVariant;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public void setOrderItemId(int orderItemId) {
+        this.orderItemId = orderItemId;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public void setProductVariant(ProductVariant productVariant) {
+        this.productVariant = productVariant;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getOrder_id() {
-        return order_id;
-    }
-
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
     }
 
     @Override
     public String toString() {
         return "OrderItem{" +
-                "order_item=" + order_item +
-                ", variant_id=" + variant_id +
+                "orderItemId=" + orderItemId +
+                ", order=" + order +
+                ", productVariant=" + productVariant +
+                ", quantity=" + quantity +
                 ", description='" + description + '\'' +
-                ", order_id=" + order_id +
                 '}';
     }
 }

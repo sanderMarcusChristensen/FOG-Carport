@@ -1,15 +1,16 @@
 /* Stylesheet for the application */
-*{
+* {
     margin: 0;
     font-family: "Roboto", sans-serif
 }
+
 h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 3rem;
+    font-weight: normal;
+    margin: 2rem 0 2rem;
 }
 
-.header-container{
+.header-container {
     height: 100px;
 
     display: flex;
@@ -21,20 +22,20 @@ h1 {
     color: #FFFFFF;
 }
 
-.link-section a{
-    margin: 0 1.5rem 0 1.5rem;
-}
 
-.icon-section{
+.icon-section {
     display: flex;
     flex-direction: row;
 }
 
-.icon-section div {
+.icon-section a {
     display: flex;
     flex-direction: column;
-
     align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #F8F8F8;
+
     margin: 0 0.5rem 0 0.5rem;
 }
 
@@ -42,6 +43,204 @@ h1 {
     background: #013D7A;
     padding: 10px 20px 10px 20px;
     border: 0;
-    color: #FFFFFF
+    color: #FFFFFF;
+    max-width: 300px;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    align-self: center;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.link-section {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.link-section a div {
+    margin: 1rem 1.5rem 1rem 1.5rem;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.link-section a {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #F8F8F8;
+    text-decoration: none;
+}
+
+.open-menu, .closed-menu, .link-section a svg, #sidebar-active {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .link-section {
+        flex-direction: column;
+        align-items: stretch;
+        height: 100%;
+        padding-right: 20px;
+
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 10;
+        width: 300px;
+        background: #013D7A;
+        transition: 0.5s ease-out;
+    }
+
+    .open-menu, .closed-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 8px 0;
+    }
+
+    #sidebar-active:checked ~ .link-section {
+        right: 0;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .closed-menu {
+        height: 100px;
+        align-self: end;
+    }
+
+    .link-section a svg {
+        display: inline-block;
+    }
+
+    .error, .error p{
+        font-size: 30px;
+        border: 1px solid red;
+        padding: 10px;
+        color: red;
+        max-width: 400px;
+    }
+
+}
+
+.Btn_ui {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 28px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+.sign_ui {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign_ui svg {
+    width: 17px;
+}
+
+.sign_ui svg path {
+    fill: white;
+}
+/* text */
+.text_ui {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+
+}
+/* hover effect on button width */
+.Btn_ui:hover {
+    width: 125px;
+    border-radius: 10px;
+    transition-duration: .3s;
+}
+
+.Btn_ui:hover .sign_ui {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 10px;
+}
+/* hover effect button's text */
+.Btn_ui:hover .text_ui {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+/* button click effect*/
+.Btn_ui:active {
+    transform: translate(2px ,2px);
+}
+
+.footer-container{
+    background-color: #ffffff;
+    margin: 4rem 0 4rem 0;
+    padding: 1rem;
+}
+
+.footer-container div{
+    color: #b4b4b4;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container div a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 2rem 0 2rem;
+}
+
+.footer-container div a svg {
+    height: 24px;
+    width: 24px;
+}
+@media (max-width: 600px){
+    .footer-container div {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-container div a {
+        margin-top: 1rem;
+    }
 }
 
