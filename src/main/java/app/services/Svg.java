@@ -4,7 +4,8 @@ public class Svg {
     private final static String SVG_TEMPLATE = "<svg version=\"1.1\"\n" +
             "     x=\"%d\" y=\"%d\"\n" +
             "     viewBox=\"%s\" width=\"%s\" \n" +
-            "     preserveAspectRatio=\"xMinYMin\">";
+            "     preserveAspectRatio=\"xMinYMin\" \n +" +
+            "     class=\"carport-svg\" >";
 
     private static final String SVG_ARROW_DEFS = "<defs>\n" +
             "        <marker id=\"beginArrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"0\" refY=\"6\" orient=\"auto\">\n" +
