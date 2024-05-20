@@ -128,10 +128,6 @@ public class Calculator {
         return 2;
     }
 
-    public List<OrderItem> getOrderItem() {
-        return orderItem;
-    }
-
     public int calcPostQuantity() {  // Laver metoden sådan her for at kunne unit-test
 
         return 2 * (2 + (length - 130) / 340); // skal pluses med 2 på grund af 2 sider.
@@ -204,6 +200,10 @@ public class Calculator {
             orderItem.add(orderItem1);
         }
 
+    }
+
+    public List<OrderItem> getOrderItem() {
+        return orderItem;
     }
 
 }
