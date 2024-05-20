@@ -16,61 +16,58 @@
 
 <body>
 
-<header th:replace="~{fragments :: header}"></header>
+    <header th:replace="~{fragments :: header}"></header>
 
 
-<div class="container">
-    <h3> Allerede kunde hos FOG ?</h3>
-    <a class="btn" href="login.html" th:href="@{loginPage}"> Login </a>
-</div>
+    <div class="container">
+        <h3> Allerede kunde hos FOG ?</h3>
+        <a class="btn" href="login.html" th:href="@{loginPage}"> Login </a>
+    </div>
 
-<div class="main-container">
+    <div class="main-container">
 
-
-    <form method="post" action="createAccount">
+        <form method="post" action="createAccount">
 
         <div th:replace="~{fragments :: messages}"></div>
 
 
-        <div class="form-container">
-            <div class="dropdown-menu">
-                <label for="name"><b>Navn*</b><br/></label>
-                <input type="text" placeholder="Fornavn og efternavn" name="name" id="name" required>
+            <div class="form-container">
+                <div class="dropdown-menu">
+                    <label for="name"><b>Navn*</b><br/></label>
+                    <input type="text" placeholder="Fornavn og efternavn" name="name" id="name" required>
+                </div>
+
+                <div class="dropdown-menu">
+                    <label for="email"><b>Email*</b><br/></label>
+                    <input type="email" placeholder="E-mail" name="email" id="email" required>
+                </div>
+
+
+                <div class="dropdown-menu">
+                    <label for="password"><b>Kodeord*</b><br/></label>
+                    <input type="password" placeholder="Kodeord" name="password" id="password" required>
+                </div>
+
+                <div class="dropdown-menu">
+                    <label for="passwordrepeat"><b>Kodeord*</b><br/></label>
+                    <input type="password" placeholder="Gentag kodeord" name="passwordrepeat" id="passwordrepeat" required>
+                </div>
+
+                <div class="dropdown-menu">
+                    <label for="address"><b>Adresse*</b><br/></label>
+                    <input type="text" placeholder="Vejnavn og by (Evt. hus-/etage-/dørnummer)" name="address" id="address"
+                           required>
+                </div>
+
+                <div class="dropdown-menu">
+                    <label for="zipcode"><b>Postnummer*</b><br/></label>
+                    <input type="number" placeholder="Postnummer" name="zipcode" id="zipcode" required>
+                </div>
+
+                <button class="submit-btn" type="submit">Opret bruger</button>
             </div>
+        </form>
 
-            <div class="dropdown-menu">
-                <label for="email"><b>Email*</b><br/></label>
-                <input type="email" placeholder="E-mail" name="email" id="email" required>
-            </div>
-
-
-            <div class="dropdown-menu">
-                <label for="password"><b>Kodeord*</b><br/></label>
-                <input type="password" placeholder="Kodeord" name="password" id="password" required>
-            </div>
-
-            <div class="dropdown-menu">
-                <label for="passwordrepeat"><b>Kodeord*</b><br/></label>
-                <input type="password" placeholder="Gentag kodeord" name="passwordrepeat" id="passwordrepeat" required>
-            </div>
-
-            <div class="dropdown-menu">
-                <label for="address"><b>Adresse*</b><br/></label>
-                <input type="text" placeholder="Vejnavn og by (Evt. hus-/etage-/dørnummer)" name="address" id="address"
-                       required>
-            </div>
-
-            <div class="dropdown-menu">
-                <label for="zipcode"><b>Postnummer*</b><br/></label>
-                <input type="number" placeholder="Postnummer" name="zipcode" id="zipcode" required>
-            </div>
-
-            <button class="submit-btn" type="submit">Opret bruger</button>
-        </div>
-    </form>
-
-</div>
-
-
+    </div>
 </body>
 </html>
