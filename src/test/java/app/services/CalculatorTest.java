@@ -17,9 +17,7 @@ class CalculatorTest {
 
 
     @BeforeAll
-     static void setop(){
-
-        // kig på discord pin, skal være i ordercontrolelr
+     static void setup(){
 
     }
 
@@ -45,13 +43,13 @@ class CalculatorTest {
     void calcRaftersQuantity(){
 
         //Arrange
-        Calculator calculator = new Calculator(600,780, connectionPool);
+        Calculator calculator = new Calculator(600,600, connectionPool);
 
-        //   50/750 = 15
-        //   15 + 1 = 16
+        //   50/600 = 12
+        //   12 + 1 = 13
 
         //Expected
-        int expected = 16;
+        int expected = 13;
 
 
         //Actual

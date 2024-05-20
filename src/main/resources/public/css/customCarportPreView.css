@@ -7,21 +7,17 @@ main{
 }
 h1{
     text-align: center;
+    font-size: clamp(24px, 4vw, 32px);
+    padding: 0 10px 0 10px;
 }
 
 .carport-view{
-    max-width: 600px;
+    max-width: 500px;
     max-height: 500px;
     width: 100%;
     height: 100%;
 }
-.carport-view div{
-    margin: auto;
-}
 
-.carport-view div svg{
-    margin: auto;
-}
 
 .button-container{
     display: flex;

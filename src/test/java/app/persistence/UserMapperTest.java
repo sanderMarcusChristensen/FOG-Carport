@@ -1,6 +1,5 @@
 package app.persistence;
 
-import app.entities.Order;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,15 +9,10 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Integration test for OrderMapper
-
-class OrderMapperTest {
-
+class UserMapperTest {
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance("", "", "", "");
 
 
@@ -73,57 +67,35 @@ class OrderMapperTest {
         }
     }
 
-    @Test
-    void getAllOrders() {
-
-        try {
-            int expected = 3;
-            List<Order> orders = OrderMapper.getAllOrders(connectionPool);
-            assertEquals(expected, orders.size());
-        } catch (DatabaseException e) {
-            fail("Database fejl: " + e.getMessage());
-        }
-
-    }
 
     @Test
-    void getOrderById() {
+    void insertUser() throws DatabaseException, SQLException {
+
+        User userToGetInserted = new User(3, "Marcus", "1234", "MarcusKanIkkeNoget@gmail.com", 4200, "user", "valNoobvej");
 
         try {
 
-            User user = new User(2, "Sander", "1234", "123GUF@gmail.com", 42000, "admin", "supervej");
-            Order expected = new Order(2, 540, 700, null, 2, 15000, user);    //send dato med ned i database, idk
-            Order actualOrderOrder = OrderMapper.getOrderById(2, connectionPool);
-            assertEquals(expected, actualOrderOrder);
-        } catch (DatabaseException e) {
-            fail("Database fejl: " + e.getMessage());
+            User tryedToInsertUser = UserMapper.insertUser(userToGetInserted, connectionPool);
+            User retriveInsertedUser = UserMapper.getUserById(tryedToInsertUser.getUserId(), connectionPool);
+
+            assertEquals(retriveInsertedUser, userToGetInserted);
+
+
+        } catch (SQLException e) {
+            fail("SQLException: " + e.getMessage());
         }
-
     }
-
 
     @Test
-    void insertOrder() throws DatabaseException {
+    void getUserById() throws DatabaseException, SQLException {
 
-        try {
 
-            User user = new User(2, "Sander", "1234", "123GUF@gmail.com", 42000, "admin", "supervej");
-            Order expected = new Order(2, 700, 700, null, 1, 17000, user);
+        User copyUser = new User(1, "jon", "1234", "yapyap@gmail.com", 42000, "user", "helsingørvej");
+        User user = UserMapper.getUserById(1, connectionPool);
 
-            expected = OrderMapper.insertOrder(expected, connectionPool);
-            Order actualOrderOrder = OrderMapper.getOrderById(expected.getOrderId(), connectionPool);
-            assertEquals(expected, actualOrderOrder);
-        }
-        catch (DatabaseException e)
-        {
-            fail("Database fejl: " + e.getMessage());
-        }
+        assertEquals(user, copyUser);
 
     }
+
+
 }
-
-
-
-
-
-

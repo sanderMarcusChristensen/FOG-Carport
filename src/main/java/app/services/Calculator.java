@@ -19,7 +19,6 @@ public class Calculator {
     private static final int UpperANDLOWERBoards_SIDES = 3;
     private static final int SCREWS = 4;
 
-
     private List<OrderItem> orderItem = new ArrayList<>();
     private int width;
     private int length;
@@ -31,7 +30,6 @@ public class Calculator {
         this.connectionPool = connectionPool;
     }
 
-
     public void calcCarport(Order order) throws DatabaseException {
 
         calcPost(order);
@@ -42,7 +40,6 @@ public class Calculator {
         addScrewsToOrder(order);
 
     }
-
 
     //Stolper
     private void calcPost(Order order) throws DatabaseException {
@@ -68,37 +65,10 @@ public class Calculator {
 
         List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, BEAMS, connectionPool);
 
+        String description = "Remme i sider, sadles ned i stolper";
 
-        if (length <= 300) {
-            ProductVariant productVariant = productVariants.get(0);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Remme i sider, sadles ned i stolper");
-            orderItem.add(orderItem1);
+        calcWoodLength(order, productVariants, quantity, description);
 
-        } else if (length > 301 && width < 360) {
-            ProductVariant productVariant = productVariants.get(1);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Remme i sider, sadles ned i stolper");
-            orderItem.add(orderItem1);
-
-        } else if (length > 361 && width < 420) {
-            ProductVariant productVariant = productVariants.get(2);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Remme i sider, sadles ned i stolper");
-            orderItem.add(orderItem1);
-
-        } else if (length > 421 && width < 480) {
-            ProductVariant productVariant = productVariants.get(3);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Remme i sider, sadles ned i stolper");
-            orderItem.add(orderItem1);
-
-        } else if (length > 481 && width < 540) {
-            ProductVariant productVariant = productVariants.get(4);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Remme i sider, sadles ned i stolper");
-            orderItem.add(orderItem1);
-
-        } else if (length > 541) {
-            ProductVariant productVariant = productVariants.get(5);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Remme i sider, sadles ned i stolper");
-            orderItem.add(orderItem1);
-        }
     }
 
     //Spær
@@ -108,37 +78,9 @@ public class Calculator {
 
         List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, RAFTERS, connectionPool);
 
+        String description = "Spær monteres på rem";
 
-        if (width <= 300) {
-            ProductVariant productVariant = productVariants.get(0);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
-            orderItem.add(orderItem1);
-
-        } else if (width > 301 && width <= 360) {
-            ProductVariant productVariant = productVariants.get(1);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
-            orderItem.add(orderItem1);
-
-        } else if (width > 361 && width <= 420) {
-            ProductVariant productVariant = productVariants.get(2);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
-            orderItem.add(orderItem1);
-
-        } else if (width > 421 && width <= 480) {
-            ProductVariant productVariant = productVariants.get(3);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
-            orderItem.add(orderItem1);
-
-        } else if (width > 481 && width <= 540) {
-            ProductVariant productVariant = productVariants.get(4);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
-            orderItem.add(orderItem1);
-
-        } else if (width > 541) {
-            ProductVariant productVariant = productVariants.get(5);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Spær monteres på rem");
-            orderItem.add(orderItem1);
-        }
+        calcRafterLength(order, productVariants, quantity, description);
 
     }
 
@@ -148,42 +90,21 @@ public class Calculator {
 
         List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, UpperANDLOWERBoards_SIDES, connectionPool);
 
+        String description = "Over sternbrædder til siderne af carporten";
 
-        if (length <= 300) {
-            ProductVariant productVariant = productVariants.get(0);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
-            orderItem.add(orderItem1);
+        calcWoodLength(order, productVariants, quantity, description);
 
-        } else if (length > 301 && width < 360) {
-            ProductVariant productVariant = productVariants.get(1);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
-            orderItem.add(orderItem1);
-
-        } else if (length > 361 && width < 420) {
-            ProductVariant productVariant = productVariants.get(2);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
-            orderItem.add(orderItem1);
-
-        } else if (length > 421 && width < 480) {
-            ProductVariant productVariant = productVariants.get(3);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
-            orderItem.add(orderItem1);
-
-        } else if (length > 481 && width < 540) {
-            ProductVariant productVariant = productVariants.get(4);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
-            orderItem.add(orderItem1);
-
-        } else if (length > 541) {
-            ProductVariant productVariant = productVariants.get(5);
-            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Under og Oversternbrædder til siderne af carporten");
-            orderItem.add(orderItem1);
-        }
     }
 
     private void calcLowerBoardsToSides(Order order) throws DatabaseException {
 
-        calcUpperBoardsToSides(order);
+        int quantity = calcBeamsUpperAndLowerBoardsQuantity();
+
+        List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, UpperANDLOWERBoards_SIDES, connectionPool);
+
+        String description = "Under sternbrædder til siderne af carporten";
+
+        calcWoodLength(order, productVariants, quantity, description);
     }
 
     private void addScrewsToOrder(Order order) throws DatabaseException {
@@ -194,26 +115,17 @@ public class Calculator {
 
         OrderItem orderItem1 = new OrderItem(0, order, productVariant, 400, "Til montering og sammensættelse af træ ");
         orderItem.add(orderItem1);
-
-
     }
 
 
     public int calcRaftersQuantity() {
 
         return (length / 50) + 1;
-
     }
 
-    //Math to Beams, Upperboards and Lowerboards
     public int calcBeamsUpperAndLowerBoardsQuantity() {
 
         return 2;
-    }
-
-
-    public List<OrderItem> getOrderItem() {
-        return orderItem;
     }
 
     public int calcPostQuantity() {  // Laver metoden sådan her for at kunne unit-test
@@ -221,5 +133,77 @@ public class Calculator {
         return 2 * (2 + (length - 130) / 340); // skal pluses med 2 på grund af 2 sider.
     }
 
+    private void calcWoodLength(Order order, List<ProductVariant> productVariants, int quantity, String description) throws DatabaseException {
+
+        if (length <= 300) {
+            ProductVariant productVariant = productVariants.get(0);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (length > 301 && width < 360) {
+            ProductVariant productVariant = productVariants.get(1);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (length > 361 && width < 420) {
+            ProductVariant productVariant = productVariants.get(2);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (length > 421 && width < 480) {
+            ProductVariant productVariant = productVariants.get(3);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (length > 481 && width < 540) {
+            ProductVariant productVariant = productVariants.get(4);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (length > 541) {
+            ProductVariant productVariant = productVariants.get(5);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+        }
+    }
+
+    public void calcRafterLength(Order order, List<ProductVariant> productVariants, int quantity, String description) {
+
+        if (width <= 300) {
+            ProductVariant productVariant = productVariants.get(0);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (width > 301 && width <= 360) {
+            ProductVariant productVariant = productVariants.get(1);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (width > 361 && width <= 420) {
+            ProductVariant productVariant = productVariants.get(2);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (width > 421 && width <= 480) {
+            ProductVariant productVariant = productVariants.get(3);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (width > 481 && width <= 540) {
+            ProductVariant productVariant = productVariants.get(4);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+
+        } else if (width > 541) {
+            ProductVariant productVariant = productVariants.get(5);
+            OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, description);
+            orderItem.add(orderItem1);
+        }
+
+    }
+
+    public List<OrderItem> getOrderItem() {
+        return orderItem;
+    }
 
 }

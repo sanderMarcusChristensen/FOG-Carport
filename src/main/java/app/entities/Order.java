@@ -1,6 +1,7 @@
 package app.entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Order {
     private int orderId;
@@ -108,5 +109,17 @@ public class Order {
                 ", totalPrice=" + totalPrice +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {       //test
+        if (this == o) return true;
+        if (!(o instanceof Order order)) return false;
+        return orderId == order.orderId && Double.compare(carportWidth, order.carportWidth) == 0 && Double.compare(carportLength, order.carportLength) == 0 && status == order.status && userId == order.userId && Double.compare(totalPrice, order.totalPrice) == 0 && Objects.equals(date, order.date) && Objects.equals(user, order.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, carportWidth, carportLength, date, status, userId, totalPrice, user);
     }
 }

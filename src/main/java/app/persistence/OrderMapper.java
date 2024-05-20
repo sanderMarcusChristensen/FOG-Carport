@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
+import static app.persistence.UserMapper.getUserById;
+
 public class OrderMapper {
 
 
@@ -31,7 +33,6 @@ public class OrderMapper {
                 int userZipCode = rs.getInt("user_zipcode");
                 String userRole = rs.getString("user_role");
                 String userAddress = rs.getString("user_address");
-
                 int orderId = rs.getInt("order_id");
                 double carportWidth = rs.getDouble("carport_width");
                 double carportLength = rs.getDouble("carport_length");
@@ -310,5 +311,35 @@ public class OrderMapper {
     }
 
 
+    public static Order getOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT * FROM orders WHERE order_id = ?";
+        Order order = null;
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)
+        ) {
+            ps.setInt(1, orderId);  // Set the value for the first parameter
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                // Retrieve order details
+                double carportWidth = rs.getDouble("carport_width");
+                double carportLength = rs.getDouble("carport_length");
+                Date date = rs.getDate("date");
+                int status = rs.getInt("status");
+                int userId = rs.getInt("user_id");
+                double totalPrice = rs.getDouble("total_price");
+
+                // Assuming a method getUserById exists to retrieve a User object by ID
+                User user = getUserById(userId, connectionPool);
+
+                order = new Order(orderId, carportWidth, carportLength, date, status, totalPrice, user);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not get data from the database", e.getMessage());
+        }
+
+        return order;
+    }
 }
 
