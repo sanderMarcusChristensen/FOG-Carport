@@ -15,28 +15,28 @@ public class CarportSvg {
     public CarportSvg(int width, int length){
         this.width = width;
         this.length = length;
-        mainCarport = new Svg(0, 0, "0 0 1000 1000", "100%");
+        mainCarport = new Svg(0, 0, "0 0 " + (length + offset) + " " + (width + offset), "75%");
 
-        carportSvg = new Svg(offset, 0, String.format("0 0 %d %d", length, width), "50%");  // Inner carport SVG
+        carportSvg = new Svg(offset, 0, String.format("0 0 %d %d", (length + offset), width), "100%");  // Inner carport SVG
         addArrow();
         addText();
         addInnerSvg();
     }
 
     private void addBeams(){ // -- remme
-        carportSvg.addRectangle(0, 35, 4.5, length, "stroke:#00000095; stroke-width:2px; fill: #ffffff95");
-        carportSvg.addRectangle(0, width - 35, 4.5, length, "stroke:#00000095; stroke-width:2px; fill: #ffffff95");
+        carportSvg.addRectangle(0, 35, 4.5, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
+        carportSvg.addRectangle(0, width - 35, 4.5, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
     }
 
     private void addRafters(){ // -- spær
         for(double i = 0; i < length ; i += (int) 55.714){
-            carportSvg.addRectangle(i, 0, width, 4.5, "stroke:#00000095; fill: #ffffff95");
+            carportSvg.addRectangle(i, 0, width, 4.5, "stroke:#000000; fill: #ffffff");
         }
     }
 
     private void addCross(){ // -- kryds
-        carportSvg.addCross(offset, offset, length - offset, width -offset, "stroke:#00000095; stroke-width:2px; stroke-dasharray: 5 5;");
-        carportSvg.addCross(offset, width-offset, length - offset, offset, "stroke:#00000095; stroke-width:2px; stroke-dasharray: 5 5;");
+        carportSvg.addCross(offset, offset, length - offset, width -offset, "stroke:#000000; stroke-width:2px; stroke-dasharray: 5 5;");
+        carportSvg.addCross(offset, width-offset, length - offset, offset, "stroke:#000000; stroke-width:2px; stroke-dasharray: 5 5;");
     }
 
     private void addArrow(){
@@ -47,10 +47,10 @@ public class CarportSvg {
     private void addPost(){ // -- stolper
         double postSize = 9.7;
 
-        carportSvg.addRectangle(100,  offset - (postSize / 4) , postSize, postSize, "stroke:#000000; fill: #ffffff95" );
-        carportSvg.addRectangle(length - 100,  offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff95" );
-        carportSvg.addRectangle(100,  width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff95" );
-        carportSvg.addRectangle(length - 100,  width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff95" );
+        carportSvg.addRectangle(100,  offset - (postSize / 4) , postSize, postSize, "stroke:#000000; fill: #ffffff" );
+        carportSvg.addRectangle(length - 100,  offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff" );
+        carportSvg.addRectangle(100,  width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff" );
+        carportSvg.addRectangle(length - 100,  width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff" );
     }
 
     public void addText(){
@@ -59,7 +59,7 @@ public class CarportSvg {
     }
 
     public void addInnerSvg(){
-        carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff95");
+        carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
         addCross();
         addBeams();
         addRafters();
