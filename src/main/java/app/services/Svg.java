@@ -17,7 +17,7 @@ public class Svg {
             "    </defs>";
     public static final String SVG_RECT_TEMPLATE = "<rect x=\"%.2f\" y=\"%.2f\" height=\"%.2f\" width=\"%.2f\" style=\"%s\" />";
 
-    public static final String SVG_CROSS = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"%s\" />";
+    public static final String SVG_CROSS_TEMPLATE = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"%s\" />";
 
     public static final String SVG_TEXT_TEMPLATE ="<text style=\"%s\" x=\"%s\" y=\"%s\">%d cm</text>";
 
@@ -42,7 +42,7 @@ public class Svg {
     }
 
     public void addCross(int x1, int y1, int x2, int y2, String style){
-        svg.append(String.format(SVG_CROSS, x1, y1, x2, y2, style));
+        svg.append(String.format(SVG_CROSS_TEMPLATE, x1, y1, x2, y2, style));
     }
 
     public void addText(String style, int x, int y, int text){
