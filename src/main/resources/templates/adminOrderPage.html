@@ -10,9 +10,10 @@
 <body>
 <header th:replace="~{fragments :: header}"></header>
 
-<div th:replace="~{fragments :: messages}"></div>
 
 <main class="main-container">
+
+    <div th:replace="~{fragments :: messages}"></div>
 
     <section class="left-side">
         <h1>Stykliste</h1>
@@ -86,7 +87,7 @@
                             th:selected="${length == order.carportLength}"></option>
                 </select>
             </label>
-            <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"><span>Opdater Størrelse</span></span>
+            <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"><span>Opdater Størrelse</span>
             </button>
         </form>
 
