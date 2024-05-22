@@ -3,7 +3,8 @@ Dette er vores eksamensprojekt på Datamatikeruddannelsen 2.semester på CPHbusi
 CPHbusiness Datamatiker Uddannelsen /  2. semester / Hold B / Gruppe 4
 Afleveres:  d. 24/5 - 2024   
 
-Udarbejdet af: 
+Udarbejdet af:
+
 Sander Marcus Christensen / cph-sc296@cphbusiness.dk / Github: sanderMarcusChristensen  
 Marcus P Hjorth Rasmussen / cph-mr634@cphbusiness.dk / Github: MarcusHjorth
 Mateen Jan Rafiq / cph-mr645@cphbusiness.dk / Github: MateenCPH
