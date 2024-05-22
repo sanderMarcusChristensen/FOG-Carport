@@ -234,6 +234,43 @@ public class OrderMapper {
         deleteOrderById(orderId, connectionPool);
     }
 
+    public static void acceptOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET status = 2 WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DatabaseException("No order found with the provided order ID.");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not update the status of the order", e.getMessage());
+        }
+    }
+
+    public static void unAcceptOrderById(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "UPDATE orders SET status = 1 WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, orderId);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new DatabaseException("No order found with the provided order ID.");
+            }
+
+        } catch (SQLException e) {
+            throw new DatabaseException("Could not update the status of the order", e.getMessage());
+        }
+    }
+
+
     public static void updateCarportOrderTotalPrice(int orderId, double newTotalPrice, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "UPDATE orders SET total_price = ? WHERE order_id = ?";
 

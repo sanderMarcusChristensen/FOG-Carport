@@ -1,6 +1,7 @@
 .main-container {
     display: flex;
     flex-direction: row;
+    margin: 0;
 }
 
 p {
@@ -13,14 +14,14 @@ p {
 .left-side {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Space between the two tables */
-    margin: 5px 20px 20px 20px;
+    margin: 5px 20px 5px 20px;
 }
 
 .left-side table {
     width: 100%;
     border-collapse: collapse;
-    border: 3px solid #000; /* Thick borders */
+    border: 3px solid #000;
+    margin-bottom: 30px;
 }
 
 .left-side th, .left-side td {
@@ -57,19 +58,19 @@ p {
 
 
 
-/*------------------- RIGHT SIDE --------------------*/
+/*------------------- MIDDLE SIDE --------------------*/
 
-.right-side {
+.middle-side {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     flex-direction: column;
-    margin: 5px 20px 20px 20px;
-    align-items: flex-start; /* Aligns the content to the start (left) */
+    margin: 5px 10px 5px 10px;
+    align-items: center;
 }
 
 .dropdown-menu-container {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     flex-direction: column;
     width: 100%;
 }
@@ -95,16 +96,85 @@ p {
 .current-size-container {
     display: flex;
     flex-direction: column;
-
-
+    align-self: start;
     margin-top: 15px;
     font-size: 20px;
+}
+
+/*--------------- RIGHT SIDE ----------------*/
+
+.right-side {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin: 5px 20px 20px 20px;
+    align-items: flex-end; /* Aligns the content to the start (left) */
+}
+
+.button-container-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 5px 10px 5px 10px;
+
+}
+h2 {
+    margin-bottom: 10px;
+    align-self: start;
+}
+
+h3 {
+    margin-bottom: 10px;
+    align-self: start;
 }
 
 .button-admin {
     display: inline-block;
     border-radius: 4px;
     background-color: #013D7A;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.button-admin-delete {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #e60000;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.button-admin-accept {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #00b300;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 180px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.button-admin-unaccept {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #e6c300;
     border: none;
     color: #FFFFFF;
     text-align: center;

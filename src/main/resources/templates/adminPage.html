@@ -22,7 +22,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="order : ${orderAndUserList}">
-                    <td th:text="${order.user.userName + ' #' + order.orderId}"></td>
+                    <td th:text="${order.user.userName + ' #' + order.orderId + ' Status:' + (order.status == 1 ? ' Processing' : (order.status == 2 ? ' Accepted' : ''))}"></td>
+
                     <td>
                         <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}" formaction="orderDetails"><span>Rediger</span></button>
                     </td>

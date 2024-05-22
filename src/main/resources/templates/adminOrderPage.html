@@ -8,95 +8,128 @@
 </head>
 
 <body>
-    <header th:replace="~{fragments :: header}"></header>
+<header th:replace="~{fragments :: header}"></header>
 
-    <div th:replace="~{fragments :: messages}"></div>
+<div th:replace="~{fragments :: messages}"></div>
 
-    <main class="main-container">
+<main class="main-container">
 
-        <section class="left-side">
-            <h1>Stykliste</h1>
-            <table class="full-task-table">
-                <thead>
-                <tr>
-                    <th>Beskrivelse</th>
-                    <th>Længde</th>
-                    <th>Antal</th>
-                    <th>Enhed</th>
-                    <th>Beskrivelse</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr></tr>
-                </tbody>
+    <section class="left-side">
+        <h1>Stykliste</h1>
+        <table class="full-task-table">
+            <thead>
+            <tr>
+                <th>Beskrivelse</th>
+                <th>Længde</th>
+                <th>Antal</th>
+                <th>Enhed</th>
+                <th>Beskrivelse</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr></tr>
+            </tbody>
 
-                <thead>
-                <tr>
-                    <th>Træ & Tagplader</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="item : ${orderItemList}">
-                    <td th:text="${item.productVariant.product.product_name}"></td>
-                    <td th:text="${item.productVariant.product_variant_length}"></td>
-                    <td th:text="${item.quantity}"></td>
-                    <td th:text="${item.productVariant.product.unit}"></td>
-                    <td th:text="${item.description}"></td>
-                </tr>
-                </tbody>
-            </table>
+            <thead>
+            <tr>
+                <th>Træ & Tagplader</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${orderItemList}">
+                <td th:text="${item.productVariant.product.product_name}"></td>
+                <td th:text="${item.productVariant.product_variant_length}"></td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.productVariant.product.unit}"></td>
+                <td th:text="${item.description}"></td>
+            </tr>
+            </tbody>
+        </table>
 
-            <h2 th:text="${'Tlbud: ' + order.totalPrice + ' pr.stk + evt. fragt'}"></h2>
-            <h3 th:text="${'Normalpris: ' + normalPrice + ' pr.stk + evt. fragt'}"></h3>
+        <h2 th:text="${'Tlbudspris: ' + order.totalPrice + ' pr.stk + evt. fragt'}"></h2>
+        <h3 th:text="${'Normalpris: ' + normalPrice + ' pr.stk + evt. fragt'}"></h3>
 
-            <div>
-                <form method="post" class="price-form">
-                    <input type="number" name="newPrice" th:value="${order.totalPrice}">
-                    <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}" formaction="updateCarportPrice"><span>Angiv ny pris</span></button>
-                </form>
-            </div>
-
-            <p th:text="${'Name: ' + user.userName}"></p>
-            <p th:text="${'Email: ' + user.userEmail}"></p>
-            <p th:text="${'Address: ' + user.zipcode + ' ' + user.userAddress}"></p>
-
-        </section>
-
-        <section class="right-side">
-
-            <form method="post" th:action="@{updateCarportSize}" class="dropdown-menu-container">
-                <label>
-                    <span>Carport bredde</span>
-                    <select id="width" name="width" required>
-                        <option th:each="width : ${#numbers.sequence(360, 720, 60)}"
-                                th:value="${width}" th:text="${width + 'cm'}"
-                                th:selected="${width == order.carportWidth}"></option>
-                    </select>
-                </label>
-                <label>
-                    <span>Carport længde</span>
-                    <select id="length" name="length" required>
-                        <option th:each="length : ${#numbers.sequence(400, 650, 50)}"
-                                th:value="${length}" th:text="${length + 'cm'}"
-                                th:selected="${length == order.carportLength}"></option>
-                    </select>
-                </label>
-                <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"><span>Opdater Størrelse</span></span></button>
+        <div>
+            <form method="post" class="price-form">
+                <input type="number" name="newPrice" th:value="${order.totalPrice}">
+                <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"
+                        formaction="updateCarportPrice"><span>Angiv ny pris</span></button>
             </form>
+        </div>
 
-            <div class="current-size-container">
-            <span th:text="${'Carport width: ' + order.carportWidth + 'cm'}">660,0cm</span>
-            <span th:text="${'Carport length: ' + order.carportLength + 'cm'}">720,0cm</span>
-            </div>
-        </section>
+        <p th:text="${'Navn: ' + user.userName}"></p>
+        <p th:text="${'Email: ' + user.userEmail}"></p>
+        <p th:text="${'Adresse: ' + user.zipcode + ' ' + user.userAddress}"></p>
 
-    </main>
+    </section>
 
-    <footer th:replace="~{fragments :: footer}"></footer>
+    <section class="middle-side">
+
+        <form method="post" th:action="@{updateCarportSize}" class="dropdown-menu-container">
+            <label>
+                <span>Carport bredde</span>
+                <select id="width" name="width" required>
+                    <option th:each="width : ${#numbers.sequence(360, 720, 60)}"
+                            th:value="${width}" th:text="${width + 'cm'}"
+                            th:selected="${width == order.carportWidth}"></option>
+                </select>
+            </label>
+            <label>
+                <span>Carport længde</span>
+                <select id="length" name="length" required>
+                    <option th:each="length : ${#numbers.sequence(400, 650, 50)}"
+                            th:value="${length}" th:text="${length + 'cm'}"
+                            th:selected="${length == order.carportLength}"></option>
+                </select>
+            </label>
+            <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"><span>Opdater Størrelse</span></span>
+            </button>
+        </form>
+
+        <div class="current-size-container">
+            <span th:text="${'Carport bredde: ' + order.carportWidth + 'cm'}">660,0cm</span>
+            <span th:text="${'Carport længde: ' + order.carportLength + 'cm'}">720,0cm</span>
+        </div>
+    </section>
+
+    <section class="right-side">
+        <div class="button-container-admin">
+            <h2>Ordre administration</h2>
+            <h3>
+                Nuværende ordre status:
+                <span th:if="${order.status == 1}">Processing</span>
+                <span th:if="${order.status == 2}">Accepted</span>
+            </h3>
+            <form method="post">
+                <button class="button-admin-delete" type="submit" name="orderId" th:value="${order.orderId}"
+                        formaction="deleteOrder">
+                    <span>Slet ordre</span>
+                </button>
+
+                <th:block th:if="${order.status == 1}">
+                    <button class="button-admin-accept" type="submit" name="orderId" th:value="${order.orderId}"
+                            formaction="acceptOrder">
+                        <span>Accepter ordre</span>
+                    </button>
+                </th:block>
+
+                <th:block th:if="${order.status == 2}">
+                    <button class="button-admin-unaccept" type="submit" name="orderId" th:value="${order.orderId}"
+                            formaction="unAcceptOrder">
+                        <span>Afvis ordre</span>
+                    </button>
+                </th:block>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
 
 </body>
 </html>
