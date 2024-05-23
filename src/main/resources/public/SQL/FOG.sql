@@ -52,7 +52,8 @@ CREATE TABLE IF NOT EXISTS public.users
     user_zipcode bigint NOT NULL,
     user_role character varying COLLATE pg_catalog."default" NOT NULL,
     user_address character varying COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT users_pkey PRIMARY KEY (user_id)
+    CONSTRAINT users_pkey PRIMARY KEY (user_id),
+    CONSTRAINT unique_email UNIQUE (user_email)
     );
 
 CREATE TABLE IF NOT EXISTS public.zip_code
