@@ -71,7 +71,7 @@ public class UserMapper {
                 }
             }
         } catch (SQLException e) {
-            throw new DatabaseException("Could not create user", e.getMessage());
+            throw new DatabaseException(e.getMessage());
         }
     }
 

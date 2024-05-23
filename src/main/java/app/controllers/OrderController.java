@@ -90,10 +90,9 @@ public class OrderController {
 
 
             } catch (DatabaseException e) {
-                throw new RuntimeException(e);
+                ctx.attribute("errormessage", "Din email findes allerede. Prøv igen eller log ind");
+                ctx.render("customCarport_3.html");
             }
-
-
         } else {
             ctx.attribute("errormessage", "Noget gik galt. Prøv igen. Vær sikker på følgende:\n- Password længde skal være mere end 3 tegn\n- Dine passwords skal matche i begge felter - Email skal indeholde '@' - Dit postnummer skal være gyldigt");
             ctx.render("customCarport_3.html");
@@ -131,7 +130,7 @@ public class OrderController {
 
 
         } catch (DatabaseException e) {
-            throw new RuntimeException(e);
+            ctx.attribute("errormessage", e.getMessage());
         }
 
 
