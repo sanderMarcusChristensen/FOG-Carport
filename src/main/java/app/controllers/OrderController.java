@@ -130,8 +130,8 @@ public class OrderController {
             OrderMapper.insertOrderItems(calculator.getOrderItem(), connectionPool);
 
             ctx.attribute("usermessage", "Du vil modtage en email på " + user.getUserEmail() +
-                    "med yderligere informationer vedr. din forespørgsel.");
-            ctx.render("customCarport_3.html");
+                    " med yderligere informationer vedr. din forespørgsel.");
+            ctx.render("index.html");
             //create messge to customer and render order / request confirmation
             //ctx.render("ItEllerAndetFed/dude");   // Lave om, idk
 

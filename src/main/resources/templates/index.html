@@ -18,7 +18,7 @@
     <header th:replace="~{fragments :: header}"></header>
 
     <main>
-        <div><br/><p  class="error" th:unless="${#strings.isEmpty(usermessage)}" th:text="${usermessage}"></p></div>
+        <div th:replace="~{fragments :: messages}"></div>
 
         <h1>Enkelt Carport</h1>
 
@@ -80,8 +80,6 @@
 
         </section>
     </main>
-
-    <div th:replace="~{fragments :: messages}"></div>
 
     <footer th:replace="~{fragments :: footer}"></footer>
 </body>
