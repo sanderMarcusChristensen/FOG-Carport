@@ -98,11 +98,11 @@ public class UserController {
             try {
                 User user = new User(0, name, password, email, zipcode, "", address);
                 user = UserMapper.insertUser(user, connectionPool);
-                ctx.attribute("usermessage", "Du er hermed oprettet med e-mail: " + email + " det angivne password. Nu skal du logge ind på din bruger");
+                ctx.attribute("usermessage", "Du er hermed oprettet med e-mail: " + email + " og det angivne password. Nu skal du logge ind på din bruger");
                 ctx.render("login.html");
             } catch (DatabaseException e) {
                 ctx.attribute("errormessage", "Din email findes allerede. Prøv igen eller log ind");
-                ctx.render("customCarport_3.html");
+                ctx.render("createAccountPage.html");
             }
         } else {
             ctx.attribute("errormessage", "Noget gik galt. Prøv igen. Vær sikker på følgende:\n- Password længde skal være mere end 3 tegn\n- Dine passwords skal matche i begge felter - Email skal indeholde '@' - Dit postnummer skal være gyldigt");
