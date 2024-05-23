@@ -96,7 +96,7 @@ public class UserController {
 
         if (password.equals(passwordrepeat) && name.length() > 3 && password.length() > 3 && passwordrepeat.length() > 3) {
             try {
-                User user = new User(0, name, password, email, zipcode, "", address);
+                User user = new User(0, name, password, email, zipcode, "user", address);
                 user = UserMapper.insertUser(user, connectionPool);
                 ctx.attribute("usermessage", "Du er hermed oprettet med e-mail: " + email + " og det angivne password. Nu skal du logge ind på din bruger");
                 ctx.render("login.html");
