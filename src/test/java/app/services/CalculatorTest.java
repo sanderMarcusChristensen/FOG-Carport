@@ -17,7 +17,7 @@ class CalculatorTest {
 
 
     @BeforeAll
-     static void setup(){
+    static void setup() {
 
     }
 
@@ -25,7 +25,7 @@ class CalculatorTest {
     void calcPostQuantity() {
 
         //Arrange
-        Calculator calculator = new Calculator(600,550, connectionPool);
+        Calculator calculator = new Calculator(600, 550, connectionPool);
 
         //Expected
         int expected = 6;
@@ -40,13 +40,10 @@ class CalculatorTest {
     }
 
     @Test
-    void calcRaftersQuantity(){
+    void calcRaftersQuantity() {
 
-        //Arrange
-        Calculator calculator = new Calculator(600,600, connectionPool);
 
-        //   50/600 = 12
-        //   12 + 1 = 13
+        Calculator calculator = new Calculator(600, 600, connectionPool);
 
         //Expected
         int expected = 13;

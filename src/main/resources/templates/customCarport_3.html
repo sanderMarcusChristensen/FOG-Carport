@@ -16,71 +16,73 @@
 
 <body>
 
-    <header th:replace="~{fragments :: header}"></header>
+<header th:replace="~{fragments :: header}"></header>
 
-    <div class="main-container">
-        <div class="main-container-text">
-            <h1>Bestil Quick-Byg tilbud - carport med fladt tag</h1>
-            <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en carport indenfor vores standardprogram.<br/>
-                Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br/>
-                Ved bestilling medfølger standardbyggevejledning.<br/><br/>
+<div class="main-container">
+    <div class="main-container-text">
+        <h1>Bestil Quick-Byg tilbud - carport med fladt tag</h1>
+        <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en
+            carport indenfor vores standardprogram.<br/>
+            Tilbud og skitsetegning fremsendes med post hurtigst muligt.<br/>
+            Ved bestilling medfølger standardbyggevejledning.<br/><br/>
 
-                Udfyld formularen omhyggeligt og klik på "Bestil tilbud".<br/>
-                Felter markeret med * SKAL udfyldes!</p>
-        </div>
+            Udfyld formularen omhyggeligt og klik på "Bestil tilbud".<br/>
+            Felter markeret med * SKAL udfyldes!</p>
+    </div>
 
-        <div class="main-container-text-page-three">
-            <h2>Allerede eksisterende kunde?</h2>
-            <a class="btn" href="loginRequest.html" th:href="loginPageRequest">Log Ind</a>
-        </div>
+    <div class="main-container-text-page-three">
+        <h2>Allerede eksisterende kunde?</h2>
+        <a class="btn" href="loginRequest.html" th:href="loginPageRequest">Log Ind</a>
+    </div>
 
 
-        <form method="post" th:action="@{sendRequest}">
+    <form method="post" th:action="@{sendRequest}">
 
         <div th:replace="~{fragments :: messages}"></div>
 
-            <div class="form-container">
-                <div class="dropdown-menu">
-                    <label for="name"><b>Navn*</b><br/></label>
-                    <input type="text" placeholder="Fornavn (Mellemnavn) Efternavn" name="name" id="name" required>
-                </div>
-
-                <div class="dropdown-menu">
-                    <label for="email"><b>Email*</b><br/></label>
-                    <input type="email" placeholder="E-mail" name="email" id="email" required>
-                </div>
-
-
-                <div class="dropdown-menu">
-                    <label for="password"><b>Kodeord*</b><br/></label>
-                    <input type="password" placeholder="Kodeord" name="password" id="password" required>
-                </div>
-
-                <div class="dropdown-menu">
-                    <label for="passwordrepeat"><b>Kodeord*</b><br/></label>
-                    <input type="password" placeholder="Gentag kodeord" name="passwordrepeat" id="passwordrepeat" required>
-                </div>
-
-                <div class="dropdown-menu">
-                    <label for="address"><b>Adresse*</b><br/></label>
-                    <input type="text" placeholder="Vejnavn og by (Evt. hus-/etage-/dørnummer)" name="address" id="address" required>
-                </div>
-
-                <div class="dropdown-menu">
-                    <label for="zipcode"><b>Postnummer*</b><br/></label>
-                    <input type="number" placeholder="Postnummer" name="zipcode" id="zipcode" required>
-                </div>
-
-                <div class="dropdown-menu">
-                    <label for="comment"><b>Evt. bemærkning / særlige ønsker</b><br/></label>
-                    <input type="text" name="comment" id="comment">
-                </div>
-                <button class="btn" type="submit">Send forespørgsel</button>
+        <div class="form-container">
+            <div class="dropdown-menu">
+                <label for="name"><b>Navn*</b><br/></label>
+                <input type="text" placeholder="Fornavn (Mellemnavn) Efternavn" name="name" id="name" required>
             </div>
-        </form>
 
-    </div>
+            <div class="dropdown-menu">
+                <label for="email"><b>Email*</b><br/></label>
+                <input type="email" placeholder="E-mail" name="email" id="email" required>
+            </div>
 
-    <footer th:replace="~{fragments :: footer}"></footer>
+
+            <div class="dropdown-menu">
+                <label for="password"><b>Kodeord*</b><br/></label>
+                <input type="password" placeholder="Kodeord" name="password" id="password" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="passwordrepeat"><b>Kodeord*</b><br/></label>
+                <input type="password" placeholder="Gentag kodeord" name="passwordrepeat" id="passwordrepeat" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="address"><b>Adresse*</b><br/></label>
+                <input type="text" placeholder="Vejnavn og by (Evt. hus-/etage-/dørnummer)" name="address" id="address"
+                       required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="zipcode"><b>Postnummer*</b><br/></label>
+                <input type="number" placeholder="Postnummer" name="zipcode" id="zipcode" required>
+            </div>
+
+            <div class="dropdown-menu">
+                <label for="comment"><b>Evt. bemærkning / særlige ønsker</b><br/></label>
+                <input type="text" name="comment" id="comment">
+            </div>
+            <button class="btn" type="submit">Send forespørgsel</button>
+        </div>
+    </form>
+
+</div>
+
+<footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>

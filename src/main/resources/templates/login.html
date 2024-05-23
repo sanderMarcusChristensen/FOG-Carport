@@ -16,23 +16,23 @@
 
 <body>
 
-    <header th:replace="~{fragments :: header}"></header>
+<header th:replace="~{fragments :: header}"></header>
 
-    <h1>Velkommen til FOG  </h1>
+<h1>Velkommen til FOG </h1>
 
-    <div class="generic-form">
-        <form method="post" action="loginAccount">
-            <input type="email" name="email" placeholder="E-mail"/>
-            <input type="password" name="password" placeholder="Kodeord"/>
+<div class="generic-form">
+    <form method="post" action="loginAccount">
+        <input type="email" name="email" placeholder="E-mail"/>
+        <input type="password" name="password" placeholder="Kodeord"/>
 
-            <button class="btn" type="submit">Login</button>
-            <div th:replace="~{fragments :: messages}"></div>
-        </form>
-        <div class="link">
-            <a class="btn" th:href="@{createAccountPage}">Sign up</a>
-        </div>
+        <button class="btn" type="submit">Login</button>
+        <div th:replace="~{fragments :: messages}"></div>
+    </form>
+    <div class="link">
+        <a class="btn" th:href="@{createAccountPage}">Sign up</a>
     </div>
+</div>
 
-    <footer th:replace="~{fragments :: footer}"></footer>
+<footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>

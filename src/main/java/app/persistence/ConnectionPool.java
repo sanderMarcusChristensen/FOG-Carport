@@ -23,8 +23,8 @@ public class ConnectionPool {
     public ConnectionPool() {
     }
 
-    public static ConnectionPool getInstance(){
-        return getInstance("","","","");
+    public static ConnectionPool getInstance() {
+        return getInstance("", "", "", "");
     }
 
     /***

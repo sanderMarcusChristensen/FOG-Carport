@@ -2,47 +2,49 @@ main {
     max-width: 750px;
     margin: auto;
 }
-main section{
+
+main section {
     padding: 20px;
     text-align: center;
 }
-main section h1{
+
+main section h1 {
     font-size: clamp(24px, 4vw, 32px);
 }
 
-.form-container{
+.form-container {
     margin: 2rem auto 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.form-container label{
+.form-container label {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto 2rem auto;
 }
 
-.form-container label select{
+.form-container label select {
     width: 300px;
     padding: 10px;
 }
 
-.form-container label span{
+.form-container label span {
     margin: 0 0 5px 10px;
 }
 
 .form-container label select {
     background: url("../icons/arrow-down.svg") no-repeat;
     background-position: calc(100% - 0.75rem) center !important;
-    -moz-appearance:none ;
-    -webkit-appearance: none ;
-    appearance: none ;
-    padding-right: 2rem ;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 2rem;
 }
 
-.btn{
+.btn {
     width: 300px;
     margin: auto;
 }

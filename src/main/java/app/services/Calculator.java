@@ -44,16 +44,16 @@ public class Calculator {
     //Stolper
     private void calcPost(Order order) throws DatabaseException {
 
-        //antal stolper
+
         int quantity = calcPostQuantity();
 
-        //Henter alle længede på stolper - variant
-        List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, POSTS, connectionPool);// 0 for at hente alle stolper
 
-        ProductVariant productVariant = productVariants.get(0); // stolpens plads i listen (kun en i listen, så skal bare på plads 1 aka 0)
+        List<ProductVariant> productVariants = ProductVariantMapper.getVariantsByProductIdAndMinLength(0, POSTS, connectionPool);
+
+        ProductVariant productVariant = productVariants.get(0);
 
         OrderItem orderItem1 = new OrderItem(0, order, productVariant, quantity, "Stolper nedgraves 90 cm i jord"); // laver et nyt OrderItem
-        orderItem.add(orderItem1); // sender det med til vores liste med all andre OrderItems
+        orderItem.add(orderItem1);
 
     }
 
@@ -128,9 +128,9 @@ public class Calculator {
         return 2;
     }
 
-    public int calcPostQuantity() {  // Laver metoden sådan her for at kunne unit-test
+    public int calcPostQuantity() {
 
-        return 2 * (2 + (length - 130) / 340); // skal pluses med 2 på grund af 2 sider.
+        return 2 * (2 + (length - 130) / 340);
     }
 
     private void calcWoodLength(Order order, List<ProductVariant> productVariants, int quantity, String description) throws DatabaseException {
@@ -205,5 +205,4 @@ public class Calculator {
     public List<OrderItem> getOrderItem() {
         return orderItem;
     }
-
 }

@@ -118,9 +118,7 @@ class OrderMapperTest {
             expected = OrderMapper.insertOrder(expected, connectionPool);
             Order actualOrderOrder = OrderMapper.getOrderById(expected.getOrderId(), connectionPool);
             assertEquals(expected, actualOrderOrder);
-        }
-        catch (DatabaseException e)
-        {
+        } catch (DatabaseException e) {
             fail("Database fejl: " + e.getMessage());
         }
 

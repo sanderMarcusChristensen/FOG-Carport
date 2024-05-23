@@ -112,7 +112,7 @@ public class Order {
     }
 
     @Override
-    public boolean equals(Object o) {       //test
+    public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Order order)) return false;
         return orderId == order.orderId && Double.compare(carportWidth, order.carportWidth) == 0 && Double.compare(carportLength, order.carportLength) == 0 && status == order.status && userId == order.userId && Double.compare(totalPrice, order.totalPrice) == 0 && Objects.equals(date, order.date) && Objects.equals(user, order.user);

@@ -12,7 +12,7 @@ public class CarportSvg {
     private final ConnectionPool connectionPool = new ConnectionPool();
     Calculator calculator = new Calculator(width, length, connectionPool);
 
-    public CarportSvg(int width, int length){
+    public CarportSvg(int width, int length) {
         this.width = width;
         this.length = length;
         mainCarport = new Svg(0, 0, "0 0 " + (length + offset) + " " + (width + offset), "75%");
@@ -23,42 +23,42 @@ public class CarportSvg {
         addInnerSvg();
     }
 
-    private void addBeams(){ // -- remme
+    private void addBeams() { // -- remme
         carportSvg.addRectangle(0, 35, 4.5, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
         carportSvg.addRectangle(0, width - 35, 4.5, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
     }
 
-    private void addRafters(){ // -- spær
-        for(double i = 0; i < length ; i += (int) 55.714){
+    private void addRafters() { // -- spær
+        for (double i = 0; i < length; i += (int) 55.714) {
             carportSvg.addRectangle(i, 0, width, 4.5, "stroke:#000000; fill: #ffffff");
         }
     }
 
-    private void addCross(){ // -- kryds
-        carportSvg.addCross(offset, offset, length - offset, width -offset, "stroke:#000000; stroke-width:2px; stroke-dasharray: 5 5;");
-        carportSvg.addCross(offset, width-offset, length - offset, offset, "stroke:#000000; stroke-width:2px; stroke-dasharray: 5 5;");
+    private void addCross() { // -- kryds
+        carportSvg.addCross(offset, offset, length - offset, width - offset, "stroke:#000000; stroke-width:2px; stroke-dasharray: 5 5;");
+        carportSvg.addCross(offset, width - offset, length - offset, offset, "stroke:#000000; stroke-width:2px; stroke-dasharray: 5 5;");
     }
 
-    private void addArrow(){
-        mainCarport.addArrow(offset / 2,0, offset / 2, width ); // left arrow
+    private void addArrow() {
+        mainCarport.addArrow(offset / 2, 0, offset / 2, width); // left arrow
         mainCarport.addArrow(offset, width + (offset / 2), length + offset, width + (offset / 2)); // bottom arrow
     }
 
-    private void addPost(){ // -- stolper
+    private void addPost() { // -- stolper
         double postSize = 9.7;
 
-        carportSvg.addRectangle(100,  offset - (postSize / 4) , postSize, postSize, "stroke:#000000; fill: #ffffff" );
-        carportSvg.addRectangle(length - 100,  offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff" );
-        carportSvg.addRectangle(100,  width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff" );
-        carportSvg.addRectangle(length - 100,  width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff" );
+        carportSvg.addRectangle(100, offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff");
+        carportSvg.addRectangle(length - 100, offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff");
+        carportSvg.addRectangle(100, width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff");
+        carportSvg.addRectangle(length - 100, width - offset - (postSize / 4), postSize, postSize, "stroke:#000000; fill: #ffffff");
     }
 
-    public void addText(){
-        mainCarport.addText("text-anchor: middle; transform: rotate(-90deg);",-(width / 2) , 12, width); // left side
+    public void addText() {
+        mainCarport.addText("text-anchor: middle; transform: rotate(-90deg);", -(width / 2), 12, width); // left side
         mainCarport.addText("text-anchor: middle;", (length / 2) + offset, width + offset, length); // bottom
     }
 
-    public void addInnerSvg(){
+    public void addInnerSvg() {
         carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff");
         addCross();
         addBeams();
@@ -76,7 +76,7 @@ public class CarportSvg {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return mainCarport.toString();
     }
 }

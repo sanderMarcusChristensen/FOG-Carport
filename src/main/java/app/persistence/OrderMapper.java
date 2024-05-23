@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-import static app.persistence.UserMapper.getUserById;
 
 public class OrderMapper {
 
@@ -379,4 +378,3 @@ public class OrderMapper {
         return order;
     }
 }
-

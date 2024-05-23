@@ -2,7 +2,7 @@ package app.controllers;
 
 import app.entities.Order;
 import app.entities.OrderItem;
-import app.entities.Product;
+
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
@@ -11,10 +11,9 @@ import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
-import java.lang.module.Configuration;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+
 
 public class AdminController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
@@ -173,8 +172,3 @@ public class AdminController {
     }
 
 }
-
-
-
-
-

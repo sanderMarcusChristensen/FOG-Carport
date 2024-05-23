@@ -31,8 +31,8 @@ public class UserController {
     }
 
     private static void logout(Context ctx) {
-            ctx.req().getSession().invalidate();
-            ctx.redirect("/");
+        ctx.req().getSession().invalidate();
+        ctx.redirect("/");
     }
 
     private static void loginRequest(Context ctx, ConnectionPool connectionPool) {
@@ -112,6 +112,3 @@ public class UserController {
 
 
 }
-
-
-

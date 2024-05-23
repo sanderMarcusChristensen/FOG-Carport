@@ -52,10 +52,10 @@ public class OrderController {
 
     private static void sendRequest(Context ctx, ConnectionPool connectionPool) {
 
-        //Get order details from front-end
+
         int carportWidth = ctx.sessionAttribute("width");
         int carportLength = ctx.sessionAttribute("length");
-        //Set date of today
+
         Date date = Date.valueOf(LocalDate.now());
         int status = 1;
         int totalPrice = 19999;
@@ -67,8 +67,6 @@ public class OrderController {
         int zipcode = Integer.parseInt(ctx.formParam("zipcode"));
         String address = ctx.formParam("address");
 
-        //User user = new User();   // hard-code for nu (laver en dummy user)
-
 
         if (password.equals(passwordrepeat) && name.length() > 3 && password.length() > 3 && passwordrepeat.length() > 3) {
             try {
@@ -79,18 +77,17 @@ public class OrderController {
                 Order order = new Order(0, carportWidth, carportLength, date, status, totalPrice, user);
                 order = OrderMapper.insertOrder(order, connectionPool);
 
-                //calculate order items (stykliste)
+
                 Calculator calculator = new Calculator(carportWidth, carportLength, connectionPool);
                 calculator.calcCarport(order);
 
-                //save order items in database (stykeliste)
+
                 OrderMapper.insertOrderItems(calculator.getOrderItem(), connectionPool);
 
                 ctx.attribute("usermessage", "Du er hermed oprettet med e-mail: " + email + " - Du vil modtage en email " +
                         "med yderligere informationer vedr. din forespørgsel.");
                 ctx.render("customCarport_3.html");
-                //create messge to customer and render order / request confirmation
-                //ctx.render("ItEllerAndetFed/dude");   // Lave om, idk
+
 
             } catch (DatabaseException e) {
                 throw new RuntimeException(e);
@@ -105,15 +102,14 @@ public class OrderController {
 
     private static void sendRequestLoggedIn(Context ctx, ConnectionPool connectionPool) {
 
-        //Get order details from front-end
+
         int carportWidth = ctx.sessionAttribute("width");
         int carportLength = ctx.sessionAttribute("length");
-        //Set date of today
+
         Date date = Date.valueOf(LocalDate.now());
         int status = 1;
         int totalPrice = 19999;
 
-        //User user = new User();   // hard-code for nu (laver en dummy user)
 
         try {
 
@@ -122,18 +118,17 @@ public class OrderController {
             Order order = new Order(0, carportWidth, carportLength, date, status, totalPrice, user);
             order = OrderMapper.insertOrder(order, connectionPool);
 
-            //calculate order items (stykliste)
+
             Calculator calculator = new Calculator(carportWidth, carportLength, connectionPool);
             calculator.calcCarport(order);
 
-            //save order items in database (stykeliste)
+
             OrderMapper.insertOrderItems(calculator.getOrderItem(), connectionPool);
 
             ctx.attribute("usermessage", "Du vil modtage en email på " + user.getUserEmail() +
                     " med yderligere informationer vedr. din forespørgsel.");
             ctx.render("index.html");
-            //create messge to customer and render order / request confirmation
-            //ctx.render("ItEllerAndetFed/dude");   // Lave om, idk
+
 
         } catch (DatabaseException e) {
             throw new RuntimeException(e);

@@ -129,7 +129,7 @@ h1 {
         display: inline-block;
     }
 
-    .error, .error p{
+    .error, .error p {
         font-size: 30px;
         border: 1px solid red;
         padding: 10px;
@@ -171,6 +171,7 @@ h1 {
 .sign_ui svg path {
     fill: white;
 }
+
 /* text */
 .text_ui {
     position: absolute;
@@ -183,6 +184,7 @@ h1 {
     transition-duration: .3s;
 
 }
+
 /* hover effect on button width */
 .Btn_ui:hover {
     width: 125px;
@@ -195,6 +197,7 @@ h1 {
     transition-duration: .3s;
     padding-left: 10px;
 }
+
 /* hover effect button's text */
 .Btn_ui:hover .text_ui {
     opacity: 1;
@@ -202,18 +205,19 @@ h1 {
     transition-duration: .3s;
     padding-right: 10px;
 }
+
 /* button click effect*/
 .Btn_ui:active {
-    transform: translate(2px ,2px);
+    transform: translate(2px, 2px);
 }
 
-.footer-container{
+.footer-container {
     background-color: #ffffff;
     margin: 4rem 0 4rem 0;
     padding: 1rem;
 }
 
-.footer-container div{
+.footer-container div {
     color: #b4b4b4;
     display: flex;
     flex-direction: row;
@@ -234,11 +238,13 @@ h1 {
     height: 24px;
     width: 24px;
 }
-@media (max-width: 600px){
+
+@media (max-width: 600px) {
     .footer-container div {
         flex-direction: column;
         text-align: center;
     }
+
     .footer-container div a {
         margin-top: 1rem;
     }

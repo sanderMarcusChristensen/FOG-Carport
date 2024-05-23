@@ -49,13 +49,11 @@ p {
 }
 
 
-
 .price-form input[type="number"] {
     padding: 5px 10px 5px 10px;
     width: 50%;
 
 }
-
 
 
 /*------------------- MIDDLE SIDE --------------------*/
@@ -118,6 +116,7 @@ p {
     margin: 5px 10px 5px 10px;
 
 }
+
 h2 {
     margin-bottom: 10px;
     align-self: start;

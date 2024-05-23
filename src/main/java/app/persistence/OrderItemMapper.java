@@ -1,6 +1,6 @@
 package app.persistence;
 
-import app.entities.Order;
+
 import app.entities.OrderItem;
 import app.exceptions.DatabaseException;
 
@@ -9,10 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
-public class OrderItemMapper  {
+public class OrderItemMapper {
 
     public static List<OrderItem> getAllOrderItems(ConnectionPool connectionPool) throws DatabaseException {
 
@@ -42,4 +42,3 @@ public class OrderItemMapper  {
         return orderItemsList;
     }
 }
-
