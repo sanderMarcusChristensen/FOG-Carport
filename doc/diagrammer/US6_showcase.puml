@@ -6,27 +6,28 @@ scale 350 width
 [*] --> FOG : Googling "FOG Carport"
 
 state FOG {
-  FOG --> Customer: Fog got Customers looking to buy a Carport
-  Customer --> Login:  Customer can login into an account if they have one
-  Customer --> CreateAccount: If they dont have an account, they can make one
+  FOG --> IndexPage: Google : Fog carport
+  IndexPage --> LoginPage : From the "frontPage" you have a "login" button
+  LoginPage --> EnterLogInInfo: if you have an account
+  LoginPage --> SignUp: if you dont have an account
 
-  Login --> RegisteredUser: Your a registered user when you are log in
-  CreateAccount --> Information: CreateAccount your giving some information's: user_name, password
-  Information --> RegisteredUser: After getting FOG your information, you're a registered user
+  SignUp --> IndexPage: after createing an account, back to index
+  EnterLogInInfo --> IndexPage: after "loggin in" back to index
 
-  RegisteredUser --> Admin: A registered user account can be an admin user
+
 
 
   state Admin {
 
-    AdminUser --> AdminPage: Admin users can access the adminpage
+    IndexPage --> Order: if logged-in into a "admin-account", have the option to go to Order
 
-    AdminPage --> RequestSystem: AdminPage has access to RequestSystem
+    Order --> RequestSystem: clicking "Order" takes you to the requestSystem
 
+    RequestSystem --> HelpWithBuildsAndCarportMeasurement: can click on a request and get more details
 
-    RequestSystem --> HelpWithBuildsAndCarportMeasurement: Admin looks everything over on the request to make sure everything is good
-    HelpWithBuildsAndCarportMeasurement --> SendOfferToUser: After making small changes or approves the request, they send an offer back to the customer
-    SendOfferToUser --> [*]: After sending offer on price/changes to the carport the program ends
+    HelpWithBuildsAndCarportMeasurement --> SendOfferToUser: admin can "change" pris and measurment on the carport if need be
+
+    SendOfferToUser --> [*]: after helping, send an offer to customer and program ends
   }
 }
 
