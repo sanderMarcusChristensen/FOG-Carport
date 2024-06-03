@@ -28,7 +28,7 @@ public class Main {
 
             config.jetty.modifyServletContextHandler(handler -> handler.setSessionHandler(SessionConfig.sessionConfig())); //initialisere seassionConig
 
-            config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine())); //initialisere thymaleaf  som "template-motor"
+            config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine())); //initialisere thymaleaf
 
         }).start(7070);//Starter javalin på port 7070
 
