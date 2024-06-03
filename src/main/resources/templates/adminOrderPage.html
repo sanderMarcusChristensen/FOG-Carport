@@ -41,8 +41,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="item : ${orderItemList}">
-                <td th:text="${item.productVariant.product.product_name}"></td>
+            <tr th:each="item : ${orderItemList}">   <!-- AdminController 132  -->
+                <td th:text="${item.productVariant.product.product_name}"></td>      <!-- For vi alle materialer for calculator?   -->
                 <td th:text="${item.productVariant.product_variant_length}"></td>
                 <td th:text="${item.quantity}"></td>
                 <td th:text="${item.productVariant.product.unit}"></td>
@@ -51,7 +51,7 @@
             </tbody>
         </table>
 
-        <h2 th:text="${'Tlbudspris: ' + order.totalPrice + ' pr.stk + evt. fragt'}"></h2>
+        <h2 th:text="${'Tlbudspris: ' + order.totalPrice + ' pr.stk + evt. fragt'}"></h2>    <!-- bygger en String   -->
         <h3 th:text="${'Normalpris: ' + normalPrice + ' pr.stk + evt. fragt'}"></h3>
 
         <div>
@@ -62,7 +62,7 @@
             </form>
         </div>
 
-        <p th:text="${'Navn: ' + user.userName}"></p>
+        <p th:text="${'Navn: ' + user.userName}"></p>   <!-- bygger en String   -->
         <p th:text="${'Email: ' + user.userEmail}"></p>
         <p th:text="${'Adresse: ' + user.zipcode + ' ' + user.userAddress}"></p>
 
@@ -70,7 +70,7 @@
 
     <section class="middle-side">
 
-        <form method="post" th:action="@{updateCarportSize}" class="dropdown-menu-container">
+        <form method="post" th:action="@{updateCarportSize}" class="dropdown-menu-container">    <!-- FROM og POST, updatecarport   -->
             <label>
                 <span>Carport bredde</span>
                 <select id="width" name="width" required>
