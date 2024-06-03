@@ -17,7 +17,7 @@ public class UserController {
         app.get("homepage", ctx -> ctx.render("index.html"));
 
         app.get("loginPage", ctx -> ctx.render("login.html"));
-        app.post("loginAccount", ctx -> login(ctx, connectionPool));
+        app.post("loginAccount", ctx -> login(ctx, connectionPool));    //Tager brugerens data med videre til "login"
 
         app.get("loginPageRequest", ctx -> ctx.render("loginRequest.html"));
         app.post("loginAccountRequest", ctx -> loginRequest(ctx, connectionPool));
@@ -36,12 +36,12 @@ public class UserController {
     }
 
     private static void loginRequest(Context ctx, ConnectionPool connectionPool) {
-        String email = ctx.formParam("email");
+        String email = ctx.formParam("email");  //Bruges til at hente dataen fra brugerns input fra login-form (scanner)
         String password = ctx.formParam("password");
 
         try {
             User user = UserMapper.login(email, password, connectionPool);
-            ctx.sessionAttribute("currentUser", user);
+            ctx.sessionAttribute("currentUser", user);  //Gemmer alle brugers data, så de er tilgænelige på tværs af siderne.
             ctx.sessionAttribute("currentUserId", user.getUserId());
             ctx.sessionAttribute("currentUserName", user.getUserName());
             ctx.sessionAttribute("currentUserEmail", user.getUserEmail());
@@ -53,7 +53,7 @@ public class UserController {
             Locale.setDefault(new Locale("US"));
             CarportSvg svg = new CarportSvg(width, length);
 
-            Svg carportSvg = new Svg(0, 0, "0 0 855 690", "100%");
+            Svg carportSvg = new Svg(0, 0, "0 0 855 690", "100%");  //laver SVG-tegningen.
             carportSvg.addRectangle(0, 0, width, length, "stroke:#000000; stroke-width:2px; fill: #ffffff; margin: auto;");
 
             ctx.attribute("svg", svg.toString());
@@ -61,17 +61,20 @@ public class UserController {
 
 
         } catch (DatabaseException e) {
-            ctx.attribute("errormessage", e.getMessage());
-            ctx.render("login.html");
+            //hvis login fejler, vis fejlbesked
+            ctx.attribute("errormessage", e.getMessage());  //gem fejlbesked i "request scope"
+            ctx.render("login.html"); //vis login-siden igen
         }
     }
 
     private static void login(Context ctx, ConnectionPool connectionPool) {
         String email = ctx.formParam("email");
-        String password = ctx.formParam("password");
+        String password = ctx.formParam("password");    //Gemmer brugerens input i variabler
 
         try {
-            User user = UserMapper.login(email, password, connectionPool);
+            User user = UserMapper.login(email, password, connectionPool);  //bruger mapper som "checker" data op imod databsen
+
+            //Gemmer de forskellige data i vores session scope
             ctx.sessionAttribute("currentUser", user);
             ctx.sessionAttribute("currentUserId", user.getUserId());
             ctx.sessionAttribute("currentUserName", user.getUserName());

@@ -31,8 +31,10 @@
             Felter markeret med * SKAL udfyldes!</p>
     </section>
 
-    <form method="post" th:action="@{getCarportSize}" class="form-container">
-        <label>
+    <!-- Form til at indsamle brugers input og POST for send dataen videre (opretter et "request.scope") -->
+
+    <form method="post" th:action="@{getCarportSize}" class="form-container">   <!-- Dataen bliver sendt via th:  -->
+        <label>                                                             <!-- OrderController 28 -->
             <span>Carport bredde*</span>
             <select id="width" name="width" required>
                 <option value=""></option>
@@ -65,7 +67,7 @@
                 <option value="PlastiktrapetzPlader">PlastiktrapetzPlader</option>
             </select>
         </label>
-        <button class="btn" type="submit">Fortsæt</button>
+        <button class="btn" type="submit">Fortsæt</button>  <!-- bliver udført når "fortsæt" knappen bliver trykket-->
     </form>
     <div th:replace="~{fragments :: messages}"></div>
 </main>

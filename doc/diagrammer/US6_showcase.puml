@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+
+[*] --> FOG : Googling "FOG Carport"
+
+state FOG {
+  FOG --> Customer: Fog got Customers looking to buy a Carport
+  Customer --> Login:  Customer can login into an account if they have one
+  Customer --> CreateAccount: If they dont have an account, they can make one
+
+  Login --> RegisteredUser: Your a registered user when you are log in
+  CreateAccount --> Information: CreateAccount your giving some information's: user_name, password
+  Information --> RegisteredUser: After getting FOG your information, you're a registered user
+
+  RegisteredUser --> Admin: A registered user account can be an admin user
+
+
+  state Admin {
+
+    AdminUser --> AdminPage: Admin users can access the adminpage
+
+    AdminPage --> RequestSystem: AdminPage has access to RequestSystem
+
+
+    RequestSystem --> HelpWithBuildsAndCarportMeasurement: Admin looks everything over on the request to make sure everything is good
+    HelpWithBuildsAndCarportMeasurement --> SendOfferToUser: After making small changes or approves the request, they send an offer back to the customer
+    SendOfferToUser --> [*]: After sending offer on price/changes to the carport the program ends
+  }
+}
+
+@enduml

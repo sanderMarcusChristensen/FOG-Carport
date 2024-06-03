@@ -16,20 +16,28 @@ public class Main {
     private static final String URL = "jdbc:postgresql://209.38.202.233:5432/%s?currentSchema=public";
     private static final String DB = "carport_jon";
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
+
+
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);  //opretter en Singleton - instans, klader på "getInstance" med paramtere
 
     public static void main(String[] args) {
         // Initializing Javalin and Jetty webserver
 
-        Javalin app = Javalin.create(config -> {
-            config.staticFiles.add("/public");
-            config.jetty.modifyServletContextHandler(handler -> handler.setSessionHandler(SessionConfig.sessionConfig()));
-            config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
-        }).start(7070);
+        Javalin app = Javalin.create(config -> {  //Laver en javalin server
+            config.staticFiles.add("/public");  //Fortæller hvor vi kan find vores "statiske filer"
+
+            config.jetty.modifyServletContextHandler(handler -> handler.setSessionHandler(SessionConfig.sessionConfig())); //initialisere seassionConig
+
+            config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine())); //initialisere thymaleaf  som "template-motor"
+
+        }).start(7070);//Starter javalin på port 7070
 
         // Routing
 
+        //app.get håndtere alle anmodninger og viser forside ved hjælp af ctx (Context)
         app.get("/", ctx -> ctx.render("index.html"));
+
+        //Tilføjer forskellige "routes" så man kan komme rundt på siden
         UserController.addRoutes(app, connectionPool);
         OrderController.addRoutes(app, connectionPool);
         AdminController.addRoutes(app, connectionPool);

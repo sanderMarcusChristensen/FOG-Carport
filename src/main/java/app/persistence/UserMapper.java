@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserMapper {
     private static final List<User> userList = new ArrayList<>();
-    static User currentUser;
+
 
     public static User login(String user_email, String user_password, ConnectionPool connectionPool) throws DatabaseException {
         String emailCheckSql = "SELECT * FROM public.\"users\" WHERE user_email=?";
@@ -35,9 +35,9 @@ public class UserMapper {
                     int user_zipcode = loginRs.getInt("user_zipcode");
                     String user_role = loginRs.getString("user_role");
                     String user_address = loginRs.getString("user_address");
-                    return new User(user_id, user_name, user_password, user_email, user_zipcode, user_role, user_address);
+                    return new User(user_id, user_name, user_password, user_email, user_zipcode, user_role, user_address);  //kommer tilbage med "user-boj"
                 } else {
-                    throw new DatabaseException("Wrong password");
+                    throw new DatabaseException("Wrong password");  //fejlhåndtering
                 }
             } else {
                 throw new DatabaseException("Email doesn't exist");

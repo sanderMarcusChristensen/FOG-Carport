@@ -39,8 +39,8 @@
                           stroke-linejoin="round"/>
                 </svg>
             </a>
-            <a href="customCarportInput.html" th:href="@{customCarportInput}">
-                <div>Design din egen carport</div>
+            <a href="customCarportInput.html" th:href="@{customCarportInput}">  <!-- Vi bruger "th" til at navigere hen på den næste side  -->
+                <div>Design din egen carport</div>        <!-- Design din egen carport-->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.25 4.5L15.75 12L8.25 19.5" stroke="white" stroke-width="1.5" stroke-linecap="round"
                           stroke-linejoin="round"/>
@@ -48,24 +48,30 @@
             </a>
         </div>
 
+
+        <!-- Login - page   -->
+        <!-- Bruger Thymeleaf (th) til at lave "if statements" -->
+        <!-- Bruger th til at navigere/ send bruger rundt på hjemmesiden  -->
+
+                                                                <!-- Hvis man ikke er logget ind, "login-page"  -->
         <div class="icon-section">
             <a th:if="${session.currentUser == null}" href="login.html" th:href="@{/loginPage}">
                 <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
                 <div>Login</div>
             </a>
-
+                                                                    <!-- Hvis man logget in på en normal bruger, "My-page"   -->
             <a th:if="${session.currentUser != null and session.currentUser.userRole == 'user'}" href="userPage.html"
                th:href="@{userPage}">
                 <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
                 <div>My page</div>
             </a>
-
+                                                                    <!-- Hvis man logger ind på en Admin-account, "Admin-page"  -->
             <a th:if="${session.currentUser != null and session.currentUser.userRole == 'admin'}" href="adminPage.html"
                th:href="@{adminPage}">
                 <img src="../public/icons/user.svg" th:src="@{/icons/user.svg}">
                 <div>Orders</div>
             </a>
-
+                                                                    <!-- Hvis man er logget ind, kan man logge ud  -->
             <a th:if="${session.currentUser != null}" href="index.html" th:href="@{logout}">
                 <button class="Btn_ui">
                     <div class="sign_ui">

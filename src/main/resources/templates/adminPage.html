@@ -13,20 +13,20 @@
 
 <section class="leftside-main-container">
 
-    <form method="post">
+    <form method="post">    <!-- FORM og POST  -->
         <table class="task-table">
             <thead>
             <tr>
                 <th><h2>Forespørgsler</h2></th>
             </tr>
             </thead>
-            <tbody>
-            <tr th:each="order : ${orderAndUserList}">
+            <tbody>     <!-- th:each -->
+            <tr th:each="order : ${orderAndUserList}">  <!-- AdminController 74  -->
                 <td th:text="${order.user.userName + ' #' + order.orderId + ' Status:' + (order.status == 1 ? ' Processing' : (order.status == 2 ? ' Accepted' : ''))}"></td>
 
                 <td>
                     <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"
-                            formaction="orderDetails"><span>Rediger</span></button>
+                            formaction="orderDetails"><span>Rediger</span></button> <!-- AdminController 24  -->
                 </td>
             </tr>
             </tbody>

@@ -20,25 +20,26 @@ import java.util.Locale;
 public class OrderController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
 
-        app.get("continueToPageThree", ctx -> ctx.render("customCarport_3.html"));
+        app.get("continueToPageThree", ctx -> ctx.render("customCarport_3.html"));      //Efter svg-tegning, bliver CustomCarport vist
         app.get("backToPageOne", ctx -> ctx.render("customCarportInput.html"));
 
         app.post("sendRequest", ctx -> sendRequest(ctx, connectionPool));
         app.get("sendRequestLoggedIn", ctx -> sendRequestLoggedIn(ctx, connectionPool));
-        app.post("getCarportSize", ctx -> showPreView(ctx));
-        app.get("/customCarportPreView", ctx -> OrderController.showPreView(ctx));
+        app.post("getCarportSize", ctx -> showPreView(ctx));    // th:action="@{getCarportSize} sender dataen videre ned i showPreView
+        app.get("customCarportPreView", ctx -> OrderController.showPreView(ctx));
 
     }
 
     public static void showPreView(Context ctx) {
-        int width = Integer.parseInt(ctx.formParam("width"));
+        int width = Integer.parseInt(ctx.formParam("width"));       //Gemmer brugerns data i variabler width og length
         int length = Integer.parseInt(ctx.formParam("length"));
 
-        ctx.sessionAttribute("width", width);
+        ctx.sessionAttribute("width", width);   //Gemmer dem på "sessionen" til opretteelsen af bruger (session scope)
         ctx.sessionAttribute("length", length);
 
-        String type = ctx.sessionAttribute("type");
+        String type = ctx.sessionAttribute("type");     //Gemmer valget af "vag" (bruges ikke)
 
+        //kode til svg
         Locale.setDefault(new Locale("US"));
         CarportSvg svg = new CarportSvg(width, length);
 
@@ -77,6 +78,9 @@ public class OrderController {
                 Order order = new Order(0, carportWidth, carportLength, date, status, totalPrice, user);
                 order = OrderMapper.insertOrder(order, connectionPool);
 
+                //Stopper her for en normal bruger
+
+                //Kun admins kan se styklisten
 
                 Calculator calculator = new Calculator(carportWidth, carportLength, connectionPool);
                 calculator.calcCarport(order);

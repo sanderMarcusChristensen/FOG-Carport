@@ -21,7 +21,8 @@
 <h1>Velkommen til FOG </h1>
 
 <div class="generic-form">
-    <form method="post" action="loginAccount">
+    <form method="post" action="loginAccount">      <!-- Bruger "FROM" til indsamling og POST til at lave send data  -->
+                                                                        <!-- UserController 20  -->
         <input type="email" name="email" placeholder="E-mail"/>
         <input type="password" name="password" placeholder="Kodeord"/>
 
@@ -29,7 +30,7 @@
         <div th:replace="~{fragments :: messages}"></div>
     </form>
     <div class="link">
-        <a class="btn" th:href="@{createAccountPage}">Sign up</a>
+        <a class="btn" th:href="@{createAccountPage}">Sign up</a> <!-- Trykker man på "sign up", create-account  -->
     </div>
 </div>
 

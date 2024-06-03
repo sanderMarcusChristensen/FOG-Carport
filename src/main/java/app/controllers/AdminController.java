@@ -21,7 +21,7 @@ public class AdminController {
         app.post("deleteOrder", ctx -> deleteOrder(ctx, connectionPool));
         app.post("acceptOrder", ctx -> acceptOrder(ctx, connectionPool));
         app.post("unAcceptOrder", ctx -> unAcceptOrder(ctx, connectionPool));
-        app.post("orderDetails", ctx -> getOrderDetails(ctx, connectionPool));
+        app.post("orderDetails", ctx -> getOrderDetails(ctx, connectionPool));      //Tager data med videre til "getOrderDetails", 127
         app.post("updateCarportPrice", ctx -> updateOrderPrice(ctx, connectionPool));
         app.post("updateCarportSize", ctx -> updateOrderSize(ctx, connectionPool));
     }
@@ -71,7 +71,7 @@ public class AdminController {
             int orderId = Integer.parseInt(ctx.formParam("orderId"));
             OrderMapper.deleteOrderWithItems(orderId, connectionPool);
 
-            List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);
+            List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);    //æsdmgæsdjgpsjdgpsjg
             ctx.attribute("orderAndUserList", orderAndUserList);
             ctx.attribute("usermessage", "Order #" + orderId + " has been deleted");
             ctx.render("adminPage.html");

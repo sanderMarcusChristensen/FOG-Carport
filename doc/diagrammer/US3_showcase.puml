@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+
+[*] --> FOG : Googling "FOG Carport"
+
+state FOG {
+  FOG --> Carportpage: User ses the front page with various "carporte"
+  Carportpage --> DesignYourOwnCarport : The User clicks on "Design din egen carport" button
+
+  state BuildYourOwnCarport {
+    DesignYourOwnCarport --> EnterCarportMeasurement: The User can pick between various lengths
+    EnterCarportMeasurement --> CarportRoofInfo : Can pick between various roof types
+    CarportRoofInfo --> GetSVG_Drawing: the user can se a drawing of the "carporte" with he's/he choices
+    GetSVG_Drawing --> CreateUser: When happy, they enter information
+    GetSVG_Drawing --> Login: Or they can "login"´if they have an account
+    CreateUser --> MakeRequest: After the infoPage the can make a request on the "carporte" they picked
+    Login --> MakeRequest: After "Login" the can make a request on the "carporte" they picked
+    MakeRequest --> [*]: the request goes to the admin/sales rep
+
+
+
+
+
+
+
+  }
+
+
+  @enduml
