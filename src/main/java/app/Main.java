@@ -18,7 +18,7 @@ public class Main {
 
 
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);  //opretter en Singleton - instans, klader på "getInstance" med paramtere
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);  //initialisere vores Conncetion med instansvariabler
 
     public static void main(String[] args) {
         // Initializing Javalin and Jetty webserver
