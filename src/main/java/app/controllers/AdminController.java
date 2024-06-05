@@ -71,7 +71,7 @@ public class AdminController {
             int orderId = Integer.parseInt(ctx.formParam("orderId"));
             OrderMapper.deleteOrderWithItems(orderId, connectionPool);
 
-            List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);    //æsdmgæsdjgpsjdgpsjg
+            List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);
             ctx.attribute("orderAndUserList", orderAndUserList);
             ctx.attribute("usermessage", "Order #" + orderId + " has been deleted");
             ctx.render("adminPage.html");
@@ -88,7 +88,7 @@ public class AdminController {
 
             List<Order> orderAndUserList = OrderMapper.getAllOrders(connectionPool);
             ctx.attribute("usermessage", "Order #" + orderId + " has been accepted");
-            ctx.attribute("orderAndUserList", orderAndUserList);
+            ctx.attribute("orderAndUserList", orderAndUserList);        //liste med alle orders
             ctx.attribute("usermessage", "Order #" + orderId + " has been accepted. Automated mail has been sent to customer");
             ctx.render("adminPage.html");
 
