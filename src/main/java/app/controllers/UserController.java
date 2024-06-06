@@ -69,7 +69,7 @@ public class UserController {
 
     private static void login(Context ctx, ConnectionPool connectionPool) {
         String email = ctx.formParam("email");
-        String password = ctx.formParam("password");    //Gemmer brugerens input i variabler
+        String password = ctx.formParam("password");
 
         try {
             User user = UserMapper.login(email, password, connectionPool);  //bruger mapper som "checker" data op imod databsen
