@@ -13,6 +13,8 @@
 
 <section class="leftside-main-container">
 
+    <div th:replace="~{fragments :: messages}"></div>
+
     <form method="post">
         <table class="task-table">
             <thead>
@@ -26,14 +28,12 @@
 
                 <td>
                     <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"
-                            formaction="orderDetails"><span>Rediger</span></button>
+                            formaction="orderDetailsAdmin"><span>Rediger</span></button>
                 </td>
             </tr>
             </tbody>
         </table>
     </form>
-
-    <div th:replace="~{fragments :: messages}"></div>
 
 </section>
 

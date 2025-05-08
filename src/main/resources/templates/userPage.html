@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <link href="../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../public/css/userPage.css" th:href="@{/css/userPage.css}" rel="stylesheet">
+</head>
+<body>
+
+<header th:replace="~{fragments :: header}"></header>
+
+<div th:replace="~{fragments :: messages}"></div>
+
+<section class="main-container">
+
+    <div class="sub-container">
+
+        <form method="post">
+            <table class="task-table">
+                <thead>
+                <tr>
+                    <th><h2>Dine ordrer</h2></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orderListByUserId}">
+                    <td th:text="${order.user.userName + ' #' + order.orderId + ' Status:' + (order.status == 1 ? ' Processing' : (order.status == 2 ? ' Accepted' : ''))}"></td>
+
+                    <td>
+                        <button class="button-admin" type="submit" name="orderId" th:value="${order.orderId}"
+                                formaction="orderDetails"><span>View order</span></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+    </div>
+
+
+</section>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+
+</body>
+</html>

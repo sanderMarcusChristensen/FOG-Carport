@@ -84,6 +84,45 @@ public class OrderMapper {
         }
     }
 
+    public static List<Order> getOrderByUserId(int userId, ConnectionPool connectionPool) throws DatabaseException {
+
+        List<Order> orderList = new ArrayList<>();
+
+        String sql = "SELECT * FROM orders INNER JOIN users using (user_id) WHERE user_id = ?";
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String userName = rs.getString("user_name");
+                String userPassword = rs.getString("user_password");
+                String userEmail = rs.getString("user_email");
+                int userZipCode = rs.getInt("user_zipcode");
+                String userRole = rs.getString("user_role");
+                String userAddress = rs.getString("user_address");
+
+                int orderId = rs.getInt("order_id");
+                double carportWidth = rs.getDouble("carport_width");
+                double carportLength = rs.getDouble("carport_length");
+                Date date = rs.getDate("date");
+                int status = rs.getInt("status");
+                int totalPrice = rs.getInt("total_price");
+
+                User user = new User(userId, userName, userPassword, userEmail, userZipCode, userRole, userAddress);
+                Order order = new Order(orderId, carportWidth, carportLength, date, status, totalPrice, user);
+
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error while retrieving order by ID: " + e.getMessage());
+        }
+
+        return orderList;
+    }
+
+
     public static List<OrderItem> getOrderItemsByOrderId(int orderId, ConnectionPool connectionPool) throws DatabaseException {
         List<OrderItem> orderItemList = new ArrayList<>();
 

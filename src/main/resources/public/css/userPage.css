@@ -1,0 +1,77 @@
+main {
+    min-width: 500px;
+    margin: auto;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5px 5px 10px 10px;
+    max-width: 600px;
+}
+
+table.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table.task-table th, table.task-table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+table.task-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table.task-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.task-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.button-admin {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #013D7A;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    width: 130px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+button span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -15px;
+    transition: 0.5s;
+}
+
+button:hover span {
+    padding-right: 15px;
+}
+
+button:hover span:after {
+    opacity: 1;
+    right: 0;
+}

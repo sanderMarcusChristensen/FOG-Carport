@@ -21,7 +21,7 @@ public class AdminController {
         app.post("deleteOrder", ctx -> deleteOrder(ctx, connectionPool));
         app.post("acceptOrder", ctx -> acceptOrder(ctx, connectionPool));
         app.post("unAcceptOrder", ctx -> unAcceptOrder(ctx, connectionPool));
-        app.post("orderDetails", ctx -> getOrderDetails(ctx, connectionPool));
+        app.post("orderDetails", ctx -> getOrderDetailsAdmin(ctx, connectionPool));
         app.post("updateCarportPrice", ctx -> updateOrderPrice(ctx, connectionPool));
         app.post("updateCarportSize", ctx -> updateOrderSize(ctx, connectionPool));
     }
@@ -37,7 +37,7 @@ public class AdminController {
             OrderMapper.updateCarportOrderWidth(orderId, newWidth, connectionPool);
             OrderMapper.updateCarportOrderLength(orderId, newLength, connectionPool);
 
-            getOrderDetails(orderId, ctx, connectionPool);
+            getOrderDetailsAdmin(orderId, ctx, connectionPool);
             ctx.attribute("usermessage", "Order with OrderID: " + orderId + " changed width to: " + newWidth + " and length to: " + newLength);
             ctx.render("adminOrderPage.html");
 
@@ -56,7 +56,7 @@ public class AdminController {
 
             OrderMapper.updateCarportOrderTotalPrice(orderId, newPrice, connectionPool);
 
-            getOrderDetails(orderId, ctx, connectionPool);
+            getOrderDetailsAdmin(orderId, ctx, connectionPool);
             ctx.attribute("usermessage", "Order with OrderID: " + orderId + " changed total price to: " + newPrice);
             ctx.render("adminOrderPage.html");
 
@@ -124,7 +124,7 @@ public class AdminController {
         }
     }
 
-    public static void getOrderDetails(Context ctx, ConnectionPool connectionPool) {
+    public static void getOrderDetailsAdmin(Context ctx, ConnectionPool connectionPool) {
         int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
         try {
@@ -148,7 +148,7 @@ public class AdminController {
         }
     }
 
-    public static void getOrderDetails(int orderId, Context ctx, ConnectionPool connectionPool) {
+    public static void getOrderDetailsAdmin(int orderId, Context ctx, ConnectionPool connectionPool) {
 
         try {
 

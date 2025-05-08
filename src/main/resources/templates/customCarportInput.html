@@ -21,6 +21,9 @@
 
 <main>
     <section>
+
+        <div th:replace="~{fragments :: messages}"></div>
+
         <h1>Bestil Quick-Byg tilbud - carport med fladt tag</h1>
         <p>Med et specialudviklet computerprogram kan vi lynhurtigt beregne prisen og udskrive en skitsetegning på en
             carport indenfor vores standardprogram.<br/>
@@ -67,7 +70,6 @@
         </label>
         <button class="btn" type="submit">Fortsæt</button>
     </form>
-    <div th:replace="~{fragments :: messages}"></div>
 </main>
 
 <footer th:replace="~{fragments :: footer}"></footer>

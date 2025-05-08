@@ -1,14 +1,17 @@
 package app.controllers;
 
+import app.entities.Order;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
+import app.persistence.OrderMapper;
 import app.persistence.UserMapper;
 import app.services.CarportSvg;
 import app.services.Svg;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+import java.util.List;
 import java.util.Locale;
 
 public class UserController {
@@ -28,6 +31,8 @@ public class UserController {
         app.get("logout", ctx -> logout(ctx));
 
         app.get("customCarportInput", ctx -> ctx.render("customCarportInput.html"));
+
+        app.get("userPage", ctx -> renderUserPage(ctx, connectionPool));
     }
 
     private static void logout(Context ctx) {
@@ -108,6 +113,20 @@ public class UserController {
             ctx.attribute("errormessage", "Noget gik galt. Prøv igen. Vær sikker på følgende:\n- Password længde skal være mere end 3 tegn\n- Dine passwords skal matche i begge felter - Email skal indeholde '@' - Dit postnummer skal være gyldigt");
             ctx.render("customCarport_3.html");
         }
+    }
+
+    public static void renderUserPage(Context ctx, ConnectionPool connectionPool) {
+        int userId = ctx.sessionAttribute("currentUserId");
+
+        try {
+            List<Order> orderListByUserId = OrderMapper.getOrderByUserId(userId, connectionPool);
+            ctx.attribute("orderListByUserId", orderListByUserId);
+            ctx.render("userPage.html");
+        } catch (DatabaseException e) {
+            ctx.attribute("errormessage", e.getMessage());
+            ctx.render("index.html");
+        }
+
     }
 
 

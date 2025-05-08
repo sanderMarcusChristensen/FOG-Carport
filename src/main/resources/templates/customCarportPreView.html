@@ -19,6 +19,8 @@
 <header th:replace="~{fragments :: header}"></header>
 
 <main>
+    <div th:replace="~{fragments :: messages}"></div>
+
     <h1>Carport med fladt tag</h1>
 
     <div class="carport-view">
@@ -30,7 +32,7 @@
         <a th:if="${session.currentUser == null}" class="btn" th:href="@{continueToPageThree}">Fortsæt</a>
         <a th:if="${session.currentUser != null}" class="btn" th:href="@{sendRequestLoggedIn}">Send forespørgsel</a>
     </div>
-    <div th:replace="~{fragments :: messages}"></div>
+
 </main>
 
 <footer th:replace="~{fragments :: footer}"></footer>
